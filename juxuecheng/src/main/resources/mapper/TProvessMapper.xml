@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingsu.jxc.mapper.TProvessMapper">
+  <resultMap id="BaseResultMap" type="com.yingsu.jxc.entity.TProvess">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="provess_No" jdbcType="VARCHAR" property="provessNo" />
+    <result column="provess_name" jdbcType="VARCHAR" property="provessName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, provess_No, provess_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_provess
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_provess
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yingsu.jxc.entity.TProvess">
+    insert into t_provess (id, provess_No, provess_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{provessNo,jdbcType=VARCHAR}, #{provessName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TProvess">
+    insert into t_provess
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="provessNo != null">
+        provess_No,
+      </if>
+      <if test="provessName != null">
+        provess_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="provessNo != null">
+        #{provessNo,jdbcType=VARCHAR},
+      </if>
+      <if test="provessName != null">
+        #{provessName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yingsu.jxc.entity.TProvess">
+    update t_provess
+    <set>
+      <if test="provessNo != null">
+        provess_No = #{provessNo,jdbcType=VARCHAR},
+      </if>
+      <if test="provessName != null">
+        provess_name = #{provessName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yingsu.jxc.entity.TProvess">
+    update t_provess
+    set provess_No = #{provessNo,jdbcType=VARCHAR},
+      provess_name = #{provessName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

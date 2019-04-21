@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingsu.jxc.mapper.TStudentregisterMapper">
+  <resultMap id="BaseResultMap" type="com.yingsu.jxc.entity.TStudentregister">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bussesser_id" jdbcType="INTEGER" property="bussesserId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
+    <result column="student_mobile" jdbcType="VARCHAR" property="studentMobile" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bussesser_id, course_id, student_name, student_mobile, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_studentRegister
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_studentRegister
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yingsu.jxc.entity.TStudentregister">
+    insert into t_studentRegister (id, bussesser_id, course_id, 
+      student_name, student_mobile, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{bussesserId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, 
+      #{studentName,jdbcType=VARCHAR}, #{studentMobile,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TStudentregister">
+    insert into t_studentRegister
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bussesserId != null">
+        bussesser_id,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="studentName != null">
+        student_name,
+      </if>
+      <if test="studentMobile != null">
+        student_mobile,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bussesserId != null">
+        #{bussesserId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="studentName != null">
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMobile != null">
+        #{studentMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yingsu.jxc.entity.TStudentregister">
+    update t_studentRegister
+    <set>
+      <if test="bussesserId != null">
+        bussesser_id = #{bussesserId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="studentName != null">
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentMobile != null">
+        student_mobile = #{studentMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yingsu.jxc.entity.TStudentregister">
+    update t_studentRegister
+    set bussesser_id = #{bussesserId,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      student_mobile = #{studentMobile,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

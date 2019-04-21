@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingsu.jxc.mapper.TCityMapper">
+  <resultMap id="BaseResultMap" type="com.yingsu.jxc.entity.TCity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="city_No" jdbcType="VARCHAR" property="cityNo" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="provess_id" jdbcType="INTEGER" property="provessId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, city_No, city_name, provess_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_city
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_city
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yingsu.jxc.entity.TCity">
+    insert into t_city (id, city_No, city_name, 
+      provess_id)
+    values (#{id,jdbcType=INTEGER}, #{cityNo,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{provessId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TCity">
+    insert into t_city
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cityNo != null">
+        city_No,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="provessId != null">
+        provess_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityNo != null">
+        #{cityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="provessId != null">
+        #{provessId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yingsu.jxc.entity.TCity">
+    update t_city
+    <set>
+      <if test="cityNo != null">
+        city_No = #{cityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="provessId != null">
+        provess_id = #{provessId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yingsu.jxc.entity.TCity">
+    update t_city
+    set city_No = #{cityNo,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      provess_id = #{provessId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

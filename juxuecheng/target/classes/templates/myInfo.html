@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/myself/weui.min.css" rel="stylesheet">
+    <link href="/css/myself/jquery-weui.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/theme-color.css" rel="stylesheet">
+    <link href="/css/myself/my-info.css" rel="stylesheet">
+</head>
+<body style="background: #fff;">
+<header class="zyw-header">
+    <div class="zyw-container white-color">
+        <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="/img/svg/head-return.svg" alt=""></a></div>
+        <h1>我的信息</h1>
+    </div>
+</header>
+<section class="zyw-container">
+    <form id="bussForm" method="post">
+        <div class="weui-cell">
+            <div class="weui-cell__hd w-1"><label class="weui-label_1 f-r">用户名</label></div>
+            <div class="weui-cell__bd">
+                <span>王二小</span>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd w-1"><label class="weui-label_1 f-r">密码</label></div>
+            <a href="/repassword"><span style="color: #00acc1">修改密码</span></a>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd w-1"><label class="weui-label_1 f-r">联系方式</label></div>
+            <div class="weui-cell__bd">
+                <span>13818572040</span>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd w-1"><label class="weui-label_1 f-r">商家名称</label></div>
+            <div class="weui-cell__bd">
+                <span>英速百货</span>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd w-1"><label class="weui-label_1 f-r">教育类型</label></div>
+            <div class="weui-cell__bd">
+                <div class="btn-group dropdown" id="dropdown">
+                    <span>美术</span>
+                </div>
+            </div>
+            <div class="col-sm-4 tips"></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd w-1"><label class="weui-label_1 f-r">所在地址</label></div>
+            <div class="weui-cell__bd">
+                <span>吉首市华商国际城</span>
+            </div>
+        </div>
+        <div class="login-btn"><a href="javascript:;" class="weui-btn weui-btn_warn theme-bgcolor" onclick="registerBuss()">修改</a></div>
+    </form>
+</section>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

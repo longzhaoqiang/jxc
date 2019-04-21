@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingsu.jxc.mapper.TBussesserMapper">
+  <resultMap id="BaseResultMap" type="com.yingsu.jxc.entity.TBussesser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="buss_name" jdbcType="VARCHAR" property="bussName" />
+    <result column="buss_type" jdbcType="VARCHAR" property="bussType" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="contractor" jdbcType="VARCHAR" property="contractor" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="tearchPower" jdbcType="VARCHAR" property="tearchpower" />
+    <result column="buss_idea" jdbcType="VARCHAR" property="bussIdea" />
+    <result column="buss_introduce" jdbcType="VARCHAR" property="bussIntroduce" />
+    <result column="pic_id" jdbcType="VARCHAR" property="picId" />
+    <result column="wechat_code" jdbcType="VARCHAR" property="wechatCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, buss_name, buss_type, address, contractor, phone, tearchPower, buss_idea, buss_introduce,
+    pic_id, wechat_code, create_time
+  </sql>
+
+  <!-- 通过id查找商家信息 -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_bussesser
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!-- 通过uid查找商家信息 -->
+  <select id="selectByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_bussesser
+    where user_id = #{uid,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TBussesser">
+    insert into t_bussesser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="bussName != null">
+        buss_name,
+      </if>
+      <if test="bussType != null">
+        buss_type,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="contractor != null">
+        contractor,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="tearchpower != null">
+        tearchPower,
+      </if>
+      <if test="bussIdea != null">
+        buss_idea,
+      </if>
+      <if test="bussIntroduce != null">
+        buss_introduce,
+      </if>
+      <if test="picId != null">
+        pic_id,
+      </if>
+      <if test="wechatCode != null">
+        wechat_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bussName != null">
+        #{bussName,jdbcType=VARCHAR},
+      </if>
+      <if test="bussType != null">
+        #{bussType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contractor != null">
+        #{contractor,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="tearchpower != null">
+        #{tearchpower,jdbcType=VARCHAR},
+      </if>
+      <if test="bussIdea != null">
+        #{bussIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="bussIntroduce != null">
+        #{bussIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="picId != null">
+        #{picId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatCode != null">
+        #{wechatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yingsu.jxc.entity.TBussesser">
+    update t_bussesser
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bussName != null">
+        buss_name = #{bussName,jdbcType=VARCHAR},
+      </if>
+      <if test="bussType != null">
+        buss_type = #{bussType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contractor != null">
+        contractor = #{contractor,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="tearchpower != null">
+        tearchPower = #{tearchpower,jdbcType=VARCHAR},
+      </if>
+      <if test="bussIdea != null">
+        buss_idea = #{bussIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="bussIntroduce != null">
+        buss_introduce = #{bussIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="picId != null">
+        pic_id = #{picId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatCode != null">
+        wechat_code = #{wechatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

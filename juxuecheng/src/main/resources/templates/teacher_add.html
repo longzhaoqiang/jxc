@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>添加教师</title>
+    <meta name="viewport"
+          content="width=720,width=device-width,initial-scale=1,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="/css/myself/jxc-index.css"/>
+    <link href="/css/myself/my-info.css" rel="stylesheet">
+    <link href="/css/myself/weui.min.css" rel="stylesheet">
+    <link href="/css/myself/jquery-weui.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/theme-color.css" rel="stylesheet">
+    <!-- 必须引入的文件-->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body>
+<div id="weixinshare" >
+    <div class="row mtop-2" id="teacherPowerListd">
+        <div class='row row-11'>
+            <div style='width: 30%;height: 80px;float: left;'>
+                <img id="teacherImg" class='img-border tea-img' src='http://sh.jingrui.cn/UploadFiles/images/2018/12/26/1j74h53s4g4s.jpg' style='width: 70px;'/>
+            </div>
+            <div style='width: 70%;float: left;line-height: 1.5;'>
+                <div><span class='font-size-16-1 color-1' id="teacherName">杨老师（语文）</span></div>
+                <div class='intraduce-1 w-90'>
+                    <span class="font-color-1" id="teacherIntroduce">专业语文教育，关注中小学语文，先后获得国家语文教育特级教师与先进小学思想，杨老师对语文教学有自己独特的见解。</span>
+                </div>
+            </div>
+        </div>
+        <div class='row row-11' onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">
+            <img id="" class='img-border ml-10' src='/img/myself/btn_add_3x.png'/>
+        </div>
+
+        <div>
+            <div id="light" class="white_content">
+                <div>
+                    <a onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+                        关闭</a>
+                </div>
+                <div class="h-5">&nbsp;</div>
+                <div class="w-00">
+                    <form id="bussForm" method="post">
+                        <div>
+                            <div class="text-align-1 color-1 font-size-16-1 wl-30">教师头像：</div>
+                            <div class="wl-70">
+                                <div class="row-11 text-1">
+                                    <img id="img1" hidden src="" style="width:60px;height:60px;">
+                                    <a class="btn btn-primary radius upload-btn" type="file" id="select_img">点击上传图片</a>
+                                    <input class="file-1" type="file" id="file1">
+                                    <br/>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-5">&nbsp;</div>
+                        <div>
+                            <div class="text-align-1 color-1 font-size-16-1 wl-30">教师名称：</div>
+                            <div class="wl-70">
+                                <div class="row-11 text-1">
+                                    <textarea id="bussesserAdd" class="dd-1" name="bussesserAdd" placeholder="请输入教师姓名"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-5">&nbsp;</div>
+                        <div>
+                            <div class="text-align-1 color-1 font-size-16-1 wl-30">教师介绍：</div>
+                            <div class="row-11 text-1" style="margin-top: 5px;">
+                                <textarea id="1" class="jg-1-1" name="" placeholder="请输入师资介绍"></textarea>
+                            </div>
+                            <div class="row row-11" id="teacherPowerList">
+                            </div>
+                        </div>
+                        <div class="h-5">&nbsp;</div>
+                        <div class="login-btn"><a href="javascript:;" class="weui-btn weui-btn_warn theme-bgcolor" onclick="registerBuss()">确认添加</a></div>
+                    </form>
+                </div>
+            </div>
+            <div id="fade" class="black_overlay"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/myself/teacher.js"></script>
+</html>

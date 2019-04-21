@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingsu.jxc.mapper.TMapMapper">
+  <resultMap id="BaseResultMap" type="com.yingsu.jxc.entity.TMap">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bussesser_id" jdbcType="INTEGER" property="bussesserId" />
+    <result column="bussesser_type" jdbcType="VARCHAR" property="bussesserType" />
+    <result column="position_name" jdbcType="VARCHAR" property="positionName" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bussesser_id, bussesser_type, position_name, longitude, latitude, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_map
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_map
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yingsu.jxc.entity.TMap">
+    insert into t_map (id, bussesser_id, bussesser_type, 
+      position_name, longitude, latitude, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{bussesserId,jdbcType=INTEGER}, #{bussesserType,jdbcType=VARCHAR}, 
+      #{positionName,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TMap">
+    insert into t_map
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bussesserId != null">
+        bussesser_id,
+      </if>
+      <if test="bussesserType != null">
+        bussesser_type,
+      </if>
+      <if test="positionName != null">
+        position_name,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bussesserId != null">
+        #{bussesserId,jdbcType=INTEGER},
+      </if>
+      <if test="bussesserType != null">
+        #{bussesserType,jdbcType=VARCHAR},
+      </if>
+      <if test="positionName != null">
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yingsu.jxc.entity.TMap">
+    update t_map
+    <set>
+      <if test="bussesserId != null">
+        bussesser_id = #{bussesserId,jdbcType=INTEGER},
+      </if>
+      <if test="bussesserType != null">
+        bussesser_type = #{bussesserType,jdbcType=VARCHAR},
+      </if>
+      <if test="positionName != null">
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yingsu.jxc.entity.TMap">
+    update t_map
+    set bussesser_id = #{bussesserId,jdbcType=INTEGER},
+      bussesser_type = #{bussesserType,jdbcType=VARCHAR},
+      position_name = #{positionName,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
