@@ -83,20 +83,23 @@ public class BussesserController {
      * 检查是否注册成商家
      * @return
      */
-    @RequestMapping("/checkRegitster")
+    @RequestMapping("/checkRegister")
     @ResponseBody
-    public ResultBody checkRegitster(HttpSession session){
+    public ResultBody checkRegister(HttpSession session){
         ResultBody resultBody = new ResultBody();
         try {
             TUser user = (TUser) session.getAttribute(Constant.USER_INFO);
-            Integer uid = user.getId();
-            // 查询是否注册过
-            TBussesser bussesser = bussesserService.getBussInfo(uid);
-            if (bussesser != null){
-                resultBody.setResultCode(0);
-                resultBody.setResultMsg("您已经注册过");
+            if (user != null){
+                Integer bussId = user.getBussesserId();
+                if (bussId != null){
+                    resultBody.setResultCode(-1);
+                    resultBody.setResultMsg("您已经注册过");
+                } else {
+                    resultBody.setResultCode(-100);
+                    resultBody.setResultMsg("您尚未注册过，立即注册");
+                }
             } else {
-                resultBody.setResultMsg("您尚未注册过，立即注册");
+                resultBody.setResultCode(0);
             }
         }catch (Exception e){
             resultBody.setResultCode(Constant.ERROR_CODE);

@@ -19,7 +19,7 @@ $(function () {
 
 // 检查是否注册过
 function check_register() {
-    var url = "/buss/checkRegitster";
+    var url = "/buss/checkRegister";
     $.ajax({
         type: "POST",
         url: url,
@@ -60,13 +60,13 @@ function add_course() {
 // 课程管理
 function course_manager() {
     var action = "/course_add";
-    checkLogin(action);
+    check_register(action);
 }
 
 // 教师管理
 function teacher_manager() {
     var action = "/teacher_add";
-    checkLogin(action);
+    checkRegister(action);
 }
 
 // 未上架
@@ -130,6 +130,27 @@ function checkLogin(action) {
             var code = data.resultCode;
             if (code == -1){
                 window.location.href = "/login";
+            } else {
+                window.location.href = action;
+            }
+        }
+    })
+}
+
+// 检查是否登录
+function checkRegister(action) {
+    var url = "/buss/checkRegister";
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: function (data) {
+            var code = data.resultCode;
+            if (code == 0){
+                alert("你尚未登录，请登录");
+                window.location.href = "/login";
+            } else if (code == -100){
+                alert("你还未注册成商家");
+                window.location.href = "/buss_register";
             } else {
                 window.location.href = action;
             }

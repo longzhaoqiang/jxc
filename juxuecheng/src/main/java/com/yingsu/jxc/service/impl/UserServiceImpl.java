@@ -1,11 +1,14 @@
 package com.yingsu.jxc.service.impl;
 
+import com.yingsu.jxc.entity.TBussesser;
 import com.yingsu.jxc.entity.TUser;
+import com.yingsu.jxc.mapper.TBussesserMapper;
 import com.yingsu.jxc.mapper.TUserMapper;
 import com.yingsu.jxc.service.IUserService;
 import com.yingsu.jxc.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +18,9 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     TUserMapper userMapper;
 
+    @Autowired
+    TBussesserMapper bussesserMapper;
+
     /**
      * 用户登录
      * @param userName
@@ -22,8 +28,17 @@ public class UserServiceImpl implements IUserService {
      * @return
      */
     @Override
+    @Transactional
     public TUser userLogin(HttpSession session, String userName, String password) {
         TUser user = userMapper.selectByLogin(userName,password);
+        if (user != null){
+            Integer uid = user.getId();
+            TBussesser bussesser = bussesserMapper.selectByUid(uid);
+            if (bussesser != null){
+                Integer bussId = bussesser.getId();
+                user.setBussesserId(bussId);
+            }
+        }
         return user;
     }
 

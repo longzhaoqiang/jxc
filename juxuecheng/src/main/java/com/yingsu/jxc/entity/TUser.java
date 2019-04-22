@@ -5,6 +5,8 @@ import java.util.Date;
 public class TUser {
     private Integer id;
 
+    private Integer bussesserId;
+
     private String userName;
 
     private String password;
@@ -23,6 +25,14 @@ public class TUser {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getBussesserId() {
+        return bussesserId;
+    }
+
+    public void setBussesserId(Integer bussesserId) {
+        this.bussesserId = bussesserId;
     }
 
     public String getUserName() {
