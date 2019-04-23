@@ -51,7 +51,8 @@ public class TeacherController {
                 // 上传图片
                 if (teacherImg != null && oldFileName != null && oldFileName.length() > 0) {
                     newFileName = "teacher-img" + new Date().getTime() / 1000 + oldFileName.substring(oldFileName.lastIndexOf("."));
-                    File newFile = new File(saveFilePath + "\\" + newFileName);
+                    // File newFile = new File(saveFilePath + "\\" + newFileName);
+                    File newFile = new File(saveFilePath, newFileName);
                     // 将内存中的数据写入磁盘
                     teacherImg.transferTo(newFile);
                     resultBody.setResultCode(1);

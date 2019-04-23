@@ -3,7 +3,8 @@ package com.yingsu.jxc.util;
 public class Constant {
 
     // 圖片保存路徑
-    public static String PIC_URL = "C:/workspace/image";
+    // public static String PIC_URL = "d:/workspace/image";
+    public static String PIC_URL = "/data/images/TeacherImg";
 
     // 用户信息存进session
     public static String USER_INFO = "userInfo";
