@@ -18,22 +18,17 @@
 </head>
 <body>
 <div id="weixinshare" >
-    <div class="row mtop-2" id="teacherPowerListd">
-        <div class='row row-11'>
-            <div style='width: 30%;height: 80px;float: left;'>
-                <img id="teacherImg" class='img-border tea-img' src='http://sh.jingrui.cn/UploadFiles/images/2018/12/26/1j74h53s4g4s.jpg' style='width: 70px;'/>
-            </div>
-            <div style='width: 70%;float: left;line-height: 1.5;'>
-                <div><span class='font-size-16-1 color-1' id="teacherName">杨老师（语文）</span></div>
-                <div class='intraduce-1 w-90'>
-                    <span class="font-color-1" id="teacherIntroduce">专业语文教育，关注中小学语文，先后获得国家语文教育特级教师与先进小学思想，杨老师对语文教学有自己独特的见解。</span>
-                </div>
-            </div>
+    <div class="mtop-2" id="teacherPowerListd">
+        <div>
+            <span class='ml-10' id="no_teacher"></span>
+            <hr style="filter: alpha(opacity=100,finishopacity=0,style=3);border-top: 3px solid #eee;" width="100%" color="#6f5499"/>
         </div>
+        <div id="teacher_list"></div>
         <div class='row row-11' onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">
-            <img id="" class='img-border ml-10' src='/img/myself/btn_add_3x.png'/>
+            <img id="img" class='img-border ml-10' src='/img/myself/btn_add_3x.png'/>
         </div>
 
+        <!-- 添加教师弹窗 -->
         <div>
             <div id="light" class="white_content">
                 <div>
@@ -78,6 +73,26 @@
                 </div>
             </div>
             <div id="fade" class="black_overlay"></div>
+        </div>
+
+        <!-- 教师详情弹窗 -->
+        <div>
+            <div id="teacher_msg" class="white_content">
+                <div>
+                    <a onclick="document.getElementById('teacher_msg').style.display='none';document.getElementById('fade').style.display='none'">
+                        关闭</a>
+                </div>
+                <div class="h-5">&nbsp;</div>
+                <div style='width: 24%;height: 80px;float: left;'>
+                  <img id="teacher_info_img" class='img-border tea-img' src='' style='width: 70px;'/>
+                </div>
+                <div style='width: 70%;float: left;line-height: 1.5;'>
+                   <div><span class='font-size-16-1 color-1' id="teacher_info_name"></span></div>
+                   <div class='intraduce-1 w-90'>
+                     <span class="font-color-1" id="teacher_info_intro"></span>
+                   </div>
+                </div>
+            <hr style="filter: alpha(opacity=100,finishopacity=0,style=3);border-top: 3px solid #eee;" width="100%" color="#6f5499"/>
         </div>
     </div>
 </div>

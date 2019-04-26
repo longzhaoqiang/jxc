@@ -92,7 +92,7 @@ public class BussesserController {
             if (user != null){
                 Integer bussId = user.getBussesserId();
                 if (bussId != null){
-                    resultBody.setResultCode(-1);
+                    resultBody.setResultCode(1);
                     resultBody.setResultMsg("您已经注册过");
                 } else {
                     resultBody.setResultCode(-100);
@@ -100,6 +100,7 @@ public class BussesserController {
                 }
             } else {
                 resultBody.setResultCode(0);
+                resultBody.setResultMsg("您尚未注册过，立即注册");
             }
         }catch (Exception e){
             resultBody.setResultCode(Constant.ERROR_CODE);

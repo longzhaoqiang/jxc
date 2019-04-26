@@ -26,7 +26,7 @@ function check_register() {
         success: function (data) {
             var code = data.resultCode;
             var msg = data.resultMsg;
-            if (code == "0"){ // 0已注册 1未注册
+            if (code == "1"){ // 0已注册 1未注册
                 $("#buss_register").html(msg)
                 $("#tobe-buss").css("pointer-events","none");
             }
@@ -60,7 +60,7 @@ function add_course() {
 // 课程管理
 function course_manager() {
     var action = "/course_add";
-    check_register(action);
+    checkLogin(action);
 }
 
 // 教师管理
@@ -137,7 +137,7 @@ function checkLogin(action) {
     })
 }
 
-// 检查是否登录
+// 检查是否商家注册过
 function checkRegister(action) {
     var url = "/buss/checkRegister";
     $.ajax({
