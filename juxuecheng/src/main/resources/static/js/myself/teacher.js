@@ -52,6 +52,8 @@ function get_teachers() {
 // 点击教师时显示详情
 function teacher_info(obj) {
     $("#teacher_msg").css("display","block");
+    $("#fade1").css("display","block");
+    $("#fade1").attr("class","black_overlay")
     var teacher_id = obj.id;
     var url = "/teacher/getTeacher";
     $.ajax({
@@ -62,6 +64,7 @@ function teacher_info(obj) {
             $("#teacher_info_img").attr('src', 'http://image.yingsuit.com/TeacherImg/' + data.result['teacherLogo']);
             $("#teacher_info_name").html(data.result['teacherName']);
             $("#teacher_info_intro").html(data.result['teacherIntroduce'])
+            $("#teacher_id").val(teacher_id);
         }
     })
 }
@@ -82,6 +85,8 @@ function choose_pic() {
         $("#upload_logo").show();
     });
 }
+
+// 添加教师
 function teacher_add() {
     var teacher_name = $("#teacher_name").val();
     var teacher_info = $("#teacher_info").val();
@@ -115,4 +120,29 @@ function teacher_add() {
             }
         }
     });
+}
+
+// 删除教师
+function delete_teacher() {
+    var is_delete = confirm("是否删除?");
+    if (is_delete){
+        var teacher_id = $("#teacher_id").val();
+        var url = "/teacher/delete";
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {"id":teacher_id},
+            success: function (data) {
+                var code = data.resultCode;
+                var msg = data.resultMsg;
+                if (code != "1"){
+                    alert(msg);
+                } else {
+                    window.location.reload();
+                }
+            }
+        })
+    } else {
+        return false;
+    }
 }

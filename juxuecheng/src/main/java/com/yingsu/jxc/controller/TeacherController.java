@@ -6,7 +6,6 @@ import com.yingsu.jxc.entity.TTeacher;
 import com.yingsu.jxc.entity.TUser;
 import com.yingsu.jxc.service.ITeacherService;
 import com.yingsu.jxc.util.Constant;
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.Date;
@@ -123,8 +121,27 @@ public class TeacherController {
             teacherService.addTeacher(teacher);
         }catch (Exception e){
             resultBody.setResultCode(-1);
-            resultBody.setResultMsg("系统异常！"+e);
+            resultBody.setResultMsg("系统异常！");
         }
         return resultBody;
     }
+
+    /**
+     * 删除教师
+     * @param id
+     * @return
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ResultBody deleteTeacher(String id){
+        ResultBody resultBody = new ResultBody();
+        try {
+            resultBody = teacherService.deleteTeacher(Integer.parseInt(id));
+        }catch (Exception e){
+            resultBody.setResultCode(-1);
+            resultBody.setResultMsg("系统异常！");
+        }
+        return resultBody;
+    }
+
 }

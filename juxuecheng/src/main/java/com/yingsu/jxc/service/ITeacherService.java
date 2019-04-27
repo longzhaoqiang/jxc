@@ -25,4 +25,11 @@ public interface ITeacherService {
      * @return
      */
     ResultBody addTeacher(TTeacher tTeacher);
+
+    /**
+     * 删除教师
+     * @param id
+     * @return
+     */
+    ResultBody deleteTeacher(Integer id);
 }

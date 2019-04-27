@@ -43,6 +43,10 @@
 .w-100{
     width: 100%
 }
+.wl-20{
+    width: 20%;
+    float: left;
+}
 .wl-30{
     width: 30%;
     float: left;
@@ -51,8 +55,16 @@
     width: 70%;
     float: left;
 }
+.wl-80{
+    width: 80%;
+    float: left;
+}
 .ml-10{
     margin-left: 10%;
+}
+
+.ml-3{
+    margin-left: 3%;
 }
 
 .ml-30{
@@ -108,3 +120,29 @@
     position:absolute;
     opacity:0;
 }
+
+.t-d-1{
+    width: 70%;
+    float: left;
+    line-height: 1.5;
+    margin-left: 5%;
+}
+
+.t-i-1{
+    width: 24%;
+    height: 80px;
+    float: left;
+}
+.course-name{
+    width: 20%;
+    float: left;
+    padding: 15px 0;
+    margin: 0 10px;
+    position: relative;
+}
+.course-name-1{
+    margin-left: -3%;
+    float: left;
+    width: 75%;
+}
+

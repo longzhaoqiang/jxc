@@ -58,4 +58,20 @@ public class TeacherServiceImpl implements ITeacherService {
         resultBody.setResultCode(result);
         return resultBody;
     }
+
+    /**
+     * 删除教师
+     * @param id
+     * @return
+     */
+    @Override
+    public ResultBody deleteTeacher(Integer id) {
+        ResultBody resultBody = new ResultBody();
+        Integer result = teacherMapper.deleteByPrimaryKey(id);
+        if (result != 1){
+            resultBody.setResultCode(-1);
+            resultBody.setResultMsg("删除教师失败");
+        }
+        return resultBody;
+    }
 }
