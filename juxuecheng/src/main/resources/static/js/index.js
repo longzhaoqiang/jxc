@@ -20,34 +20,4 @@ $(function () {
         delay: 5000,
         direction: 'vertical'
     });
-
-    // 请求后台查看是否登录,如果没有登录则隐藏footer目录
-    var url = "/index_1"
-    $.ajax({
-        type: "POST",
-        url: url,
-        success: function (data) {
-            var code = data.resultCode;
-            var msg = data.resultMsg;
-            if (code == "1"){
-                $("#isLogin").html(msg);
-            }
-        }
-    })
 })
-
-function home() {
-    var url = "/index_1"
-    $.ajax({
-        type: "POST",
-        url: url,
-        success: function (data) {
-            var code = data.resultCode;
-            if (code == "-1"){
-                window.location.href="/yingsu/user/login";
-            } else {
-                window.location.href="/home";
-            }
-        }
-    })
-}
