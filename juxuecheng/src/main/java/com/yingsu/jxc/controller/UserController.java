@@ -4,11 +4,13 @@ import com.yingsu.jxc.entity.ResultBody;
 import com.yingsu.jxc.entity.TUser;
 import com.yingsu.jxc.service.IUserService;
 import com.yingsu.jxc.util.Constant;
+import com.yingsu.jxc.util.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -27,7 +29,7 @@ public class UserController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public ResultBody userLogin(HttpSession session,String userName,String password){
+    public ResultBody userLogin(HttpServletRequest request, HttpSession session, String userName, String password){
         ResultBody resultBody = new ResultBody();
         TUser result =  userService.userLogin(session,userName,password);
         if (result == null){
@@ -37,7 +39,8 @@ public class UserController {
         }
         session.setAttribute(Constant.USER_INFO,result);
         session.setMaxInactiveInterval(30 * 60);
-
+        request.setAttribute(Constant.USER_INFO,result);
+        TUser user = (TUser) request.getAttribute(Constant.USER_INFO);
         return resultBody;
     }
 
