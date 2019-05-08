@@ -1,5 +1,7 @@
 package com.yingsu.jxc.util;
 
+import java.util.UUID;
+
 public class Constant {
 
     // 圖片保存路徑
@@ -32,4 +34,12 @@ public class Constant {
 
     // 没有数据
     public static String NO_DATA = "没有数据";
+
+    public static final String JWT_ID = UUID.randomUUID().toString();
+    public static final String JWT_AUTH = "jxc";
+    /**
+     * 加密密文
+     */
+    public static final String JWT_SECRET = "juxuecheng_2019_hh";
+    public static final int JWT_TTL = 60*60*1000;  //millisecond
 }

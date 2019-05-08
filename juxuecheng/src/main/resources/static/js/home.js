@@ -53,13 +53,13 @@ function my_saved() {
 
 // 课程添加
 function add_course() {
-    var action = "/buss_add";
+    var action = "/course_add";
     checkLogin(action);
 }
 
 // 课程管理
 function course_manager() {
-    var action = "/course_add";
+    var action = "/course";
     checkLogin(action);
 }
 

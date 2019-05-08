@@ -1,7 +1,10 @@
 package com.yingsu.jxc.controller;
 
+import com.google.gson.Gson;
 import com.yingsu.jxc.entity.ResultBody;
 import com.yingsu.jxc.entity.TUser;
+import com.yingsu.jxc.entity.User;
+import com.yingsu.jxc.jwt.JwtUtil;
 import com.yingsu.jxc.service.IUserService;
 import com.yingsu.jxc.util.Constant;
 import com.yingsu.jxc.util.RedisService;
@@ -31,16 +34,25 @@ public class UserController {
     @ResponseBody
     public ResultBody userLogin(HttpServletRequest request, HttpSession session, String userName, String password){
         ResultBody resultBody = new ResultBody();
-        TUser result =  userService.userLogin(session,userName,password);
-        if (result == null){
-            resultBody.setResultCode(0);
-            resultBody.setResultMsg(Constant.ERROR_LOGIN);
-            return resultBody;
+        try {
+            TUser result = userService.userLogin(session, userName, password);
+            if (result == null) {
+                resultBody.setResultCode(0);
+                resultBody.setResultMsg(Constant.ERROR_LOGIN);
+                return resultBody;
+            }
+            session.setAttribute(Constant.USER_INFO, result);
+            session.setMaxInactiveInterval(30 * 60);
+
+            // 返回token
+            User user = new User(result.getId(), userName, password);
+            String subject = new Gson().toJson(user);
+            JwtUtil util = new JwtUtil();
+            String token = util.createJWT(Constant.JWT_ID, Constant.JWT_AUTH, subject, Constant.JWT_TTL);
+        }catch (Exception e){
+            resultBody.setResultCode(Constant.ERROR_CODE);
+            resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
         }
-        session.setAttribute(Constant.USER_INFO,result);
-        session.setMaxInactiveInterval(30 * 60);
-        request.setAttribute(Constant.USER_INFO,result);
-        TUser user = (TUser) request.getAttribute(Constant.USER_INFO);
         return resultBody;
     }
 

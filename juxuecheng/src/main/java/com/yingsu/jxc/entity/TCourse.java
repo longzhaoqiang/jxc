@@ -9,11 +9,7 @@ public class TCourse {
 
     private Integer bussesserId;
 
-    private String courseType;
-
-    private Integer subjectId;
-
-    private Integer teacherId;
+    private String titalInfo;
 
     private String cycleMumber;
 
@@ -59,28 +55,12 @@ public class TCourse {
         this.bussesserId = bussesserId;
     }
 
-    public String getCourseType() {
-        return courseType;
+    public String getTitalInfo() {
+        return titalInfo;
     }
 
-    public void setCourseType(String courseType) {
-        this.courseType = courseType == null ? null : courseType.trim();
-    }
-
-    public Integer getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(Integer subjectId) {
-        this.subjectId = subjectId;
-    }
-
-    public Integer getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
+    public void setTitalInfo(String titalInfo) {
+        this.titalInfo = titalInfo;
     }
 
     public String getCycleMumber() {

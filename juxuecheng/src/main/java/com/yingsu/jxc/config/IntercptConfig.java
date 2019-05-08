@@ -15,7 +15,7 @@ public class IntercptConfig extends WebMvcConfigurerAdapter {
         //注册拦截器 拦截规则
         //多个拦截器时 以此添加 执行顺序按添加顺序
         registry.addInterceptor(getHandlerInterceptor()).addPathPatterns("/*")
-                .excludePathPatterns("/home","/login", "/register");
+                .excludePathPatterns("/home","/teacher_add","/login","/register");
     }
 
     @Bean

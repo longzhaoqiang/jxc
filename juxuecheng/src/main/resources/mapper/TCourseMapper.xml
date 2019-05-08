@@ -5,9 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="course_name" jdbcType="VARCHAR" property="courseName" />
     <result column="bussesser_id" jdbcType="INTEGER" property="bussesserId" />
-    <result column="course_type" jdbcType="VARCHAR" property="courseType" />
-    <result column="subject_id" jdbcType="INTEGER" property="subjectId" />
-    <result column="teacher_id" jdbcType="INTEGER" property="teacherId" />
+    <result column="tital_info" jdbcType="VARCHAR" property="titalInfo" />
     <result column="cycle_mumber" jdbcType="VARCHAR" property="cycleMumber" />
     <result column="course_fee" jdbcType="DOUBLE" property="courseFee" />
     <result column="course_intraduce" jdbcType="VARCHAR" property="courseIntraduce" />
@@ -20,8 +18,8 @@
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, course_name, bussesser_id, course_type, subject_id, teacher_id, cycle_mumber, 
-    course_fee, course_intraduce, apply_student, course_goal, course_content, course_special, 
+    id, course_name, bussesser_id, tital_info, cycle_mumber,
+    course_fee, course_intraduce, apply_student, course_goal, course_content, course_special,
     course_stata, start_time, createTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -60,14 +58,8 @@
       <if test="bussesserId != null">
         bussesser_id,
       </if>
-      <if test="courseType != null">
-        course_type,
-      </if>
-      <if test="subjectId != null">
-        subject_id,
-      </if>
-      <if test="teacherId != null">
-        teacher_id,
+      <if test="titalInfo != null">
+        tital_info,
       </if>
       <if test="cycleMumber != null">
         cycle_mumber,
@@ -110,14 +102,8 @@
       <if test="bussesserId != null">
         #{bussesserId,jdbcType=INTEGER},
       </if>
-      <if test="courseType != null">
-        #{courseType,jdbcType=VARCHAR},
-      </if>
-      <if test="subjectId != null">
-        #{subjectId,jdbcType=INTEGER},
-      </if>
-      <if test="teacherId != null">
-        #{teacherId,jdbcType=INTEGER},
+      <if test="titalInfo != null">
+        #{titalInfo,jdbcType=VARCHAR},
       </if>
       <if test="cycleMumber != null">
         #{cycleMumber,jdbcType=VARCHAR},
@@ -160,14 +146,8 @@
       <if test="bussesserId != null">
         bussesser_id = #{bussesserId,jdbcType=INTEGER},
       </if>
-      <if test="courseType != null">
-        course_type = #{courseType,jdbcType=VARCHAR},
-      </if>
-      <if test="subjectId != null">
-        subject_id = #{subjectId,jdbcType=INTEGER},
-      </if>
-      <if test="teacherId != null">
-        teacher_id = #{teacherId,jdbcType=INTEGER},
+      <if test="titalInfo != null">
+        tital_info = #{titalInfo,jdbcType=VARCHAR},
       </if>
       <if test="cycleMumber != null">
         cycle_mumber = #{cycleMumber,jdbcType=VARCHAR},
@@ -200,25 +180,6 @@
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yingsu.jxc.entity.TCourse">
-    update t_course
-    set course_name = #{courseName,jdbcType=VARCHAR},
-      bussesser_id = #{bussesserId,jdbcType=INTEGER},
-      course_type = #{courseType,jdbcType=VARCHAR},
-      subject_id = #{subjectId,jdbcType=INTEGER},
-      teacher_id = #{teacherId,jdbcType=INTEGER},
-      cycle_mumber = #{cycleMumber,jdbcType=VARCHAR},
-      course_fee = #{courseFee,jdbcType=DOUBLE},
-      course_intraduce = #{courseIntraduce,jdbcType=VARCHAR},
-      apply_student = #{applyStudent,jdbcType=VARCHAR},
-      course_goal = #{courseGoal,jdbcType=VARCHAR},
-      course_content = #{courseContent,jdbcType=VARCHAR},
-      course_special = #{courseSpecial,jdbcType=VARCHAR},
-      course_stata = #{courseStata,jdbcType=INTEGER},
-      start_time = #{startTime,jdbcType=TIMESTAMP},
-      createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
