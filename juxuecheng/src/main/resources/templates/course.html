@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>课程管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport"
           content="width=720,width=device-width,initial-scale=1,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" href="/css/myself/jxc-index.css"/>
@@ -17,19 +18,16 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
-<div id="weixinshare" >
-    <div class="mtop-2" id="teacherPowerListd">
-        <div>
-            <span class='ml-10' id="no_teacher"></span>
-            <hr style="filter: alpha(opacity=100,finishopacity=0,style=3);border-top: 3px solid #eee;" width="100%" color="#6f5499"/>
-        </div>
-        <div id="teacher_list"></div>
-        <div class='row-11' onclick="course_add()">
-            <img id="img" class='img-border ml-3' src='/img/myself/btn_add_3x.png'/>
+<section class="zyw-container">
+    <div class="swiper-container">
+        <input type="hidden" id="bussId" th:value="${bussId}">
+        <div class="course-list" id="courseList">
         </div>
     </div>
-</div>
-</div>
+    <div class='course-add' onclick="course_add()">
+        <img id="img" class='img-border ml-3' src='/img/myself/btn_add_3x.png'/>
+    </div>
+</section>
 </body>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>

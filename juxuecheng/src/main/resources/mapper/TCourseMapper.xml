@@ -22,6 +22,10 @@
     course_fee, course_intraduce, apply_student, course_goal, course_content, course_special,
     course_stata, start_time, createTime
   </sql>
+
+  <select id="findList"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select <include refid="Base_Column_List" /> from t_course where bussesser_id = #{bussId}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

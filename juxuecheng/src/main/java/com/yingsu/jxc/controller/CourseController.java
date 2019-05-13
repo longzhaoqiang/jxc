@@ -21,6 +21,19 @@ public class CourseController {
     @Autowired
     private ICourseService courseService;
 
+    @RequestMapping("/getList")
+    @ResponseBody
+    public ResultBody getList(Integer bussId){
+        ResultBody resultBody = new ResultBody();
+        try {
+            resultBody = courseService.getList(bussId);
+        }catch (Exception e){
+            resultBody.setResultCode(Constant.ERROR_CODE);
+            resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
+        }
+        return resultBody;
+    }
+
     @RequestMapping("/addCourse")
     @ResponseBody
     public ResultBody addCourse(HttpSession session, TCourse course){
