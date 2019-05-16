@@ -18,6 +18,22 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
+<style>
+    @keyframes masked-animation {
+        0% {
+            background-position: 0  0;
+        }
+        100% {
+            background-position: -100%  0;
+        }
+    }
+</style>
+<header class="zyw-header">
+    <div class="zyw-container white-color">
+        <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="/img/svg/head-return.svg" alt=""></a></div>
+        <h1>我的信息</h1>
+    </div>
+</header>
 <section class="zyw-container">
     <div class="swiper-container">
         <input type="hidden" id="bussId" th:value="${bussId}">
