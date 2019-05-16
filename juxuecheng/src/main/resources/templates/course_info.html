@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>添加课程</title>
+    <title>课程详情</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/swiper.min.css">
@@ -27,21 +27,24 @@
             <div class="">
                 <div class="course-d h-90">
                     <div class="m-box-hd">
-                        <input type="text" id="courseName" class="cn-font" name="courseName" placeholder="初三数学冲刺（中考提分方向）"/>
+                        <input type="hidden" id="courseName" th:value="${courseName}">
+                        <span class="cn-font-1" id="course_name"></span>
                     </div>
                     <div class="m-box-hd" style="margin-top: -4%">
-                        <input type="text" id="titalInfo" class="dd-1" name="titalInfo" placeholder="活动期间99元体验价值799元10次课（小班提升），限购30个名额"></input>
+                        <input type="hidden" id="titalInfo" th:value="${titalInfo}">
+                        <span class="dd-1-1" id="tital_info">活动期间99元体验价值799元10次课（小班提升），限购30个名额</span>
                     </div>
                 </div>
                 <div class="course-d h-60">
                     <div class="m-box-hd h-60">
+                        <input type="hidden" id="courseFee" th:value="${courseFee}">
                         <div class="wl-70"><button type="button" class="btn btn-warning">限时抢购价</button></div>
                         <div class="wl-30" style="margin-top: 1%">
                             <div class="wl-30">
                                 <span class="peace">￥</span>
                             </div>
                             <div class="wl-70">
-                                <input type="text" id="courseFee" class="peace-1 wl-70" name="courseFee" placeholder="99"></textarea>
+                                <span class="peace-1-1" id="course_fee">99</span>
                             </div>
                         </div>
                     </div>
@@ -59,7 +62,8 @@
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程简介</span></div>
                             <div class="row-top10">
                                 <div class="row row-11 text-1">
-                                    <textarea id="placeholder" class="jg-1" name="placeholder" placeholder="请输入课程简介"></textarea>
+                                    <input type="hidden" id="courseIntraduce" th:value="${courseIntraduce}">
+                                    <span id="course_intraduce" class="jg-1-2"></span>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +71,8 @@
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">适用学员</span></div>
                             <div class="row-top10">
                                 <div class="row row-11 text-1">
-                                    <textarea id="applyStudent" class="jg-1" name="applyStudent" placeholder="请输入适用学员"></textarea>
+                                    <input type="hidden" id="applyStudent" th:value="${applyStudent}">
+                                    <span id="apply_student" class="jg-1-2"></span>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +80,8 @@
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程目标</span></div>
                             <div class="row-top10">
                                 <div class="row row-11 text-1">
-                                    <textarea id="courseGoal" class="jg-1" name="courseGoal" placeholder="请输入课程目标"></textarea>
+                                    <input type="hidden" id="courseGoal" th:value="${courseGoal}">
+                                    <span id="course_goal" class="jg-1-2"></span>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +89,8 @@
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程内容</span></div>
                             <div class="row-top10">
                                 <div class="row row-11 text-1">
-                                    <textarea id="courseContent" class="jg-1" name="courseContent" placeholder="请输入课程内容"></textarea>
+                                    <input type="hidden" id="courseContent" th:value="${courseContent}">
+                                    <span id="course_content" class="jg-1-2"></span>
                                 </div>
                             </div>
                         </div>
@@ -91,12 +98,10 @@
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程特色</span></div>
                             <div class="row-top10">
                                 <div class="row row-11 text-1">
-                                    <textarea id="courseSpecial" class="jg-1" name="courseSpecial" placeholder="请输入课程特色"></textarea>
+                                    <input type="hidden" id="courseSpecial" th:value="${courseSpecial}">
+                                    <span id="course_special" class="jg-1-2"></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row-1 row-top-20" style="height: 50px">
-                            <button type="button" class="btn btn-success" style="float: right" onclick="commit()">确认添加</button>
                         </div>
                     </div>
                 </div>
@@ -106,6 +111,6 @@
 </section>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/swiper.min.js"></script>
-<script src="/js/myself/course/course_add.js"></script>
+<script src="/js/myself/course/course_info.js"></script>
 </body>
 </html>

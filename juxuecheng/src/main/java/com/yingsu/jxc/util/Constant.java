@@ -18,7 +18,7 @@ public class Constant {
     public static Integer EXIST_CODE = 100;
 
     // 系统异常
-    public static String ERROR_SYS_MSG = "系统异常";
+    public static String ERROR_SYS_MSG = "网络异常";
 
     // 插入数据异常
     public static String ERROR_INSERT_MSG = "插入数据出错";

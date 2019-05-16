@@ -161,6 +161,15 @@
     padding-left: 10px;
 }
 
+.cn-font-1{
+    font-size: 20px;
+    width: 100%;
+    height: 30px;
+    margin-top: -5px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
 .peace{
     font-size: 20px;
     color: coral;
@@ -173,6 +182,14 @@
     height: 40px;
     border: solid 1px #ddd;
     padding-left: 10px;
+}
+
+.peace-1-1{
+    width: 100%;
+    float: left;
+    margin-top: -3px;
+    font-size: 28px;
+    height: 40px;
 }
 
 .course-list{

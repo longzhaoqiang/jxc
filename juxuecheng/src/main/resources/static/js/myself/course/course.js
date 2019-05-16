@@ -12,7 +12,7 @@ $(function () {
             var course_str = '';
             if (code == "1"){
                 for (var i = 0;i < result.length;i++) {
-                    course_str += "<div class='course-1'>" +
+                    course_str += "<div class='course-1'><a id="+result[i]['id']+" onclick='javascript:course_info(this)'>" +
                         "                <div style='height: 110px'>" +
                         "                    <img src='/img/myself/course_bg.jpg' style='width: 90%'>" +
                         "                    <div class='course-2'>" +
@@ -34,4 +34,10 @@ $(function () {
 
 function course_add() {
     window.location.href = "/course_add";
+}
+
+// 查询课程详情
+function course_info(obj) {
+    var course_id = obj.id;
+    window.location.href = "/course/getCourse?courseId="+course_id;
 }

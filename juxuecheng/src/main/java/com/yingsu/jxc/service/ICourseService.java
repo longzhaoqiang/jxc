@@ -18,4 +18,11 @@ public interface ICourseService {
      * @return
      */
     public Integer addCourse(TCourse course);
+
+    /**
+     * 查找详情
+     * @param courseId
+     * @return
+     */
+    public ResultBody getInfo(Integer courseId);
 }
