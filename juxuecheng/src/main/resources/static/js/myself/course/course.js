@@ -30,7 +30,7 @@ $(function () {
                 }
                 $("#courseList").html(course_str);
             } else {
-                alert(msg);
+                alert("网络异常！");
             }
         }
     })
