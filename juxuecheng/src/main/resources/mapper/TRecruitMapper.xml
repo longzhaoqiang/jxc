@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingsu.jxc.mapper.TRecruitMapper">
+  <resultMap id="BaseResultMap" type="com.yingsu.jxc.entity.TRecruit">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bussesser_id" jdbcType="INTEGER" property="bussesserId" />
+    <result column="recruit_title" jdbcType="VARCHAR" property="recruitTitle" />
+    <result column="recruit_address" jdbcType="VARCHAR" property="recruitAddress" />
+    <result column="experence" jdbcType="VARCHAR" property="experence" />
+    <result column="recruit_salary" jdbcType="VARCHAR" property="recruitSalary" />
+    <result column="wx_number" jdbcType="VARCHAR" property="wxNumber" />
+    <result column="recriut_demand" jdbcType="VARCHAR" property="recriutDemand" />
+    <result column="recriut_remark" jdbcType="VARCHAR" property="recriutRemark" />
+    <result column="recruit_time" jdbcType="DATE" property="recruitTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bussesser_id, recruit_title, recruit_address, experence, recruit_salary, wx_number, 
+    recriut_demand, recriut_remark, recruit_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_recruit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_recruit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yingsu.jxc.entity.TRecruit">
+    insert into t_recruit (id, bussesser_id, recruit_title, 
+      recruit_address, experence, recruit_salary, 
+      wx_number, recriut_demand, recriut_remark, 
+      recruit_time, create_time)
+    values (#{id,jdbcType=INTEGER}, #{bussesserId,jdbcType=INTEGER}, #{recruitTitle,jdbcType=VARCHAR}, 
+      #{recruitAddress,jdbcType=VARCHAR}, #{experence,jdbcType=VARCHAR}, #{recruitSalary,jdbcType=VARCHAR}, 
+      #{wxNumber,jdbcType=VARCHAR}, #{recriutDemand,jdbcType=VARCHAR}, #{recriutRemark,jdbcType=VARCHAR}, 
+      #{recruitTime,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TRecruit">
+    insert into t_recruit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bussesserId != null">
+        bussesser_id,
+      </if>
+      <if test="recruitTitle != null">
+        recruit_title,
+      </if>
+      <if test="recruitAddress != null">
+        recruit_address,
+      </if>
+      <if test="experence != null">
+        experence,
+      </if>
+      <if test="recruitSalary != null">
+        recruit_salary,
+      </if>
+      <if test="wxNumber != null">
+        wx_number,
+      </if>
+      <if test="recriutDemand != null">
+        recriut_demand,
+      </if>
+      <if test="recriutRemark != null">
+        recriut_remark,
+      </if>
+      <if test="recruitTime != null">
+        recruit_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bussesserId != null">
+        #{bussesserId,jdbcType=INTEGER},
+      </if>
+      <if test="recruitTitle != null">
+        #{recruitTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitAddress != null">
+        #{recruitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="experence != null">
+        #{experence,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitSalary != null">
+        #{recruitSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNumber != null">
+        #{wxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="recriutDemand != null">
+        #{recriutDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="recriutRemark != null">
+        #{recriutRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitTime != null">
+        #{recruitTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yingsu.jxc.entity.TRecruit">
+    update t_recruit
+    <set>
+      <if test="bussesserId != null">
+        bussesser_id = #{bussesserId,jdbcType=INTEGER},
+      </if>
+      <if test="recruitTitle != null">
+        recruit_title = #{recruitTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitAddress != null">
+        recruit_address = #{recruitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="experence != null">
+        experence = #{experence,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitSalary != null">
+        recruit_salary = #{recruitSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNumber != null">
+        wx_number = #{wxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="recriutDemand != null">
+        recriut_demand = #{recriutDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="recriutRemark != null">
+        recriut_remark = #{recriutRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitTime != null">
+        recruit_time = #{recruitTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yingsu.jxc.entity.TRecruit">
+    update t_recruit
+    set bussesser_id = #{bussesserId,jdbcType=INTEGER},
+      recruit_title = #{recruitTitle,jdbcType=VARCHAR},
+      recruit_address = #{recruitAddress,jdbcType=VARCHAR},
+      experence = #{experence,jdbcType=VARCHAR},
+      recruit_salary = #{recruitSalary,jdbcType=VARCHAR},
+      wx_number = #{wxNumber,jdbcType=VARCHAR},
+      recriut_demand = #{recriutDemand,jdbcType=VARCHAR},
+      recriut_remark = #{recriutRemark,jdbcType=VARCHAR},
+      recruit_time = #{recruitTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

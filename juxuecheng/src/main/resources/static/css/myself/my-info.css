@@ -49,6 +49,10 @@
 .h-90{
     height: 90px;
 }
+.fm-10{
+    float: left;
+    margin-right: 10%;
+}
 .wl-20{
     width: 20%;
     float: left;

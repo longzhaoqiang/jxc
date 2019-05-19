@@ -75,8 +75,9 @@ function no_use() {
 }
 
 // 招聘信息
-function applyee() {
-    checkLogin();
+function recruit() {
+    var action = "/recruit_add";
+    checkLogin(action);
 }
 
 // 首页管理

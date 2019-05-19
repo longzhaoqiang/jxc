@@ -49,6 +49,12 @@ public class IndexController {
         return "buss_register";
     }
 
+    // 跳转到发布招聘页面
+    @RequestMapping("/recruit_add")
+    public String recruit_add(){
+        return "recruit_add";
+    }
+
     // 跳转到課程页面
     @ResponseBody
     @RequestMapping("/course")
