@@ -2,6 +2,7 @@ package com.yingsu.jxc.controller;
 
 import com.yingsu.jxc.entity.TUser;
 import com.yingsu.jxc.util.Constant;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -61,6 +62,10 @@ public class IndexController {
     public ModelAndView hello(HttpSession session){
         ModelAndView mv = new ModelAndView();
         TUser user = (TUser) session.getAttribute(Constant.USER_INFO);
+        if (user == null){
+            mv.setViewName("login");
+            return mv;
+        }
         Integer bussId = user.getBussesserId();
         mv.addObject("bussId",bussId);
         mv.setViewName("course");

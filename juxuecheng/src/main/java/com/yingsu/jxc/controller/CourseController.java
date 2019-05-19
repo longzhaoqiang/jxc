@@ -35,6 +35,7 @@ public class CourseController {
         return resultBody;
     }
 
+    // 添加课程
     @RequestMapping("/addCourse")
     @ResponseBody
     public ResultBody addCourse(HttpSession session, TCourse course){
@@ -53,16 +54,17 @@ public class CourseController {
 
     // 跳转到課程页面
     @RequestMapping("/getCourse")
-    public ModelAndView hello(String courseId){
+    public ModelAndView hello(String param1,String flag){
         ModelAndView mv = new ModelAndView();
         ResultBody resultBody = new ResultBody();
         try {
-            resultBody = courseService.getInfo(Integer.parseInt(courseId));
+            resultBody = courseService.getInfo(Integer.parseInt(param1));
         }catch (Exception e){
             resultBody.setResultCode(Constant.ERROR_CODE);
             resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
         }
         TCourse course = (TCourse) resultBody.getResult();
+        mv.addObject("courseId",course.getId());
         mv.addObject("courseName",course.getCourseName());
         mv.addObject("titalInfo",course.getTitalInfo());
         mv.addObject("courseFee",course.getCourseFee());
@@ -71,7 +73,42 @@ public class CourseController {
         mv.addObject("courseGoal",course.getCourseGoal());
         mv.addObject("courseContent",course.getCourseContent());
         mv.addObject("courseSpecial",course.getCourseSpecial());
+        // 修改时
+        if ("1".equals(flag)){
+            mv.setViewName("course_update");
+            return mv;
+        }
         mv.setViewName("course_info");
         return mv;
+    }
+
+    // 删除课程
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ResultBody delete(String id){
+        ResultBody resultBody = new ResultBody();
+        try {
+            Integer result = courseService.delete(Integer.parseInt(id));
+            resultBody.setResultCode(result);
+        }catch (Exception e){
+            resultBody.setResultCode(Constant.ERROR_CODE);
+            resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
+        }
+        return resultBody;
+    }
+
+    // 修改课程
+    @RequestMapping("/update")
+    @ResponseBody
+    public ResultBody delete(TCourse course){
+        ResultBody resultBody = new ResultBody();
+        try {
+            Integer result = courseService.update(course);
+            resultBody.setResultCode(result);
+        }catch (Exception e){
+            resultBody.setResultCode(Constant.ERROR_CODE);
+            resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
+        }
+        return resultBody;
     }
 }

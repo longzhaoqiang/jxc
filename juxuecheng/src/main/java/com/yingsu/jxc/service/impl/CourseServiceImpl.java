@@ -51,4 +51,26 @@ public class CourseServiceImpl implements ICourseService{
         result.setResult(course);
         return result;
     }
+
+    /**
+     * 删除课程
+     * @param courseId
+     * @return
+     */
+    @Override
+    public Integer delete(Integer courseId) {
+        Integer result = courseMapper.deleteByPrimaryKey(courseId);
+        return result;
+    }
+
+    /**
+     * 修改
+     * @param course
+     * @return
+     */
+    @Override
+    public Integer update(TCourse course) {
+        Integer result = courseMapper.updateByPrimaryKeySelective(course);
+        return result;
+    }
 }

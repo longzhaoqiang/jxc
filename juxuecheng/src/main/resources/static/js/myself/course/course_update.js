@@ -20,20 +20,31 @@ $(function () {
         direction: 'vertical'
     });
 
-    var courseName = $("#courseName").val();
-    var titalInfo = $("#titalInfo").val();
-    var courseFee = $("#courseFee").val();
     var courseIntraduce = $("#courseIntraduce").val();
     var applyStudent = $("#applyStudent").val();
     var courseGoal = $("#courseGoal").val();
     var courseContent = $("#courseContent").val();
-    var courseSpecial = $("#titalInfo").val();
-    $("#course_name").html(courseName);
-    $("#tital_info").html(titalInfo);
-    $("#course_fee").html(courseFee);
+    var courseSpecial = $("#courseSpecial").val();
     $("#course_intraduce").html(courseIntraduce);
     $("#apply_student").html(applyStudent);
     $("#course_goal").html(courseGoal);
     $("#course_content").html(courseContent);
     $("#course_special").html(courseSpecial);
 })
+
+// 提交
+function commit() {
+    $.ajax({
+        url: "/course/update",
+        type: "POST",
+        data: $("#courseForm").serialize(),
+        success: function (data) {
+            var code = data.resultCode;
+            if (code == "1"){
+                window.location.href = "/course";
+            } else {
+                alert("网络异常！请稍后再试");
+            }
+        },
+    });
+}

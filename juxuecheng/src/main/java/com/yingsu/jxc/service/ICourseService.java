@@ -25,4 +25,19 @@ public interface ICourseService {
      * @return
      */
     public ResultBody getInfo(Integer courseId);
+
+    /**
+     * 删除
+     * @param courseId
+     * @return
+     */
+    public Integer delete(Integer courseId);
+
+    /**
+     * 修改
+     * @param course
+     * @return
+     */
+    public Integer update(TCourse course);
+
 }
