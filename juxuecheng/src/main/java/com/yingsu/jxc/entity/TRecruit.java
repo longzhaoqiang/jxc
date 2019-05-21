@@ -17,11 +17,15 @@ public class TRecruit {
 
     private String wxNumber;
 
+    private String education;
+
+    private String postInfo;
+
     private String recriutDemand;
 
     private String recriutRemark;
 
-    private Date recruitTime;
+    private String recruitTime;
 
     private Date createTime;
 
@@ -81,6 +85,22 @@ public class TRecruit {
         this.wxNumber = wxNumber == null ? null : wxNumber.trim();
     }
 
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education == null ? null : education.trim();
+    }
+
+    public String getPostInfo() {
+        return postInfo;
+    }
+
+    public void setPostInfo(String postInfo) {
+        this.postInfo = postInfo == null ? null : postInfo.trim();
+    }
+
     public String getRecriutDemand() {
         return recriutDemand;
     }
@@ -97,12 +117,12 @@ public class TRecruit {
         this.recriutRemark = recriutRemark == null ? null : recriutRemark.trim();
     }
 
-    public Date getRecruitTime() {
+    public String getRecruitTime() {
         return recruitTime;
     }
 
-    public void setRecruitTime(Date recruitTime) {
-        this.recruitTime = recruitTime;
+    public void setRecruitTime(String recruitTime) {
+        this.recruitTime = recruitTime == null ? null : recruitTime.trim();
     }
 
     public Date getCreateTime() {

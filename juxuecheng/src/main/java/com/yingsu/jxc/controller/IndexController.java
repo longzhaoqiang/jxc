@@ -50,6 +50,12 @@ public class IndexController {
         return "buss_register";
     }
 
+    // 跳转到招聘页面
+    @RequestMapping("/recruit")
+    public String recruit(){
+        return "recruit";
+    }
+
     // 跳转到发布招聘页面
     @RequestMapping("/recruit_add")
     public String recruit_add(){

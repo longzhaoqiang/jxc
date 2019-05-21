@@ -9,14 +9,16 @@
     <result column="experence" jdbcType="VARCHAR" property="experence" />
     <result column="recruit_salary" jdbcType="VARCHAR" property="recruitSalary" />
     <result column="wx_number" jdbcType="VARCHAR" property="wxNumber" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="post_info" jdbcType="VARCHAR" property="postInfo" />
     <result column="recriut_demand" jdbcType="VARCHAR" property="recriutDemand" />
     <result column="recriut_remark" jdbcType="VARCHAR" property="recriutRemark" />
-    <result column="recruit_time" jdbcType="DATE" property="recruitTime" />
+    <result column="recruit_time" jdbcType="VARCHAR" property="recruitTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
     id, bussesser_id, recruit_title, recruit_address, experence, recruit_salary, wx_number, 
-    recriut_demand, recriut_remark, recruit_time, create_time
+    education, post_info, recriut_demand, recriut_remark, recruit_time, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -31,12 +33,14 @@
   <insert id="insert" parameterType="com.yingsu.jxc.entity.TRecruit">
     insert into t_recruit (id, bussesser_id, recruit_title, 
       recruit_address, experence, recruit_salary, 
-      wx_number, recriut_demand, recriut_remark, 
-      recruit_time, create_time)
+      wx_number, education, post_info, 
+      recriut_demand, recriut_remark, recruit_time, 
+      create_time)
     values (#{id,jdbcType=INTEGER}, #{bussesserId,jdbcType=INTEGER}, #{recruitTitle,jdbcType=VARCHAR}, 
       #{recruitAddress,jdbcType=VARCHAR}, #{experence,jdbcType=VARCHAR}, #{recruitSalary,jdbcType=VARCHAR}, 
-      #{wxNumber,jdbcType=VARCHAR}, #{recriutDemand,jdbcType=VARCHAR}, #{recriutRemark,jdbcType=VARCHAR}, 
-      #{recruitTime,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP})
+      #{wxNumber,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{postInfo,jdbcType=VARCHAR}, 
+      #{recriutDemand,jdbcType=VARCHAR}, #{recriutRemark,jdbcType=VARCHAR}, #{recruitTime,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TRecruit">
     insert into t_recruit
@@ -61,6 +65,12 @@
       </if>
       <if test="wxNumber != null">
         wx_number,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="postInfo != null">
+        post_info,
       </if>
       <if test="recriutDemand != null">
         recriut_demand,
@@ -97,6 +107,12 @@
       <if test="wxNumber != null">
         #{wxNumber,jdbcType=VARCHAR},
       </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="postInfo != null">
+        #{postInfo,jdbcType=VARCHAR},
+      </if>
       <if test="recriutDemand != null">
         #{recriutDemand,jdbcType=VARCHAR},
       </if>
@@ -104,7 +120,7 @@
         #{recriutRemark,jdbcType=VARCHAR},
       </if>
       <if test="recruitTime != null">
-        #{recruitTime,jdbcType=DATE},
+        #{recruitTime,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -132,6 +148,12 @@
       <if test="wxNumber != null">
         wx_number = #{wxNumber,jdbcType=VARCHAR},
       </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="postInfo != null">
+        post_info = #{postInfo,jdbcType=VARCHAR},
+      </if>
       <if test="recriutDemand != null">
         recriut_demand = #{recriutDemand,jdbcType=VARCHAR},
       </if>
@@ -139,7 +161,7 @@
         recriut_remark = #{recriutRemark,jdbcType=VARCHAR},
       </if>
       <if test="recruitTime != null">
-        recruit_time = #{recruitTime,jdbcType=DATE},
+        recruit_time = #{recruitTime,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -155,9 +177,11 @@
       experence = #{experence,jdbcType=VARCHAR},
       recruit_salary = #{recruitSalary,jdbcType=VARCHAR},
       wx_number = #{wxNumber,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      post_info = #{postInfo,jdbcType=VARCHAR},
       recriut_demand = #{recriutDemand,jdbcType=VARCHAR},
       recriut_remark = #{recriutRemark,jdbcType=VARCHAR},
-      recruit_time = #{recruitTime,jdbcType=DATE},
+      recruit_time = #{recruitTime,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

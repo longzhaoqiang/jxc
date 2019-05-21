@@ -23,9 +23,9 @@ $(function () {
                         "                <span>" + data['result'][i]['courseName'] + "</span></div>" +
                         "                <div style='width: 90%'>" +
                         "                    <span class='c-blue glyphicon glyphicon-pencil' id=" + result[i]['id'] + " onclick='update_course(this)'></span>" +
-                        "                    <span class='course-color glyphicon glyphicon-trash' id=" + result[i]['id'] + " onclick='delete_course(this)'></span>" +
+                        "                    <span class='course-color glyphicon glyphicon-trash' style='margin-left: 10px' id=" + result[i]['id'] + " onclick='delete_course(this)'></span>" +
                         "                </div>" +
-                        "<hr style='filter: alpha(opacity=100,finishopacity=0,style=3);border-top: 3px solid #eee;' width='100%' color='#6f5499'/>" +
+                        "<hr style='border-top: 3px solid coral;' width='90%' color='#6f5499'/>" +
                         "            </div>";
                 }
                 $("#courseList").html(course_str);

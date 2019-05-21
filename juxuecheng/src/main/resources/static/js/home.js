@@ -76,7 +76,7 @@ function no_use() {
 
 // 招聘信息
 function recruit() {
-    var action = "/recruit_add";
+    var action = "/recruit";
     checkLogin(action);
 }
 
