@@ -7,30 +7,31 @@ $(function () {
         data: {"bussId": bussId},
         success: function (data) {
             var code = data.resultCode;
-            var msg = data.resultMsg;
             var result = data.result;
             var course_str = '';
             if (code == "1") {
                 for (var i = 0; i < result.length; i++) {
-                    course_str += "<div class='course-1'><a id=" + result[i]['id'] + " onclick='javascript:course_info(this)'>" +
+                    var courseName = data['result'][i]['courseName'];
+                    if (courseName.length > 7){
+                        courseName = courseName.substring(0,8) + "...";
+                    }
+                    course_str += "<div class='course-1'><div style='width:90%;border-radius: 5px;border: 1px solid #aba9a9'><a id=" + result[i]['id'] + " onclick='javascript:course_info(this)'>" +
                         "                <div style='height: 110px'>" +
-                        "                    <img src='/img/myself/course_bg.jpg' style='width: 90%;border-radius: 5px;'>" +
-                        "                    <div class='course-2'>" +
-                        "                        <p class='course-color'>" + data['result'][i]['courseName'] + "</p>" +
-                        "                    </div>" +
+                        "                    <img src='/img/myself/course_bg.jpg' style='width: 100%;border-radius: 2px;'>" +
                         "                </div></a>" +
-                        "                <div class='course-name' style='width: 90%'>" +
-                        "                <span>" + data['result'][i]['courseName'] + "</span></div>" +
-                        "                <div style='width: 90%'>" +
-                        "                    <span class='c-blue glyphicon glyphicon-pencil' id=" + result[i]['id'] + " onclick='update_course(this)'></span>" +
+                        "                <div class='course-n-1'>" +
+                        "                <span style='margin-left: 10px;'>" + courseName + "</span></div>" +
+                        "                <div><div style='margin-left: 10px;'>" +
+                        "                   <div><div class='wl-68'>" +
+                        "                   <span class='course-fee'>¥"+result[i]['courseFee']+"</span></div>"+
+                        "                    <div><span class='c-blue glyphicon glyphicon-pencil' id=" + result[i]['id'] + " onclick='update_course(this)'></span>" +
                         "                    <span class='course-color glyphicon glyphicon-trash' style='margin-left: 10px' id=" + result[i]['id'] + " onclick='delete_course(this)'></span>" +
-                        "                </div>" +
-                        "<hr style='border-top: 3px solid coral;' width='90%' color='#6f5499'/>" +
-                        "            </div>";
+                        "                </div></div></div></div>" +
+                        "<hr class='hr-1' width='90%'/></div></div>";
                 }
                 $("#courseList").html(course_str);
             } else {
-                alert("网络异常！");
+                alert("服务器繁忙！");
             }
         }
     })

@@ -100,7 +100,7 @@ public class TeacherController {
                 // 原始名称
                 String oldFileName = teacherImg.getOriginalFilename(); // 获取上传文件的原名
                 // 存储图片的虚拟本地路径（这里需要配置tomcat的web模块路径，双击猫进行配置）
-                String saveFilePath = Constant.PIC_URL;
+                String saveFilePath = Constant.TEACHER_URL;
                 // 上传图片
                 if (teacherImg != null && oldFileName != null && oldFileName.length() > 0) {
                     newFileName = "teacher-img-" + new Date().getTime() / 1000 + oldFileName.substring(oldFileName.lastIndexOf("."));

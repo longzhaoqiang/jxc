@@ -274,7 +274,7 @@ function getBussesserList(bussesserId, classType) {
 function getBussesserId(obj) {
     var bussesserId = obj.id;
     var distance = obj.name;
-    window.location.href = "../jxc/bussesserIndex.html?bussesserId=" + bussesserId + "," + distance;
+    window.location.href = "../jxc/index.html?bussesserId=" + bussesserId + "," + distance;
 }
 
 // 检查是否登录

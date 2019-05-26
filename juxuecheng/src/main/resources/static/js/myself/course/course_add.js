@@ -32,7 +32,7 @@ function commit() {
             var code = data.resultCode;
             var msg = data.resultMsg;
             if (code == "1"){
-                window.location.href = "/home";
+                window.location.href = "/course";
             } else {
                 alert(msg);
             }

@@ -5,7 +5,6 @@ import com.yingsu.jxc.util.Constant;
 import org.apache.tomcat.util.bcel.Const;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,7 +22,7 @@ public class IndexController {
     // 首次进来时跳到页面
     @RequestMapping("/")
     public String index(){
-        return "home";
+        return "index";
     }
 
     // 跳转到我的页面

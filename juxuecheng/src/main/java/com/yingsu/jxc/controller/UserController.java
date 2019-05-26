@@ -43,6 +43,7 @@ public class UserController {
             }
             session.setAttribute(Constant.USER_INFO, result);
             session.setMaxInactiveInterval(30 * 60);
+            request.setAttribute(Constant.USER_INFO,result.getMobile());
 
             // 返回token
             User user = new User(result.getId(), userName, password);
