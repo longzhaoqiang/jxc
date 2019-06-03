@@ -29,7 +29,7 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     @Transactional
-    public TUser userLogin(HttpSession session, String userName, String password) {
+    public TUser userLogin(HttpSession session, String userName, String password) throws Exception{
         TUser user = userMapper.selectByLogin(userName,password);
         if (user != null){
             Integer uid = user.getId();

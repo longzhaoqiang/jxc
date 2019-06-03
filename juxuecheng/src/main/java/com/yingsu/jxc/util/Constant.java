@@ -43,5 +43,5 @@ public class Constant {
      * 加密密文
      */
     public static final String JWT_SECRET = "juxuecheng_2019_hh";
-    public static final int JWT_TTL = 60*60*1000;  //millisecond
+    public static final int JWT_TTL = 15*60*1000;  //millisecond
 }

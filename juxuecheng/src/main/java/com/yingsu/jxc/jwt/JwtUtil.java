@@ -95,7 +95,7 @@ public class JwtUtil {
         return claims;
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
 
         User user = new User(11, "bulingbuling", "1056856191");
         String subject = new Gson().toJson(user);
@@ -118,5 +118,5 @@ public class JwtUtil {
             e.printStackTrace();
         }
 
-    }*/
+    }
 }

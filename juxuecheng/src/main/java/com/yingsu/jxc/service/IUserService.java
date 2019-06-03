@@ -12,7 +12,7 @@ public interface IUserService {
      * @param password
      * @return
      */
-    public TUser userLogin(HttpSession session, String userName, String password);
+    public TUser userLogin(HttpSession session, String userName, String password) throws Exception;
 
     /**
      * 用户注册

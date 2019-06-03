@@ -50,6 +50,7 @@ public class UserController {
             String subject = new Gson().toJson(user);
             JwtUtil util = new JwtUtil();
             String token = util.createJWT(Constant.JWT_ID, Constant.JWT_AUTH, subject, Constant.JWT_TTL);
+            System.out.println(token);
         }catch (Exception e){
             resultBody.setResultCode(Constant.ERROR_CODE);
             resultBody.setResultMsg(Constant.ERROR_SYS_MSG);

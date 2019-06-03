@@ -205,7 +205,6 @@ ul, ol, li{list-style-type: none;}
 }
 .index-wares .wares-cont .ware-box .ware-img{
     position: relative;
-    padding: 20px;
 }
 .index-wares .wares-cont .ware-box .ware-img img{
     width: 100%;
