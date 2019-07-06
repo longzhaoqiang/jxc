@@ -19,14 +19,14 @@ $(function () {
 
 // 检查是否注册过
 function check_register() {
-    var url = "/buss/checkRegitster";
+    var url = "/buss/checkRegister";
     $.ajax({
         type: "POST",
         url: url,
         success: function (data) {
             var code = data.resultCode;
             var msg = data.resultMsg;
-            if (code == "0"){ // 0已注册 1未注册
+            if (code == "1"){ // 0已注册 1未注册
                 $("#buss_register").html(msg)
                 $("#tobe-buss").css("pointer-events","none");
             }
@@ -53,20 +53,20 @@ function my_saved() {
 
 // 课程添加
 function add_course() {
-    var action = "/buss_add";
+    var action = "/course_add";
     checkLogin(action);
 }
 
 // 课程管理
 function course_manager() {
-    var action = "/course_add";
+    var action = "/course";
     checkLogin(action);
 }
 
 // 教师管理
 function teacher_manager() {
     var action = "/teacher_add";
-    checkLogin(action);
+    checkRegister(action);
 }
 
 // 未上架
@@ -75,8 +75,9 @@ function no_use() {
 }
 
 // 招聘信息
-function applyee() {
-    checkLogin();
+function recruit() {
+    var action = "/recruit";
+    checkLogin(action);
 }
 
 // 首页管理
@@ -130,6 +131,27 @@ function checkLogin(action) {
             var code = data.resultCode;
             if (code == -1){
                 window.location.href = "/login";
+            } else {
+                window.location.href = action;
+            }
+        }
+    })
+}
+
+// 检查是否商家注册过
+function checkRegister(action) {
+    var url = "/buss/checkRegister";
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: function (data) {
+            var code = data.resultCode;
+            if (code == 0){
+                alert("你尚未登录，请登录");
+                window.location.href = "/login";
+            } else if (code == -100){
+                alert("你还未注册成商家");
+                window.location.href = "/buss_register";
             } else {
                 window.location.href = action;
             }

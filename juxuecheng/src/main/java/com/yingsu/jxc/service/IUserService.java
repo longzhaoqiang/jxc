@@ -30,4 +30,8 @@ public interface IUserService {
      */
     public Integer userUpdatePw(String userName,String password);
 
+    /**
+     * 查找用户信息
+     */
+    TUser getUser(Integer uid);
 }

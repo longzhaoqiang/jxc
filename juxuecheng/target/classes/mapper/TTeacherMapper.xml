@@ -6,13 +6,13 @@
     <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
     <result column="teacher_introduce" jdbcType="VARCHAR" property="teacherIntroduce" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="Bussesser_id" jdbcType="INTEGER" property="bussesserId" />
+    <result column="bussesser_id" jdbcType="INTEGER" property="bussesserId" />
     <result column="subject_id" jdbcType="INTEGER" property="subjectId" />
     <result column="teacher_logo" jdbcType="VARCHAR" property="teacherLogo" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, teacher_name, teacher_introduce, mobile, Bussesser_id, subject_id, teacher_logo, 
+    id, teacher_name, teacher_introduce, mobile, bussesser_id, subject_id, teacher_logo,
     create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -21,18 +21,20 @@
     from t_teacher
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_teacher
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.yingsu.jxc.entity.TTeacher">
-    insert into t_teacher (id, teacher_name, teacher_introduce, 
-      mobile, Bussesser_id, subject_id, 
-      teacher_logo, create_time)
-    values (#{id,jdbcType=INTEGER}, #{teacherName,jdbcType=VARCHAR}, #{teacherIntroduce,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{bussesserId,jdbcType=INTEGER}, #{subjectId,jdbcType=INTEGER}, 
-      #{teacherLogo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
-  </insert>
+
+  <!-- 查找教师列表 -->
+  <select id="selectTeacherList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_teacher
+    where bussesser_id = #{bussesser_id,jdbcType=INTEGER} and is_delete = 0
+  </select>
+
+  <!-- 删除教师 -->
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update t_teacher set is_delete = 1 where id = #{id}
+  </update>
+
   <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TTeacher">
     insert into t_teacher
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -49,7 +51,7 @@
         mobile,
       </if>
       <if test="bussesserId != null">
-        Bussesser_id,
+        bussesser_id,
       </if>
       <if test="subjectId != null">
         subject_id,
@@ -101,7 +103,7 @@
         mobile = #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="bussesserId != null">
-        Bussesser_id = #{bussesserId,jdbcType=INTEGER},
+        bussesser_id = #{bussesserId,jdbcType=INTEGER},
       </if>
       <if test="subjectId != null">
         subject_id = #{subjectId,jdbcType=INTEGER},
@@ -113,17 +115,6 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yingsu.jxc.entity.TTeacher">
-    update t_teacher
-    set teacher_name = #{teacherName,jdbcType=VARCHAR},
-      teacher_introduce = #{teacherIntroduce,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      Bussesser_id = #{bussesserId,jdbcType=INTEGER},
-      subject_id = #{subjectId,jdbcType=INTEGER},
-      teacher_logo = #{teacherLogo,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

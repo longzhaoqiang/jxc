@@ -78,4 +78,10 @@ public class UserServiceImpl implements IUserService {
         }
         return result;
     }
+
+    @Override
+    public TUser getUser(Integer uid) {
+        TUser user = userMapper.selectByPrimaryKey(uid);
+        return user;
+    }
 }

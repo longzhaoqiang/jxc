@@ -25,12 +25,18 @@ body{background: #f6f6f6; font-family: 微软雅黑; max-width: 640px; margin: 0
 a{color: inherit; text-decoration: none !important;}
 .white-color{color: #fff !important;}
 .white-bgcolor{background: #fff !important;}
+.course-lable{background: #fff !important;height: 30px;}
 .red-color{color: #ff0000;}
 .zyw-header, .zyw-footer {
     position: fixed;
     width: 100%;
     z-index: 5;
     left: 0;
+}
+.o-1{
+    font-weight: inherit;
+    font-size: 14px;
+    color: #999;
 }
 .zyw-header {
     top: 0;

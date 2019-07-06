@@ -156,7 +156,7 @@
 
     function getBussesserId(obj) {
         var bussesserId = obj.id;
-        window.location.href = "../jxc/bussesserIndex.html?bussesserId=" + bussesserId;
+        window.location.href = "../jxc/index.html?bussesserId=" + bussesserId;
     }
 
     function castClassType(classType, className) {

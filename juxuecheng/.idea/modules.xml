@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jxc.iml" filepath="$PROJECT_DIR$/jxc.iml" />
+      <module fileurl="file://C:/wushi/git-work/wushi-lighthouse/wushi-lighthouse.iml" filepath="C:/wushi/git-work/wushi-lighthouse/wushi-lighthouse.iml" />
     </modules>
   </component>
 </project>

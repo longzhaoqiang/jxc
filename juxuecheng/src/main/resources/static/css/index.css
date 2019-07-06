@@ -43,7 +43,7 @@
     color: #444;
 }
 .index-news{
-    padding: 0.4rem 0.625rem;
+    padding: 0.8rem 0rem;
 }
 .index-news .news-cont{
     position: relative;
@@ -170,6 +170,15 @@ span.seckill-hd-title.theme-color {
 ul, ol, li{list-style-type: none;}
 .index-wares{
     width: 100%;
+}
+.order-item-rt{
+    right: 0;
+    top: 0;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #777;
+    margin-right: 2%;
+    margin-top: -3%;
 }
 .index-intro{
     margin-left: 40%;

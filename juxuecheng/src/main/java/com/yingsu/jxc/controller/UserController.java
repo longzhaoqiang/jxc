@@ -1,20 +1,29 @@
 package com.yingsu.jxc.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.yingsu.jxc.entity.ResultBody;
 import com.yingsu.jxc.entity.TUser;
 import com.yingsu.jxc.entity.User;
 import com.yingsu.jxc.jwt.JwtUtil;
 import com.yingsu.jxc.service.IUserService;
+import com.yingsu.jxc.service.impl.LoginThread;
 import com.yingsu.jxc.util.Constant;
-import com.yingsu.jxc.util.RedisService;
+import org.hibernate.validator.constraints.EAN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Controller
 @RequestMapping("/user")
@@ -22,6 +31,9 @@ public class UserController {
 
     @Autowired
     IUserService userService;
+
+    @Autowired
+    LoginThread loginThread;
 
     /**
      * 用户登录
@@ -44,6 +56,10 @@ public class UserController {
             session.setAttribute(Constant.USER_INFO, result);
             session.setMaxInactiveInterval(30 * 60);
             request.setAttribute(Constant.USER_INFO,result.getMobile());
+
+            // 开一条线程
+            ExecutorService executorService = Executors.newFixedThreadPool(5);
+            executorService.execute(loginThread);
 
             // 返回token
             User user = new User(result.getId(), userName, password);
@@ -151,6 +167,27 @@ public class UserController {
         //通过session.invalidata()方法来注销当前的session
         session.invalidate();
         return "login";
+    }
+
+    @RequestMapping(value = "/user",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject getuser(){
+        List<Map<String,String>> list = new ArrayList<>();
+        Map<String,String> userMap = new HashMap<>();
+        userMap.put("id","11");
+        userMap.put("userName","dsd");
+
+        Map<String,String> userMap1 = new HashMap<>();
+        userMap1.put("id","12");
+        userMap1.put("userName","dswd");
+        list.add(userMap);
+        list.add(userMap1);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",1);
+        jsonObject.put("msg","success");
+        jsonObject.put("data",list);
+        return jsonObject;
     }
 
 }

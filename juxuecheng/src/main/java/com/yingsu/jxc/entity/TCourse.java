@@ -1,7 +1,10 @@
 package com.yingsu.jxc.entity;
 
+import io.swagger.annotations.ApiModel;
+
 import java.util.Date;
 
+@ApiModel(value="TUserPlan对象", description="")
 public class TCourse {
     private Integer id;
 
