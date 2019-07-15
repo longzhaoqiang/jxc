@@ -9,7 +9,7 @@ public class TPic {
 
     private Integer picType;
 
-    private String userMobile;
+    private Integer bussId;
 
     private Integer isShow;
 
@@ -39,12 +39,12 @@ public class TPic {
         this.picType = picType;
     }
 
-    public String getUserMobile() {
-        return userMobile;
+    public Integer getBussId() {
+        return bussId;
     }
 
-    public void setUserMobile(String userMobile) {
-        this.userMobile = userMobile == null ? null : userMobile.trim();
+    public void setBussId(Integer bussId) {
+        this.bussId = bussId;
     }
 
     public Integer getIsShow() {

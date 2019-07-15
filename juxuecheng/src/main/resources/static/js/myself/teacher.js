@@ -1,12 +1,13 @@
 $(function () {
-    get_teachers();
+    var bussId = $("#bussId").val();
+    get_teachers(bussId);
     choose_pic();
 })
 
 // 进入页面时加载教师列表
-function get_teachers() {
+function get_teachers(bussId) {
     $("#no_teacher").hide();
-    var url = "/teacher/getList";
+    var url = "/teacher/getList?bussId="+bussId;
     $.ajax({
         url: url,
         type: "POST",
@@ -88,10 +89,25 @@ function choose_pic() {
 
 // 添加教师
 function teacher_add() {
+    var bussId = $("#bussId").val();
     var teacher_name = $("#teacher_name").val();
-    var teacher_info = $("#teacher_info").val();
+    var teacher_introduce = $("#teacher_introduce").val();
+    var teach_date = $("#teach_date").val();
+    var teacher_subject = $("#teacher_subject").val();
     if (teacher_name == ""){
         alert("请输入教师姓名");
+        return false;
+    }
+    if (teach_date == ""){
+        alert("请输入教龄");
+        return false;
+    }
+    if (teacher_subject == ""){
+        alert("请输入所教学科");
+        return false;
+    }
+    if (teacher_introduce == ""){
+        alert("请输入教师介绍");
         return false;
     }
     var files = $("#file1").get(0).files[0]; //获取file控件中的内容
@@ -101,9 +117,11 @@ function teacher_add() {
     var formData = new FormData();
     formData.append("file", files);
     formData.append("teacher_name", teacher_name);
-    formData.append("teacher_info", teacher_info);
+    formData.append("teacher_introduce", teacher_introduce);
+    formData.append("teach_date", teach_date);
+    formData.append("teacher_subject", teacher_subject);
     $.ajax({
-        url: "/teacher/add",
+        url: "/teacher/add?bussId="+bussId,
         type: 'POST',
         cache: false,
         data: formData,

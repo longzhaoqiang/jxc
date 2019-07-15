@@ -13,7 +13,9 @@ public class TTeacher {
 
     private Integer bussesserId;
 
-    private Integer subjectId;
+    private String teacherSubject;
+
+    private Integer teachDate;
 
     private String teacherLogo;
 
@@ -59,12 +61,20 @@ public class TTeacher {
         this.bussesserId = bussesserId;
     }
 
-    public Integer getSubjectId() {
-        return subjectId;
+    public String getTeacherSubject() {
+        return teacherSubject;
     }
 
-    public void setSubjectId(Integer subjectId) {
-        this.subjectId = subjectId;
+    public void setTeacherSubject(String teacherSubject) {
+        this.teacherSubject = teacherSubject;
+    }
+
+    public Integer getTeachDate() {
+        return teachDate;
+    }
+
+    public void setTeachDate(Integer teachDate) {
+        this.teachDate = teachDate;
     }
 
     public String getTeacherLogo() {

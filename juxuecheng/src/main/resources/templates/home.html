@@ -35,7 +35,7 @@
                 </div>
                 <p class="weui-tabbar__label">招贤纳士</p>
             </a>
-            <a href="/home" class="weui-tabbar__item weui-bar__item--on">
+            <a class="weui-tabbar__item weui-bar__item--on">
                 <div class="weui-tabbar__icon">
                     <img src="/img/svg/foot-5-1.svg" alt="">
                 </div>
@@ -47,8 +47,10 @@
 <section class="zyw-container">
     <div class="home-head white-bgcolor clearfix">
         <div class="head-img">
-            <div class="head-logo"><img src="/img/mylogo.png" alt=""></div>
-            <div class="head-name"><span id="user_name"></span></div>
+            <input type="hidden" id="openId" th:value="${openId}">
+            <input type="hidden" id="bussId" value="">
+            <div class="head-logo"><img id="head_img" src="/img/mylogo.png"></div>
+            <div class="head-name"><span id="user_name" style="color: mediumslateblue;"></span></div>
             <div class="head-icon">
                 <a href=""><img src="/img/svg/home-cog.svg" alt=""></a>
                 <a href=""><img src="/img/svg/home-message.svg" alt=""></a>
@@ -73,31 +75,31 @@
         </a>
     </div>
     <div class="weui-flex home-order white-bgcolor mb-625">
-        <a href="" class="weui-flex__item" onclick="course_manager()">
+        <a onclick="course_manager()" class="weui-flex__item" >
             <div class="weui-flex__icon">
                 <img src="/img/svg/home-dfk.svg" alt="">
             </div>
             <p class="weui-flex__label">课程管理</p>
         </a>
-        <a href="" class="weui-flex__item" onclick="teacher_manager()">
+        <a class="weui-flex__item" onclick="teacher_manager()">
             <div class="weui-flex__icon">
                 <img src="/img/svg/home-dfh.svg" alt="">
             </div>
             <p class="weui-flex__label">教师管理</p>
         </a>
-        <a href="" class="weui-flex__item" onclick="no_use()">
+        <a class="weui-flex__item" onclick="no_use()">
             <div class="weui-flex__icon">
                 <img src="/img/svg/home-dsh.svg" alt="">
             </div>
             <p class="weui-flex__label">已下架</p>
         </a>
-        <a href="" class="weui-flex__item" onclick="recruit()">
+        <a class="weui-flex__item" onclick="recruit()">
             <div class="weui-flex__icon">
                 <img src="/img/svg/home-dpj.svg" alt="">
             </div>
             <p class="weui-flex__label">招聘管理</p>
         </a>
-        <a href="" class="weui-flex__item" onclick="constomer_words()">
+        <a class="weui-flex__item" onclick="constomer_words()">
             <div class="weui-flex__icon">
                 <img src="/img/svg/home-tk.svg" alt="">
             </div>

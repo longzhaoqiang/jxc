@@ -24,15 +24,16 @@ $(function () {
 
 // 提交
 function commit() {
+    var bussId = $("#bussId").val();
     $.ajax({
-        url: "/course/addCourse",
+        url: "/course/addCourse?bussId="+bussId,
         type: "POST",
         data: $("#courseForm").serialize(),
         success: function (data) {
             var code = data.resultCode;
             var msg = data.resultMsg;
             if (code == "1"){
-                window.location.href = "/course";
+                window.location.href = "/course?param1="+bussId;
             } else {
                 alert(msg);
             }

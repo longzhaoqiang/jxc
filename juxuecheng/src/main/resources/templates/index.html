@@ -36,7 +36,7 @@
                 </div>
                 <p class="weui-tabbar__label">招贤纳士</p>
             </a>
-            <a href="/home" class="weui-tabbar__item">
+            <a onclick="home_openid()" class="weui-tabbar__item">
                 <div class="weui-tabbar__icon">
                     <img src="./img/svg/foot-5.svg" alt="">
                 </div>
@@ -58,15 +58,16 @@
     <div class="index-class white-bgcolor">
         <div class="weui-flex">
             <div class="weui-flex__item">
-                <a href="javascript:;">
+                <a id="buss_index">
                     <div class="index-class-img">
                         <img src="./img/yqyl.png" alt="">
                     </div>
                     <p class="index-class-text">机构详情</p>
+                    <input type="hidden" id="bussId" th:value="${bussId}">
                 </a>
             </div>
             <div class="weui-flex__item">
-                <a href="javascript:;">
+                <a href="/wx/authorize">
                     <div class="index-class-img">
                         <img src="./img/cjfl.png" alt="">
                     </div>
@@ -200,39 +201,7 @@
         </div>
         <div class="seckill-bd white-bgcolor">
             <div class="seckill-wares">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/myself/teacher/teacher-2.jpg" alt="">
-                            <p style="font-size: 14px">龙老师</p>
-                            <p style="font-size: 14px;font-weight: 700;color: #ff5500">10年教龄</p>
-                            <p class="o-1" style=" font-weight: inherit;font-size: 14px;">英语</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/myself/teacher/teacher-1.jpg" alt="">
-                            <p style="font-size: 14px">龙老师</p>
-                            <p style="font-size: 14px;font-weight: 700;color: #ff5500">10年教龄</p>
-                            <p class="o-1" style=" font-weight: inherit;font-size: 14px;">数学</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/myself/teacher/teacher-2.jpg" alt="">
-                            <p style="font-size: 14px">龙老师</p>
-                            <p style="font-size: 14px;font-weight: 700;color: #ff5500">10年教龄</p>
-                            <p class="o-1" style=" font-weight: inherit;font-size: 14px;">英语口语</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/myself/teacher/teacher-4.jpg" alt="">
-                            <p style="font-size: 14px">龙老师</p>
-                            <p style="font-size: 14px;font-weight: 700;color: #ff5500">10年教龄</p>
-                            <p class="o-1" style=" font-weight: inherit;font-size: 14px;">作文</p>
-                        </a>
-                    </div>
+                <div class="swiper-wrapper" id="teacherList">
                 </div>
             </div>
         </div>
@@ -302,30 +271,6 @@
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script src="js/swiper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    // 轮播
-    $(document).ready(function () {
-        // 顶部轮播图
-        var mySwiper = new Swiper ('.swiper-container', {
-            // 如果需要分页器
-            autoplay:true,
-            pagination: {
-                el: '.swiper-pagination'
-            }
-        });
-        // 秒杀商品滑动
-        var swiper = new Swiper('.seckill-wares', {
-            slidesPerView: 3.5,
-            spaceBetween: 5,
-            freeMode: true
-        });
-        // 新闻资讯
-        var swiper2 = new Swiper('.infoBox', {
-            autoplay:true,
-            delay: 5000,
-            direction: 'vertical'
-        });
-    })
-</script>
+<script src="js/index.js"></script>
 </body>
 </html>

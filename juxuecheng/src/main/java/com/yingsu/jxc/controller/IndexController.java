@@ -1,12 +1,16 @@
 package com.yingsu.jxc.controller;
 
-import com.yingsu.jxc.entity.TUser;
+import com.yingsu.jxc.entity.TBussesser;
+import com.yingsu.jxc.service.IBussesserService;
+import com.yingsu.jxc.service.IWxService;
 import com.yingsu.jxc.util.Constant;
-import org.apache.tomcat.util.bcel.Const;
+import com.yingsu.jxc.weixin.WxController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -19,28 +23,55 @@ import javax.servlet.http.HttpSession;
 @EnableAutoConfiguration
 public class IndexController {
 
+    private static Logger log = LoggerFactory.getLogger(WxController.class);
+
+    @Autowired
+    private IWxService wxService;
+
+    @Autowired
+    private IBussesserService bussesserService;
+
     // 首次进来时跳到页面
     @RequestMapping("/")
-    public String index(){
-        return "index";
+    public ModelAndView index(HttpSession session){
+        ModelAndView mv = new ModelAndView();
+        TBussesser bussesser = (TBussesser) session.getAttribute("bussId");
+        Integer bussId = Constant.BUSS_ID;
+        if (bussesser != null){
+            bussId = bussesser.getId();
+        }
+        mv.addObject("bussId",bussId);
+        mv.setViewName("index");
+        return mv;
     }
 
     // 跳转到我的页面
     @RequestMapping("/home")
-    public String home(){
-        return "home";
+    public ModelAndView home(HttpSession session){
+        ModelAndView mv = new ModelAndView();
+        String openId = (String) session.getAttribute("openId");
+        // String openId = "oO3ww1dZFRQ3u4L41I4AfcbtNLXA";
+        mv.addObject("openId",openId);
+        mv.setViewName("home");
+        return mv;
     }
 
     // 跳转到商家页面
-    @RequestMapping("/buss")
-    public String buss(){
-        return "bussesserIndex";
+    @RequestMapping("/buss_index")
+    public ModelAndView buss(String bussId){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bussId",bussId);
+        mv.setViewName("buss_index");
+        return mv;
     }
 
     // 跳转到商家添加页面
     @RequestMapping("/buss_add")
-    public String buss_add(){
-        return "buss_add";
+    public ModelAndView buss_add(String param1){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bussId",param1);
+        mv.setViewName("buss_add");
+        return mv;
     }
 
     // 跳转到商家注册页面
@@ -61,32 +92,33 @@ public class IndexController {
         return "recruit_add";
     }
 
-    // 跳转到課程页面
-    @ResponseBody
+    // 跳转到課程管理页面
     @RequestMapping("/course")
-    public ModelAndView hello(HttpSession session){
+    public ModelAndView course(String param1){
         ModelAndView mv = new ModelAndView();
-        TUser user = (TUser) session.getAttribute(Constant.USER_INFO);
-        if (user == null){
-            mv.setViewName("login");
-            return mv;
-        }
-        Integer bussId = user.getBussesserId();
-        mv.addObject("bussId",bussId);
+        mv.addObject("bussId",param1);
         mv.setViewName("course");
         return mv;
     }
 
     // 跳转到課程添加页面
     @RequestMapping("/course_add")
-    public String course_add(){
-        return "course_add";
+    public ModelAndView course_add(String param1){
+        ModelAndView mv = new ModelAndView();
+        log.info("课程添加页面----------bussId="+param1);
+        mv.addObject("bussId",param1);
+        mv.setViewName("course_add");
+        return mv;
     }
 
     // 跳转到教师添加页面
     @RequestMapping("/teacher_add")
-    public String teacher_add(){
-        return "teacher_add";
+    public ModelAndView teacher_add(String param1){
+        ModelAndView mv = new ModelAndView();
+        log.info("教师管理页面----------bussId="+param1);
+        mv.addObject("bussId",param1);
+        mv.setViewName("teacher_add");
+        return mv;
     }
 
     // 跳转到登录页面

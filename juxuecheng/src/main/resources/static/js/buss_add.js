@@ -1,4 +1,22 @@
 $(function () {
+    // 查看是否编辑过商家首页
+    var bussId = $("#bussId").val();
+    $.ajax({
+        url: "/buss/getBussInfo",
+        data: {"bussId":bussId},
+        type: "POST",
+        success: function (data) {
+            var code = data['resultCode'];
+            if (code == "1"){
+                $("#bussesserPhone").html(data['result']['phone']);
+                $("#bussesserAdd").html(data['result']['address']);
+                $("#instraction").html(data['result']['bussIntroduce']);
+                $("#teacherPower").html(data['result']['tearchpower']);
+            } else {
+                $("#img_list").hide();
+            }
+        }
+    })
     // 多图片上传
     initFileInput("input-id");
 })
@@ -53,39 +71,39 @@ function initFileInput(ctrlName) {
 
 // 保存提交
 function commit() {
-    var productId = $("#productId").val();
-    var productName = $("#productName").val();
-    var price = $("#price").val();
-    var productNum = $("#productNum").val();
-    var bussAddress = $("#bussAddress").val();
+    var bussId = $("#bussId").val();
+    var address = $("#bussesserAdd").val();
+    var phone = $("#bussesserPhone").val();
+    var bussIntroduce = $("#instraction").val();
+    var tearchpower = $("#teacherPower").val();
     if (!flag){
-        alert("为了店面美观请上传图片！");
+        alert("为了机构美观请上传图片！");
         return false;
     }
-    if (productName == ""){
-        alert("商品名称不能为空");
+    if (address == ""){
+        alert("地址不能为空");
         return false;
-    } else if (price == ""){
-        alert("请输入价格");
+    } else if (phone == ""){
+        alert("联系方式不能为空");
         return false;
-    } else if (productNum == ""){
-        alert("库存不能为空");
+    } else if (bussIntroduce == ""){
+        alert("机构介绍不能为空");
         return false;
-    } else if (bussAddress == ""){
-        alert("请输入商家地址");
+    } else if (tearchpower == ""){
+        alert("师资力量不能为空");
         return false;
     }
     $.ajax({
         //几个参数需要注意一下
         type: "POST",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "/product/add" ,//url
-        data: $('#productForm').serialize(),
+        url: "/buss/addBussIndex",//url
+        data: {"id":bussId,"address":address,"phone":phone,"bussIntroduce":bussIntroduce,"tearchpower":tearchpower},
         success: function (result) {
             var code = result.resultCode;
             var msg = result.resultMsg;
             if (code == "1"){
-                window.location.href = "/goods";
+                window.location.href = "/home";
             } else {
                 alert(msg);
             }

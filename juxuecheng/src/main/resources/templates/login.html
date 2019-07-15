@@ -15,37 +15,14 @@
 <body style="background: #fff;">
 <header class="zyw-header">
     <div class="zyw-container white-color">
-        <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="/jxc/static/img/svg/head-return.svg" alt=""></a></div>
-        <h1>登录</h1>
-        <div class="head-r"><a href="/register">注册</a></div>
+        <h1>推荐使用登录</h1>
     </div>
 </header>
 <section class="zyw-container">
-    <div class="login-img"><img src="/img/mylogo.png" alt=""></div>
-    <div class="weui-cells">
-        <div class="weui-cell weui-cell_select weui-cell_select-before">
-            <div class="weui-cell__hd">
-                <select class="weui-select" name="select2">
-                    <option value="1">+86</option>
-                    <option value="2">+80</option>
-                    <option value="3">+84</option>
-                    <option value="4">+87</option>
-                </select>
-            </div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" id="userName" name="userName" type="number" pattern="[0-9]*" placeholder="请输入手机号">
-            </div>
-        </div>
+    <div class="login-img"><img src="/img/weixin_login.jpg"></div>
+    <div class="login-btn" style="margin-top: 10%;">
+        <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/login/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect" class="weui-btn weui-btn_warn theme-bgcolor" >登录</a>
     </div>
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <input class="weui-input" id="password" name="password" type="password" placeholder="请输入密码">
-            </div>
-        </div>
-    </div>
-    <div class="weui-cells__tips text-right"><a href="">忘记密码？</a></div>
-    <div class="login-btn"><a href="javascript:;" class="weui-btn weui-btn_warn theme-bgcolor" onclick="commit()">登录</a></div>
 </section>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>

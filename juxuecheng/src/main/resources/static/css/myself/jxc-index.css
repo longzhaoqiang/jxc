@@ -98,6 +98,11 @@
     line-height: 1.5;
 }
 
+.ml-2{
+    width: 96%;
+    margin-left: 2%;
+}
+
 .row-top-5 {
     margin-top: 5px;
 }

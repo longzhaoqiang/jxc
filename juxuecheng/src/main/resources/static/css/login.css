@@ -1,15 +1,9 @@
 .login-img{
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid #dedede;
-    padding: 2px;
-    margin: 3rem auto;
 }
 .login-img img{
-    width: 100%;
-    border-radius: 50%;
+    width: 30%;
+    margin-left: 34%;
+    margin-top: 25%;
 }
 .weui-cells {
     margin-top: 0;

@@ -48,11 +48,9 @@ public class CourseController {
     // 添加课程
     @RequestMapping("/addCourse")
     @ResponseBody
-    public ResultBody addCourse(HttpSession session, TCourse course) {
+    public ResultBody addCourse(Integer bussId, TCourse course) {
         ResultBody resultBody = new ResultBody();
         try {
-            TUser user = (TUser) session.getAttribute(Constant.USER_INFO);
-            Integer bussId = user.getBussesserId();
             course.setBussesserId(bussId);
             Integer result = courseService.addCourse(course);
         } catch (Exception e) {

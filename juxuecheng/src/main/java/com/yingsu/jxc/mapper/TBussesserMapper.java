@@ -23,6 +23,13 @@ public interface TBussesserMapper {
     TBussesser selectByUid(Integer uid);
 
     /**
+     * 通过openId查找商家信息
+     * @param openId
+     * @return
+     */
+    TBussesser selectByOpenId(String openId);
+
+    /**
      * 添加商家
      * @param record
      * @return

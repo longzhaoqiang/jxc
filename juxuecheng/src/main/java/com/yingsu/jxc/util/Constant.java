@@ -4,14 +4,26 @@ import java.util.UUID;
 
 public class Constant {
 
+    // 英速科技bussId
+    public static int BUSS_ID = 124;
+
     // 圖片保存路徑
-    public static String TEACHER_URL = "C:/workspace/image";
-    //public static String TEACHER_URL = "/data/images/TeacherImg";
+    // public static String TEACHER_URL = "C:/workspace/image";
+    public static String TEACHER_URL = "/data/images/TeacherImg";
     // 商家首页图片路径
     public static String BUSSINDEX_URL = "/data/images/BussImg";
 
+    // 获取openId
+    public static String OPENID_PATH = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/home/&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+
+    // 获取微信用户详情
+    public static String WXUSERINFO_PATH = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/login/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+
     // 用户信息存进session
     public static String USER_INFO = "userInfo";
+
+    // 用户openId
+    public static String USER_OPENID = "openId";
 
     // 错误码
     public static Integer ERROR_CODE = -100;

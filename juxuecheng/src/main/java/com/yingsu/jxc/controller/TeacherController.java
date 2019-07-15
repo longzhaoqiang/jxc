@@ -1,6 +1,5 @@
 package com.yingsu.jxc.controller;
 
-import com.sun.org.apache.regexp.internal.RE;
 import com.yingsu.jxc.entity.ResultBody;
 import com.yingsu.jxc.entity.TTeacher;
 import com.yingsu.jxc.entity.TUser;
@@ -27,22 +26,17 @@ public class TeacherController {
 
     /**
      * 获取教师列表
-     * @param session
+     *
+     * @param bussId
      * @return
      */
     @RequestMapping("/getList")
     @ResponseBody
-    public ResultBody getTeacherList(HttpSession session){
+    public ResultBody getTeacherList(Integer bussId) {
         ResultBody resultBody = new ResultBody();
         try {
-            TUser user = (TUser) session.getAttribute(Constant.USER_INFO);
-            if (user != null) {
-                Integer bussId = user.getBussesserId();
-                resultBody = teacherService.getTeacherList(bussId);
-            } else {
-                resultBody.setResultCode(-100);
-            }
-        }catch (Exception e){
+            resultBody = teacherService.getTeacherList(bussId);
+        } catch (Exception e) {
             resultBody.setResultCode(-1);
             resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
         }
@@ -51,15 +45,16 @@ public class TeacherController {
 
     /**
      * 获取教师详情
+     *
      * @return
      */
     @RequestMapping("/getTeacher")
     @ResponseBody
-    public ResultBody getTeacher(Integer teacherId){
+    public ResultBody getTeacher(Integer teacherId) {
         ResultBody resultBody = new ResultBody();
         try {
             resultBody = teacherService.getTeacher(teacherId);
-        }catch (Exception e){
+        } catch (Exception e) {
             resultBody.setResultCode(-1);
             resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
         }
@@ -68,35 +63,34 @@ public class TeacherController {
 
     /**
      * 添加教师
+     *
      * @param request
      * @param session
      * @return
      */
     @RequestMapping("/add")
     @ResponseBody
-    public ResultBody fileUpload(HttpServletRequest request, HttpSession session){
+    public ResultBody fileUpload(HttpServletRequest request, HttpSession session,Integer bussId) {
         ResultBody resultBody = new ResultBody();
-        Integer bussId = null;
         try {
             String teacherName = request.getParameter("teacher_name").trim();
-            String teacherInfo = request.getParameter("teacher_info").trim();
+            String teacherInfo = request.getParameter("teacher_introduce").trim();
+            String teacherDate = request.getParameter("teach_date").trim();
+            teacherDate = teacherDate.substring(0,teacherDate.length()-1);
+            String teacherSubject = request.getParameter("teacher_subject").trim();
             String newFileName = null;
-            if (teacherName.equals("") || teacherName == null){
+            if (teacherName.equals("") || teacherName == null) {
                 resultBody.setResultCode(-1);
                 resultBody.setResultMsg("请输入教师姓名");
                 return resultBody;
             }
             //转型为MultipartHttpRequest(重点的所在)
-            MultipartHttpServletRequest multipartRequest  =  (MultipartHttpServletRequest) request;
+            MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             //获得第1张图片（根据前台的name名称得到上传的文件）
-            MultipartFile teacherImg  =  multipartRequest.getFile("file");
-            if (teacherImg == null || "".equals(teacherImg)){
+            MultipartFile teacherImg = multipartRequest.getFile("file");
+            if (teacherImg == null || "".equals(teacherImg)) {
                 newFileName = "teacherOragineImg";
             } else {
-                TUser user = (TUser) session.getAttribute(Constant.USER_INFO);
-                if (user != null) {
-                    bussId = user.getBussesserId();
-                }
                 // 原始名称
                 String oldFileName = teacherImg.getOriginalFilename(); // 获取上传文件的原名
                 // 存储图片的虚拟本地路径（这里需要配置tomcat的web模块路径，双击猫进行配置）
@@ -118,8 +112,10 @@ public class TeacherController {
             teacher.setTeacherName(teacherName);
             teacher.setTeacherIntroduce(teacherInfo);
             teacher.setTeacherLogo(newFileName);
+            teacher.setTeachDate(Integer.parseInt(teacherDate));
+            teacher.setTeacherSubject(teacherSubject);
             teacherService.addTeacher(teacher);
-        }catch (Exception e){
+        } catch (Exception e) {
             resultBody.setResultCode(-1);
             resultBody.setResultMsg("系统异常！");
         }
@@ -128,16 +124,17 @@ public class TeacherController {
 
     /**
      * 删除教师
+     *
      * @param id
      * @return
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public ResultBody deleteTeacher(String id){
+    public ResultBody deleteTeacher(String id) {
         ResultBody resultBody = new ResultBody();
         try {
             resultBody = teacherService.deleteTeacher(Integer.parseInt(id));
-        }catch (Exception e){
+        } catch (Exception e) {
             resultBody.setResultCode(-1);
             resultBody.setResultMsg("系统异常！");
         }

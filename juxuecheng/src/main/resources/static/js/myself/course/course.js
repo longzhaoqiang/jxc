@@ -38,7 +38,8 @@ $(function () {
 })
 
 function course_add() {
-    window.location.href = "/course_add";
+    var bussId = $("#bussId").val();
+    window.location.href = "/course_add?param1="+bussId;
 }
 
 // 查询课程详情
