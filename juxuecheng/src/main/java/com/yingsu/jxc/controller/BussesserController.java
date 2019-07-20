@@ -1,10 +1,10 @@
 package com.yingsu.jxc.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yingsu.jxc.entity.*;
 import com.yingsu.jxc.service.IBussesserService;
 import com.yingsu.jxc.service.IWxService;
 import com.yingsu.jxc.util.Constant;
-import com.yingsu.jxc.weixin.WxController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/8/23 0023.
@@ -43,6 +44,29 @@ public class BussesserController {
         } else {
             resultBody.setResultCode(0);
         }
+        return resultBody;
+    }
+
+    /**
+     * 我的信息--查看商家详情
+     */
+    @RequestMapping("/getBuss")
+    @ResponseBody
+    public ResultBody getBuss(Integer bussId) {
+        ResultBody resultBody = new ResultBody();
+        try {
+            Map<String, String> map = bussesserService.getBuss(bussId);
+            if (map != null) {
+                resultBody.setResult(map);
+            } else {
+                resultBody.setResultCode(0);
+            }
+        }catch (Exception e){
+            log.error("查询商家--我的信息也出错：" + e);
+            resultBody.setResultCode(Constant.ERROR_CODE);
+            resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
+        }
+
         return resultBody;
     }
 
@@ -134,8 +158,8 @@ public class BussesserController {
     public ResultBody checkRegister(HttpSession session) {
         ResultBody resultBody = new ResultBody();
         try {
-            String openId = (String) session.getAttribute("openId");
-            // String openId = "oO3ww1dZFRQ3u4L41I4AfcbtNLXA";
+            // String openId = (String) session.getAttribute("openId");
+            String openId = "oO3ww1dZFRQ3u4L41I4AfcbtNLXA";
             TWeixinLogin weixinLogin = wxService.getWeixinUser(openId);
             if (weixinLogin == null) {
                 resultBody.setResultCode(-1);
@@ -156,6 +180,7 @@ public class BussesserController {
             resultBody.setResultCode(Constant.ERROR_CODE);
             resultBody.setResultMsg(Constant.ERROR_SYS_MSG + e);
         }
+
         return resultBody;
     }
 }

@@ -30,8 +30,23 @@ $(function () {
 })
 
 function home_openid() {
-    window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/home/&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
-    // window.location.href = "/home";
+    // window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/home/&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+    window.location.href = "/home";
+}
+
+function enroll_online() {
+    var bussId = $("#bussId").val();
+    window.location.href = "/enroll_online?param1="+bussId;
+}
+
+function course() {
+    var bussId = $("#bussId").val();
+    window.location.href = "/courseCoustomer?param1="+bussId;
+}
+
+function recruit() {
+    var bussId = $("#bussId").val();
+    window.location.href = "/recruit?param1="+bussId;
 }
 
 function init(bussId) {
@@ -44,9 +59,9 @@ function init(bussId) {
             var teacherModel = data.teacherModel;
             var teacherModelStr = "";
             for (var i = 0;i<teacherModel.length;i++){
-                teacherModelStr += "<div class='swiper-slide seckill-ware' style='width: 110.714px;margin-right: 5px;'>" +
+                teacherModelStr += "<div class='swiper-slide seckill-ware' style='width: 100px;'>" +
                     "                        <a href='item.html'>" +
-                    "                            <div><img style='height: 110.714px' src='http://image.yingsuit.com/TeacherImg/"+teacherModel[i]["teacherLogo"]+"'/></div>" +
+                    "                            <div><img style='height: 80px;width: 75px' src='http://image.yingsuit.com/TeacherImg/"+teacherModel[i]["teacherLogo"]+"'/></div>" +
                     "                            <p style='font-size: 14px'>"+teacherModel[i]['teacherName']+"</p>" +
                     "                            <p style='font-size: 14px;font-weight: 700;color: #ff5500'>"+teacherModel[i]['teachDate']+"年教龄</p>" +
                     "                            <p class='o-1' style='' font-weight: inherit;font-size: 14px;'>"+teacherModel[i]['teacherSubject']+"</p>" +

@@ -49,8 +49,8 @@ public class IndexController {
     @RequestMapping("/home")
     public ModelAndView home(HttpSession session){
         ModelAndView mv = new ModelAndView();
-        String openId = (String) session.getAttribute("openId");
-        // String openId = "oO3ww1dZFRQ3u4L41I4AfcbtNLXA";
+        // String openId = (String) session.getAttribute("openId");
+        String openId = "oO3ww1dZFRQ3u4L41I4AfcbtNLXA";
         mv.addObject("openId",openId);
         mv.setViewName("home");
         return mv;
@@ -74,6 +74,21 @@ public class IndexController {
         return mv;
     }
 
+    // 跳转到在线报名页面
+    @RequestMapping("/enroll_online")
+    public ModelAndView enrollOnline(String bussId){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bussId",bussId);
+        mv.setViewName("enroll_online");
+        return mv;
+    }
+
+    // 跳转联系我们页面
+    @RequestMapping("/contact_us")
+    public String contact_us(){
+        return "contact_us";
+    }
+
     // 跳转到商家注册页面
     @RequestMapping("/buss_register")
     public String buss_register(){
@@ -82,8 +97,11 @@ public class IndexController {
 
     // 跳转到招聘页面
     @RequestMapping("/recruit")
-    public String recruit(){
-        return "recruit";
+    public ModelAndView recruit(String bussId){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bussId",bussId);
+        mv.setViewName("recruit");
+        return mv;
     }
 
     // 跳转到发布招聘页面
@@ -98,6 +116,16 @@ public class IndexController {
         ModelAndView mv = new ModelAndView();
         mv.addObject("bussId",param1);
         mv.setViewName("course");
+        return mv;
+    }
+
+    // 跳转到首页課程列表页面
+    @RequestMapping("/courseCoustomer")
+    public ModelAndView courseCoustomer(String param1){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bussId",param1);
+        mv.setViewName("course_coustomer");
+        log.info("-------------跳转到首页課程列表页面");
         return mv;
     }
 
@@ -135,8 +163,12 @@ public class IndexController {
 
     // 跳转到我的信息页面
     @RequestMapping("/myInfo")
-    public String my_info(){
-        return "myInfo";
+    public ModelAndView my_info(String param1){
+        ModelAndView mv = new ModelAndView();
+        log.info("我的信息页面----------bussId="+param1);
+        mv.addObject("bussId",param1);
+        mv.setViewName("myInfo");
+        return mv;
     }
 
     // 跳转到重置密码页面

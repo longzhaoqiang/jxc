@@ -45,6 +45,11 @@ function get_wx_info(openId) {
     });
 }
 
+function course() {
+    var bussId = $("#bussId").val();
+    window.location.href = "/courseCoustomer?param1="+bussId;
+}
+
 // 被收藏
 function besaved() {
     checkLogin();
@@ -90,8 +95,9 @@ function no_use() {
 
 // 招聘信息
 function recruit() {
-    var action = "/recruit";
-    checkLogin(action);
+    var bussId = $("#bussId").val();
+    var action = "/recruit?param1="+bussId;
+    checkRegister(action);
 }
 
 // 首页管理
@@ -113,8 +119,9 @@ function youhui_quan() {
 
 // 我的信息
 function my_info() {
-    var action = "/myInfo";
-    checkLogin(action);
+    var bussId = $("#bussId").val();
+    var action = "/myInfo?param1="+bussId;
+    checkRegister(action);
 }
 
 // 意见反馈

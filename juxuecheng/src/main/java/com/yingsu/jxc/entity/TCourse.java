@@ -16,6 +16,8 @@ public class TCourse {
 
     private String cycleMumber;
 
+    private Double resourceFee;
+
     private Double courseFee;
 
     private String courseIntraduce;
@@ -60,6 +62,14 @@ public class TCourse {
 
     public String getTitalInfo() {
         return titalInfo;
+    }
+
+    public Double getResourceFee() {
+        return resourceFee;
+    }
+
+    public void setResourceFee(Double resourceFee) {
+        this.resourceFee = resourceFee;
     }
 
     public void setTitalInfo(String titalInfo) {

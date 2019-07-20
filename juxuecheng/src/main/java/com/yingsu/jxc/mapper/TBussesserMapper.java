@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface TBussesserMapper {
 
@@ -21,6 +22,13 @@ public interface TBussesserMapper {
      * @return
      */
     TBussesser selectByUid(Integer uid);
+
+    /**
+     * 我的信息--查看商家详情
+     * @param id
+     * @return
+     */
+    Map<String, String> selectBuss(Integer id);
 
     /**
      * 通过openId查找商家信息

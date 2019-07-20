@@ -4,6 +4,7 @@ import com.yingsu.jxc.entity.TBussesser;
 import com.yingsu.jxc.entity.TClasstype;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IBussesserService {
 
@@ -26,6 +27,13 @@ public interface IBussesserService {
      * @return
      */
     TBussesser getBussById(Integer id);
+
+    /**
+     * 我的信息--查看商家详情
+     * @param bussId
+     * @return
+     */
+    Map<String, String> getBuss(Integer bussId);
 
     /**
      * 通过openId获取商家信息

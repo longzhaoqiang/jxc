@@ -29,6 +29,21 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+  <!-- 我的信息,查看商家详情 -->
+  <select id="selectBuss" parameterType="java.lang.Integer" resultType="java.util.Map">
+   SELECT
+        tw.nick_name,
+        tb.phone,
+        tb.buss_name,
+        tc.class_type,
+        tb.address
+    FROM
+        `t_bussesser` tb
+    LEFT JOIN t_weixin_login tw ON tb.user_id = tw.id
+    LEFT JOIN t_classtype tc ON tb.buss_type = tc.id
+    WHERE tb.id = #{bussId};
+  </select>
+
   <!-- 通过id查找商家信息 -->
   <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BussesserServiceImpl implements IBussesserService {
@@ -59,6 +60,17 @@ public class BussesserServiceImpl implements IBussesserService {
     public TBussesser getBussById(Integer id){
         TBussesser bussesser = bussesserMapper.selectByPrimaryKey(id);
         return bussesser;
+    }
+
+    /**
+     * 我的信息--查看商家详情
+     * @param bussId
+     * @return
+     */
+    @Override
+    public Map<String, String> getBuss(Integer bussId) {
+        Map<String, String> map = bussesserMapper.selectBuss(bussId);
+        return map;
     }
 
     /**

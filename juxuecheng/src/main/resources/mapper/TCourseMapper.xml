@@ -7,6 +7,7 @@
     <result column="bussesser_id" jdbcType="INTEGER" property="bussesserId" />
     <result column="tital_info" jdbcType="VARCHAR" property="titalInfo" />
     <result column="cycle_mumber" jdbcType="VARCHAR" property="cycleMumber" />
+    <result column="resource_fee" jdbcType="DOUBLE" property="resourceFee" />
     <result column="course_fee" jdbcType="DOUBLE" property="courseFee" />
     <result column="course_intraduce" jdbcType="VARCHAR" property="courseIntraduce" />
     <result column="apply_student" jdbcType="VARCHAR" property="applyStudent" />
@@ -18,7 +19,7 @@
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, course_name, bussesser_id, tital_info, cycle_mumber,
+    id, course_name, bussesser_id, tital_info, cycle_mumber,resource_fee,
     course_fee, course_intraduce, apply_student, course_goal, course_content, course_special,
     course_stata, start_time, createTime
   </sql>
@@ -39,13 +40,14 @@
   <insert id="insert" parameterType="com.yingsu.jxc.entity.TCourse">
     insert into t_course (id, course_name, bussesser_id, 
       course_type, subject_id, teacher_id, 
-      cycle_mumber, course_fee, course_intraduce, 
+      cycle_mumber, resource_fee, course_fee, course_intraduce,
       apply_student, course_goal, course_content, 
       course_special, course_stata, start_time, 
       createTime)
-    values (#{id,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{bussesserId,jdbcType=INTEGER}, 
-      #{courseType,jdbcType=VARCHAR}, #{subjectId,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, 
-      #{cycleMumber,jdbcType=VARCHAR}, #{courseFee,jdbcType=DOUBLE}, #{courseIntraduce,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{bussesserId,jdbcType=INTEGER},
+      #{courseType,jdbcType=VARCHAR}, #{subjectId,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER},
+      #{cycleMumber,jdbcType=VARCHAR}, #{resourceFee,jdbcType=DOUBLE},
+      #{courseFee,jdbcType=DOUBLE}, #{courseIntraduce,jdbcType=VARCHAR},
       #{applyStudent,jdbcType=VARCHAR}, #{courseGoal,jdbcType=VARCHAR}, #{courseContent,jdbcType=VARCHAR}, 
       #{courseSpecial,jdbcType=VARCHAR}, #{courseStata,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
       #{createtime,jdbcType=TIMESTAMP})
@@ -67,6 +69,9 @@
       </if>
       <if test="cycleMumber != null">
         cycle_mumber,
+      </if>
+      <if test="resourceFee != null">
+        resource_fee,
       </if>
       <if test="courseFee != null">
         course_fee,
@@ -112,6 +117,9 @@
       <if test="cycleMumber != null">
         #{cycleMumber,jdbcType=VARCHAR},
       </if>
+      <if test="resourceFee != null">
+        #{resourceFee,jdbcType=DOUBLE},
+      </if>
       <if test="courseFee != null">
         #{courseFee,jdbcType=DOUBLE},
       </if>
@@ -155,6 +163,9 @@
       </if>
       <if test="cycleMumber != null">
         cycle_mumber = #{cycleMumber,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceFee != null">
+        resource_fee = #{resourceFee,jdbcType=DOUBLE},
       </if>
       <if test="courseFee != null">
         course_fee = #{courseFee,jdbcType=DOUBLE},

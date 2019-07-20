@@ -8,8 +8,8 @@ public class Constant {
     public static int BUSS_ID = 124;
 
     // 圖片保存路徑
-    // public static String TEACHER_URL = "C:/workspace/image";
-    public static String TEACHER_URL = "/data/images/TeacherImg";
+    public static String TEACHER_URL = "C:/workspace/image";
+    // public static String TEACHER_URL = "/data/images/TeacherImg";
     // 商家首页图片路径
     public static String BUSSINDEX_URL = "/data/images/BussImg";
 
