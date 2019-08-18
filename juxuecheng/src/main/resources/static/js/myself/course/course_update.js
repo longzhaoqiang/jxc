@@ -34,6 +34,7 @@ $(function () {
 
 // 提交
 function commit() {
+    var bussId = $("#bussId").val();
     $.ajax({
         url: "/course/update",
         type: "POST",
@@ -41,7 +42,7 @@ function commit() {
         success: function (data) {
             var code = data.resultCode;
             if (code == "1"){
-                window.location.href = "/course";
+                window.location.href = "/course?param1="+bussId;
             } else {
                 alert("网络异常！请稍后再试");
             }

@@ -25,6 +25,8 @@ public class TBussesser {
 
     private String picId;
 
+    private String picUrl;
+
     private String wechatCode;
 
     private Date createTime;
@@ -131,5 +133,13 @@ public class TBussesser {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
     }
 }

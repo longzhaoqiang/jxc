@@ -20,7 +20,6 @@ $(function () {
             }
         }
     })
-
     get_wx_info(openId);
 })
 
@@ -88,9 +87,11 @@ function teacher_manager() {
     checkRegister(action);
 }
 
-// 未上架
-function no_use() {
-    checkLogin();
+// 广告语
+function advice() {
+    var bussId = $("#bussId").val();
+    var action = "/advice?param1="+bussId;
+    checkRegister(action);
 }
 
 // 招聘信息
@@ -114,7 +115,9 @@ function tobe_buss() {
 
 // 优惠券
 function youhui_quan() {
-    checkLogin();
+    var bussId = $("#bussId").val();
+    var action = "/coupon?param1="+bussId;
+    checkRegister(action);
 }
 
 // 我的信息
@@ -144,6 +147,9 @@ function checkRegister(action) {
             } else {
                 window.location.href = action;
             }
+        },
+        error: function(data){
+            var result = data;
         }
     })
 }

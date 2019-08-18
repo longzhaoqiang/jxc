@@ -32,6 +32,8 @@ public class TCourse {
 
     private Integer courseStata;
 
+    private Integer courseType;
+
     private Date startTime;
 
     private Date createtime;
@@ -138,6 +140,14 @@ public class TCourse {
 
     public void setCourseStata(Integer courseStata) {
         this.courseStata = courseStata;
+    }
+
+    public Integer getCourseType() {
+        return courseType;
+    }
+
+    public void setCourseType(Integer courseType) {
+        this.courseType = courseType;
     }
 
     public Date getStartTime() {

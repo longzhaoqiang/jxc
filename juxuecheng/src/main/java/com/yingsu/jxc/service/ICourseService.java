@@ -10,7 +10,7 @@ public interface ICourseService {
      * @param bussId
      * @return
      */
-    public ResultBody getList(Integer bussId);
+    public ResultBody getList(Integer bussId,Integer courseType);
 
     /**
      * 添加课程

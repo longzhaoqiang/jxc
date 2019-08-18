@@ -19,13 +19,13 @@
 <body>
 <div id="weixinshare" >
     <div class="mtop-2" id="teacherPowerListd">
-        <div>
-            <input type="hidden" id="bussId" th:value="${bussId}">
-            <span class='ml-10' id="no_teacher"></span>
-            <hr style="filter: alpha(opacity=100,finishopacity=0,style=3);border-top: 3px solid #eee;" width="100%" color="#6f5499"/>
-        </div>
+        <input type="hidden" id="bussId" th:value="${bussId}">
         <div id="teacher_list"></div>
-        <div class='row-11' onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">
+        <div id="null_data" class='no_data'>
+            <img class='img-border' src='/img/myself/no_data.png'/>
+            <div><span>暂无数据，<a style="color: #00bcd4" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">立即添加</a></span></div>
+        </div>
+        <div id="add_mark" class='row-11' onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">
             <img id="img" class='img-border ml-3' src='/img/myself/btn_add_3x.png'/>
         </div>
 
@@ -128,9 +128,9 @@
                 </div>
                 <hr style="filter: alpha(opacity=100,finishopacity=0,style=3);border-top: 3px solid #eee;" width="100%" color="#6f5499"/>
                 <div style="float: right;">
-                    <button type="button" class="btn btn-success">修改</button>
                     <button type="button" class="btn btn-danger" onclick="delete_teacher()">删除</button>
                 </div>
+            </div>
         </div>
         <div id="fade1" class="black_overlay"></div>
     </div>

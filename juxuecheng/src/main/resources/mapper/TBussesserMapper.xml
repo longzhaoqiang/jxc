@@ -23,10 +23,24 @@
 
   <!-- 通过id查找商家信息 -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_bussesser
-    where id = #{id,jdbcType=INTEGER}
+    SELECT
+        tb.id,
+        tb.buss_name,
+        tb.address,
+        tb.phone,
+        tb.buss_introduce,
+        tb.tearchPower,
+        group_concat(tp.pic_url) AS picUrl
+    FROM
+        `t_bussesser` tb
+    LEFT JOIN t_pic tp ON tb.id = tp.buss_id
+    WHERE
+        tb.id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!-- 查找商家数量 -->
+  <select id="findBussCount" resultType="java.lang.Integer" parameterType="java.lang.Object">
+    select count(id) from  t_bussesser where id = #{bussId} and type = #{bussType}
   </select>
 
   <!-- 我的信息,查看商家详情 -->

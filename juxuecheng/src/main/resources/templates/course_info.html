@@ -28,6 +28,7 @@
             <div class="">
                 <div class="course-d h-90">
                     <div class="m-box-hd">
+                        <input type="hidden" id="bussId" th:value="${bussId}">
                         <input type="hidden" id="courseName" th:value="${courseName}">
                         <span class="cn-font-1" id="course_name"></span>
                     </div>
@@ -62,7 +63,7 @@
                         <div class="row-1">
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程简介</span></div>
                             <div class="row-top10">
-                                <div class="row row-11 text-1">
+                                <div class="row text-2">
                                     <input type="hidden" id="courseIntraduce" th:value="${courseIntraduce}">
                                     <span id="course_intraduce" class="jg-1-2"></span>
                                 </div>
@@ -71,7 +72,7 @@
                         <div class="row-1 row-top-20">
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">适用学员</span></div>
                             <div class="row-top10">
-                                <div class="row row-11 text-1">
+                                <div class="row text-2">
                                     <input type="hidden" id="applyStudent" th:value="${applyStudent}">
                                     <span id="apply_student" class="jg-1-2"></span>
                                 </div>
@@ -80,7 +81,7 @@
                         <div class="row-1 row-top-20">
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程目标</span></div>
                             <div class="row-top10">
-                                <div class="row row-11 text-1">
+                                <div class="row text-2">
                                     <input type="hidden" id="courseGoal" th:value="${courseGoal}">
                                     <span id="course_goal" class="jg-1-2"></span>
                                 </div>
@@ -89,18 +90,9 @@
                         <div class="row-1 row-top-20">
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程内容</span></div>
                             <div class="row-top10">
-                                <div class="row row-11 text-1">
+                                <div class="row text-2">
                                     <input type="hidden" id="courseContent" th:value="${courseContent}">
                                     <span id="course_content" class="jg-1-2"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row-1 row-top-20">
-                            <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程特色</span></div>
-                            <div class="row-top10">
-                                <div class="row row-11 text-1">
-                                    <input type="hidden" id="courseSpecial" th:value="${courseSpecial}">
-                                    <span id="course_special" class="jg-1-2"></span>
                                 </div>
                             </div>
                         </div>

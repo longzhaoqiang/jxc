@@ -27,6 +27,7 @@
             <div class="">
                 <div class="course-d h-90">
                     <div class="m-box-hd">
+                        <input type="hidden" id="bussId"  th:value="${bussId}"/>
                         <input type="hidden" id="id" class="cn-font" name="id" th:value="${courseId}"/>
                         <input type="text" id="courseName" class="cn-font" name="courseName" th:value="${courseName}"/>
                     </div>
@@ -61,7 +62,7 @@
                             <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程简介</span></div>
                             <div class="row-top10">
                                 <div class="row row-11 text-1">
-                                    <textarea id="course_intraduce" class="jg-1" name="placeholder"></textarea>
+                                    <textarea id="course_intraduce" class="jg-1" name="courseIntraduce"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -89,15 +90,6 @@
                             <div class="row-top10">
                                 <div class="row row-11 text-1">
                                     <textarea id="course_content" class="jg-1" name="courseContent"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row-1 row-top-20">
-                            <input type="hidden" id="courseSpecial" th:value="${courseSpecial}">
-                            <div class="left-border-1"><span class="font-size-14-1 font-color-1">课程特色</span></div>
-                            <div class="row-top10">
-                                <div class="row row-11 text-1">
-                                    <textarea id="course_special" class="jg-1" name="courseSpecial"></textarea>
                                 </div>
                             </div>
                         </div>

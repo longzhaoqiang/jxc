@@ -101,7 +101,7 @@
 }
 .co-1{
     margin-left: 10px;
-    color: #3514DE;
+    color: #FB7B1D;
     font-weight: bolder;
 }
 .co-2{
@@ -121,6 +121,16 @@
     margin-left: 10%;
     margin-top: -5%;
     height: 80px;
+}
+
+.add{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    position: absolute;
+    text-align: center;
+    margin-top: -80%;
+    margin-left: 35%;
 }
 
 .black_overlay {
@@ -143,7 +153,19 @@
     top: 8%;
     left: 5%;
     width: 90%;
-    height: 80%;
+    margin-top: 20%;
+    padding: 16px;
+    background-color: white;
+    z-index: 1002;
+    overflow: auto;
+}
+
+.white_content-1 {
+    display: none;
+    position: absolute;
+    top: 28%;
+    left: 5%;
+    width: 90%;
     padding: 16px;
     background-color: white;
     z-index: 1002;
@@ -206,7 +228,8 @@
 }
 
 .peace{
-    font-size: 20px;
+    font-size: 25px;
+    color: red;
 }
 
 .peace-1{
@@ -222,7 +245,7 @@
     width: 100%;
     float: left;
     color: coral;
-    margin-top: -3px;
+    margin-top: -1px;
     font-size: 28px;
     height: 40px;
 }

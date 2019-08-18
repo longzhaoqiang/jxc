@@ -28,6 +28,11 @@ $(function () {
     var courseGoal = $("#courseGoal").val();
     var courseContent = $("#courseContent").val();
     var courseSpecial = $("#titalInfo").val();
+    courseIntraduce = courseIntraduce.replace(/\n|\r\n/g,'<br/>');
+    applyStudent = applyStudent.replace(/\n|\r\n/g,'<br/>');
+    courseGoal = courseGoal.replace(/\n|\r\n/g,'<br/>');
+    courseContent = courseContent.replace(/\n|\r\n/g,'<br/>');
+    courseSpecial = courseSpecial.replace(/\n|\r\n/g,'<br/>');
     $("#course_name").html(courseName);
     $("#tital_info").html(titalInfo);
     $("#course_fee").html(courseFee);

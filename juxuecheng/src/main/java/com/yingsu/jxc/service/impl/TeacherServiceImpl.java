@@ -28,7 +28,6 @@ public class TeacherServiceImpl implements ITeacherService {
             resultBody.setResult(teachers);
         } else {
             resultBody.setResultCode(0);
-            resultBody.setResultMsg("你还没有添加任何教师信息");
         }
         return resultBody;
     }

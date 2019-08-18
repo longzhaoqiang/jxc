@@ -24,9 +24,10 @@ $(function () {
 
 // 提交
 function commit() {
+    var type = $("#type").val();
     var bussId = $("#bussId").val();
     $.ajax({
-        url: "/course/addCourse?bussId="+bussId,
+        url: "/course/addCourse?bussId="+bussId+"&param1="+type,
         type: "POST",
         data: $("#courseForm").serialize(),
         success: function (data) {

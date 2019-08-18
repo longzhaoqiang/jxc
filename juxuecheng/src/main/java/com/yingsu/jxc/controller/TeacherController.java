@@ -5,6 +5,7 @@ import com.yingsu.jxc.entity.TTeacher;
 import com.yingsu.jxc.entity.TUser;
 import com.yingsu.jxc.service.ITeacherService;
 import com.yingsu.jxc.util.Constant;
+import com.yingsu.jxc.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,12 +66,11 @@ public class TeacherController {
      * 添加教师
      *
      * @param request
-     * @param session
      * @return
      */
     @RequestMapping("/add")
     @ResponseBody
-    public ResultBody fileUpload(HttpServletRequest request, HttpSession session,Integer bussId) {
+    public ResultBody fileUpload(HttpServletRequest request, Integer bussId) {
         ResultBody resultBody = new ResultBody();
         try {
             String teacherName = request.getParameter("teacher_name").trim();
@@ -78,35 +78,20 @@ public class TeacherController {
             String teacherDate = request.getParameter("teach_date").trim();
             teacherDate = teacherDate.substring(0,teacherDate.length()-1);
             String teacherSubject = request.getParameter("teacher_subject").trim();
+
             String newFileName = null;
-            if (teacherName.equals("") || teacherName == null) {
-                resultBody.setResultCode(-1);
-                resultBody.setResultMsg("请输入教师姓名");
-                return resultBody;
-            }
-            //转型为MultipartHttpRequest(重点的所在)
             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-            //获得第1张图片（根据前台的name名称得到上传的文件）
             MultipartFile teacherImg = multipartRequest.getFile("file");
             if (teacherImg == null || "".equals(teacherImg)) {
-                newFileName = "teacherOragineImg";
+                // 默认图片
+                newFileName = "teacher-img-1566103582jpg";
             } else {
-                // 原始名称
-                String oldFileName = teacherImg.getOriginalFilename(); // 获取上传文件的原名
-                // 存储图片的虚拟本地路径（这里需要配置tomcat的web模块路径，双击猫进行配置）
-                String saveFilePath = Constant.TEACHER_URL;
-                // 上传图片
-                if (teacherImg != null && oldFileName != null && oldFileName.length() > 0) {
-                    newFileName = "teacher-img-" + new Date().getTime() / 1000 + oldFileName.substring(oldFileName.lastIndexOf("."));
-                    // File newFile = new File(saveFilePath + "\\" + newFileName);
-                    File newFile = new File(saveFilePath, newFileName);
-                    // 将内存中的数据写入磁盘
-                    teacherImg.transferTo(newFile);
-                    resultBody.setResultCode(1);
-                } else {
-                    return resultBody;
-                }
+                String oldFileName = teacherImg.getOriginalFilename();
+                String[] imgarr = oldFileName.split("\\.");
+                newFileName = "teacher-img-" + new Date().getTime() / 1000 + imgarr[imgarr.length-1];
+                FileUploadUtil.upload(teacherImg,newFileName,"teacher_img/");
             }
+            // 存入数据库
             TTeacher teacher = new TTeacher();
             teacher.setBussesserId(bussId);
             teacher.setTeacherName(teacherName);
@@ -117,7 +102,7 @@ public class TeacherController {
             teacherService.addTeacher(teacher);
         } catch (Exception e) {
             resultBody.setResultCode(-1);
-            resultBody.setResultMsg("系统异常！");
+            resultBody.setResultMsg("网络异常，请稍后再试！");
         }
         return resultBody;
     }

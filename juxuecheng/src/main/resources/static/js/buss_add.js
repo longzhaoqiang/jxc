@@ -34,7 +34,7 @@ function initFileInput(ctrlName) {
         language: 'zh', //设置语言
         uploadUrl: url,
         allowedFileExtensions: ['tif','jpg','png','gif','bmp','txt','html','xml','pdf','doc','xls','ppt','docx','xlsx','pptx','zip','rar','mp3','mov','avi','mpp'],//接收的文件后缀
-        maxFilesNum : 2,//上传最大的文件数量
+        maxFilesNum : 10,//上传最大的文件数量
         //uploadExtraData:function(previewId, index) { return extraParams; },
         uploadAsync: true, //默认异步上传
         showUpload: true, //是否显示上传按钮
@@ -47,7 +47,7 @@ function initFileInput(ctrlName) {
         //minImageHeight: 50,//图片的最小高度
         //maxImageWidth: 300,//图片的最大宽度
         //maxImageHeight: 200,//图片的最大高度
-        maxFileSize: 200,//单位为kb，如果为0表示不限制文件大小
+        maxFileSize: 10240,//单位为kb，如果为0表示不限制文件大小
         // minFileCount: 0,
         maxFileCount: 5, //表示允许同时上传的最大文件个数
         enctype: 'multipart/form-data',

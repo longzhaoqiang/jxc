@@ -18,7 +18,31 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
-<section class="zyw-container">
+<footer class="zyw-footer">
+    <div class="zyw-container white-bgcolor clearfix">
+        <div class="weui-tabbar">
+            <a href="/" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/index_2.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">首页</p>
+            </a>
+            <a onclick="course()" class="weui-tabbar__item weui-bar__item--on">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/course_2.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">课程</p>
+            </a>
+            <a onclick="home_openid()" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/home_1.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">我的</p>
+            </a>
+        </div>
+    </div>
+</footer>
+<section class="g-mn">
     <div style="height: 45px;">
         <div id="all_course" onclick="all_course()" class="co-3"><div style="margin-top: 10px;"><span>所有课程</span></div></div>
         <div id="good_course"onclick="good_course()" class="co-3"><div style="margin-top: 10px;"><span>精品课程</span></div></div>

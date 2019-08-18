@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <title>首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/myself/weui.min.css">
+    <link href="/css/myself/jquery-weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="/css/myself/jxc-index.css"/>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/theme-color.css">
+    <link href="/css/myself/my-info.css" rel="stylesheet">
 </head>
 <body>
 <footer class="zyw-footer">
@@ -20,19 +21,19 @@
         <div class="weui-tabbar">
             <a href="/" class="weui-tabbar__item weui-bar__item--on">
                 <div class="weui-tabbar__icon">
-                    <img src="./img/svg/foot-1-1.svg" alt="">
+                    <img src="./img/svg/index_1.png" alt="">
                 </div>
                 <p class="weui-tabbar__label">首页</p>
             </a>
             <a onclick="course()" class="weui-tabbar__item">
                 <div class="weui-tabbar__icon">
-                    <img src="./img/svg/foot-2.svg" alt="">
+                    <img src="./img/svg/course_1.png" alt="">
                 </div>
                 <p class="weui-tabbar__label">课程</p>
             </a>
             <a onclick="home_openid()" class="weui-tabbar__item">
                 <div class="weui-tabbar__icon">
-                    <img src="./img/svg/foot-5.svg" alt="">
+                    <img src="./img/svg/home_1.png" alt="">
                 </div>
                 <p class="weui-tabbar__label">我的</p>
             </a>
@@ -42,10 +43,9 @@
 <section class="zyw-container">
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img style="height: 200px" src="./img/buss_1.jpg" alt=""></div>
-            <div class="swiper-slide"><img style="height: 200px" src="./img/buss_2.jpg" alt=""></div>
-            <div class="swiper-slide"><img style="height: 200px" src="./img/buss_3.jpg" alt=""></div>
-        </div>
+            <div class="swiper-slide"><img style="height: 200px" src="http://image.yingsuit.com/cyclePic/2.jpeg" alt=""></div>
+            <div class="swiper-slide"><img style="height: 200px" src="http://image.yingsuit.com/cyclePic/5.jpeg" alt=""></div>
+            <div class="swiper-slide"><img style="height: 200px" src="http://image.yingsuit.com/cyclePic/6.jpeg" alt=""></div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
     </div>
@@ -54,7 +54,9 @@
             <div class="weui-flex__item">
                 <a id="buss_index">
                     <div class="index-class-img">
-                        <img src="./img/yqyl.png" alt="">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/detail.png" style="margin-top: 24%;margin-left: 2px;">
+                        </div>
                     </div>
                     <p class="index-class-text">机构详情</p>
                     <input type="hidden" id="bussId" th:value="${bussId}">
@@ -63,7 +65,9 @@
             <div class="weui-flex__item">
                 <a onclick="enroll_online()">
                     <div class="index-class-img">
-                        <img src="./img/cjfl.png" alt="">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/baoming.png" style="margin-top: 20%;margin-left: 2px;">
+                        </div>
                     </div>
                     <p class="index-class-text">在线报名</p>
                 </a>
@@ -71,7 +75,9 @@
             <div class="weui-flex__item">
                 <a onclick="recruit()">
                     <div class="index-class-img">
-                        <img src="./img/kbsc.png" alt="">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/emplooye.png" style="margin-top: 16%;margin-left: 2px;">
+                        </div>
                     </div>
                     <p class="index-class-text">最新招聘</p>
                 </a>
@@ -79,7 +85,9 @@
             <div class="weui-flex__item">
                 <a href="/contact_us">
                     <div class="index-class-img">
-                        <img src="./img/sjtx.png" alt="">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/contact_us.png" style="margin-top: 20%;margin-left: 2px;">
+                        </div>
                     </div>
                     <p class="index-class-text">联系我们</p>
                 </a>
@@ -87,7 +95,9 @@
             <div class="weui-flex__item">
                 <a href="javascript:;">
                     <div class="index-class-img">
-                        <img src="./img/sjpj.png" alt="">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/join_us.png" style="margin-top: 20%;margin-left: 2px;">
+                        </div>
                     </div>
                     <p class="index-class-text">成为商家</p>
                 </a>
@@ -99,9 +109,10 @@
             <strong>号外<em>号外</em>：</strong>
             <div class="infoBox">
                 <ul class="swiper-wrapper">
-                    <li class="swiper-slide"><a href="#"><span><i>热</i>暑期语数外快速提升班开课了！</span></a></li>
-                    <li class="swiper-slide"><a href="#"><span>提前报名学生有优惠！</span></a></li>
-                    <li class="swiper-slide"><a href="#"><span>感谢各位学生，家长长期以来一直的信任！</span></a></li>
+                    <li class="swiper-slide"><span><i>热</i>聚学诚微信公众号上线大优惠！</span></a></li>
+                    <li class="swiper-slide"><span id="word_0"></span></a></li>
+                    <li class="swiper-slide"><span id="word_1"></span></a></li>
+                    <li class="swiper-slide"><span id="word_2"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -115,43 +126,7 @@
         </div>
         <div class="seckill-bd">
             <div class="seckill-wares">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/course-1.jpg" alt="">
-                            <p class="red-color">￥<strong>3800.00</strong></p>
-                            <del>￥12000.00</del>
-                        </a>
-                    </div>
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/course-2.jpg" alt="">
-                            <p class="red-color">￥<strong>89.90</strong></p>
-                            <del>￥128.89</del>
-                        </a>
-                    </div>
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/course-3.jpg" alt="">
-                            <p class="red-color">￥<strong>1900.00</strong></p>
-                            <del>￥2200.00</del>
-                        </a>
-                    </div>
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/course-4.jpg" alt="">
-                            <p class="red-color">￥<strong>35.00</strong></p>
-                            <del>￥38.00</del>
-                        </a>
-                    </div>
-                    <div class="swiper-slide seckill-ware">
-                        <a href="item.html">
-                            <img src="/img/course-5.jpg" alt="">
-                            <p class="red-color">￥<strong>38.00</strong></p>
-                            <del>￥50.00</del>
-                        </a>
-                    </div>
-                </div>
+                <div id="good_course" class="swiper-wrapper"></div>
             </div>
         </div>
     </div>
@@ -163,22 +138,7 @@
             </div>
         </div>
         <div class="order-group-item clearfix white-bgcolor">
-            <div class="order-item-box">
-                <div class="media">
-                    <a href="" class="pull-left" style="width: 30%">
-                        <img style="width: 95%" src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                    </a>
-                    <div class="media-body">
-                        <div class="order-item-info">
-                            <h4 class="order-item-title" style="font-weight: bolder">高三英语1对1定制免费试听</h4>
-                            <p class="order-item-fare">高考冲刺：高三冲刺课程</p>
-                            <div class="pull-right text-right order-item-rt">
-                                <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">立即领取</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="try_course" class="order-item-box"></div>
         </div>
     </div>
 
@@ -197,6 +157,30 @@
         </div>
     </div>
 
+    <!-- 教师详情弹窗 -->
+    <div>
+        <div id="teacher_msg" class="white_content">
+            <div>
+                <a onclick="document.getElementById('teacher_msg').style.display='none';document.getElementById('fade1').style.display='none'">
+                    关闭</a>
+            </div>
+            <div class="h-5">&nbsp;</div>
+            <div class="t-i-1">
+                <img id="teacher_info_img" class='img-border tea-img' src='' style='width: 70px;'/>
+            </div>
+            <div class="t-d-1">
+                <div><span class='font-size-16-1 color-1' id="teacher_info_name"></span></div>
+                <div class='intraduce-1 w-90'>
+                    <span class="font-color-1" id="teacher_info_intro"></span>
+                    <input type="hidden" id="teacher_id"/>
+                </div>
+            </div>
+            <hr style="filter: alpha(opacity=100,finishopacity=0,style=3);border-top: 3px solid #eee;" width="100%" color="#6f5499"/>
+        </div>
+    </div>
+    <div id="fade1" class="black_overlay"></div>
+
+
     <div class="index-wares">
         <div class="course-lable">
             <div class="col-md-4 col-xs-4">
@@ -208,55 +192,13 @@
             </div>
         </div>
         <div class="wares-cont">
-            <ul class="clearfix">
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="/img/course-1.jpg" alt="">
-                            <span class="ware-vip">vip专享</span>
-                        </div>
-                        <h3 class="ware-title">高三历史深化补习</h3>
-                        <p class="ware-des">高三 提分 快速</p>
-                        <span class="ware-prince red-color">￥8088.00</span>
-                    </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="/img/course-2.jpg" alt="">
-                            <span class="ware-vip">vip专享</span>
-                        </div>
-                        <h3 class="ware-title">高中 英语 新概念课程</h3>
-                        <p class="ware-des">高中 提分</p>
-                        <span class="ware-prince red-color">￥8088.00</span>
-                    </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="/img/course-3.jpg" alt="">
-                            <span class="ware-vip">vip专享</span>
-                        </div>
-                        <h3 class="ware-title">雅思 英语 出国留学</h3>
-                        <p class="ware-des">出国 雅思</p>
-                        <span class="ware-prince red-color">￥8088.00</span>
-                    </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="/img/course-4.jpg" alt="">
-                            <span class="ware-vip">vip专享</span>
-                        </div>
-                        <h3 class="ware-title">中考 全日制托管</h3>
-                        <p class="ware-des">中考 托管</p>
-                        <span class="ware-prince red-color">￥8088.00</span>
-                    </a>
-                </li>
-            </ul>
+            <ul id="all_course" class="clearfix"></ul>
         </div>
     </div>
+    </div>
 </section>
+<!-- 必须引入的文件-->
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script src="js/swiper.min.js"></script>

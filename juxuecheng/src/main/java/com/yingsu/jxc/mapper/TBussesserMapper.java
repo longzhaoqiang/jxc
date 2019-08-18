@@ -17,6 +17,14 @@ public interface TBussesserMapper {
     TBussesser selectByPrimaryKey(Integer id);
 
     /**
+     *  查找商家数量
+     * @param bussId
+     * @param bussType
+     * @return
+     */
+    Integer findBussCount(Integer bussId,String bussType);
+
+    /**
      * 根据uid查询商家信息
      * @param uid
      * @return

@@ -4,5 +4,5 @@ public class WeixinConfig {
 
     public static final String APPID = "wxa2fbe7ca7c970259";
 
-    public static final String SECRET = "572e26dadbfc29c5a28a033efd9b86b6";
+    public static final String SECRET = "66603fe1a786485aac0e9100e586ead2";
 }

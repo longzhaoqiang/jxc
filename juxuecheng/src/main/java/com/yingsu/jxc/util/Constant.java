@@ -7,11 +7,12 @@ public class Constant {
     // 英速科技bussId
     public static int BUSS_ID = 124;
 
-    // 圖片保存路徑
-    public static String TEACHER_URL = "C:/workspace/image";
-    // public static String TEACHER_URL = "/data/images/TeacherImg";
-    // 商家首页图片路径
-    public static String BUSSINDEX_URL = "/data/images/BussImg";
+    // 阿里云
+    public static String ENDPOINT = "http://oss-cn-shanghai.aliyuncs.com";
+    public static String ACCESSKEYID = "LTAIjZAE2ZVS3jGu";
+    public static String ACCESSKEYSECRET = "m0hQIaDyZ8Pd2N7aah5i49eA75mjcx";
+    public static String BUCKETNAME = "yingsu-jxc";
+    public static String KEY = "jxc/";
 
     // 获取openId
     public static String OPENID_PATH = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/home/&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";

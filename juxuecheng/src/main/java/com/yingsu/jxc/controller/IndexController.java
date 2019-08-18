@@ -56,6 +56,15 @@ public class IndexController {
         return mv;
     }
 
+    // 跳转到我的页面
+    @RequestMapping("/coupon")
+    public ModelAndView coupon(String param1){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bussId",param1);
+        mv.setViewName("coupon");
+        return mv;
+    }
+
     // 跳转到商家页面
     @RequestMapping("/buss_index")
     public ModelAndView buss(String bussId){
@@ -131,10 +140,11 @@ public class IndexController {
 
     // 跳转到課程添加页面
     @RequestMapping("/course_add")
-    public ModelAndView course_add(String param1){
+    public ModelAndView course_add(String param1,String param2){
         ModelAndView mv = new ModelAndView();
         log.info("课程添加页面----------bussId="+param1);
         mv.addObject("bussId",param1);
+        mv.addObject("type",param2);
         mv.setViewName("course_add");
         return mv;
     }
@@ -149,10 +159,14 @@ public class IndexController {
         return mv;
     }
 
-    // 跳转到登录页面
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
+    // 跳转到广告语页面
+    @RequestMapping("/advice")
+    public ModelAndView advice(String param1){
+        ModelAndView mv = new ModelAndView();
+        log.info("广告语页面----------bussId="+param1);
+        mv.addObject("bussId",param1);
+        mv.setViewName("advice");
+        return mv;
     }
 
     // 跳转到注册页面

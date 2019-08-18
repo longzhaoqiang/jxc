@@ -34,10 +34,10 @@ public class CourseController {
 
     @RequestMapping("/getList")
     @ResponseBody
-    public ResultBody getList(Integer bussId) {
+    public ResultBody getList(Integer bussId,Integer type) {
         ResultBody resultBody = new ResultBody();
         try {
-            resultBody = courseService.getList(bussId);
+            resultBody = courseService.getList(bussId,type);
         } catch (Exception e) {
             resultBody.setResultCode(Constant.ERROR_CODE);
             resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
@@ -48,10 +48,11 @@ public class CourseController {
     // 添加课程
     @RequestMapping("/addCourse")
     @ResponseBody
-    public ResultBody addCourse(Integer bussId, TCourse course) {
+    public ResultBody addCourse(Integer bussId,Integer param1, TCourse course) {
         ResultBody resultBody = new ResultBody();
         try {
             course.setBussesserId(bussId);
+            course.setCourseType(param1);
             Integer result = courseService.addCourse(course);
         } catch (Exception e) {
             resultBody.setResultCode(Constant.ERROR_CODE);
@@ -62,7 +63,7 @@ public class CourseController {
 
     // 跳转到課程页面
     @RequestMapping("/getCourse")
-    public ModelAndView hello(String param1, String flag) {
+    public ModelAndView hello(String param1, String flag, String param2) {
         ModelAndView mv = new ModelAndView();
         ResultBody resultBody = new ResultBody();
         try {
@@ -72,6 +73,7 @@ public class CourseController {
             resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
         }
         TCourse course = (TCourse) resultBody.getResult();
+        mv.addObject("bussId", param2);
         mv.addObject("courseId", course.getId());
         mv.addObject("courseName", course.getCourseName());
         mv.addObject("titalInfo", course.getTitalInfo());

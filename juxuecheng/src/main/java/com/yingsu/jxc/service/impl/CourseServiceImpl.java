@@ -17,9 +17,9 @@ public class CourseServiceImpl implements ICourseService{
     private TCourseMapper courseMapper;
 
     @Override
-    public ResultBody getList(Integer bussId) {
+    public ResultBody getList(Integer bussId,Integer courseType) {
         ResultBody resultBody = new ResultBody();
-        List<TCourse> courseList = courseMapper.findList(bussId);
+        List<TCourse> courseList = courseMapper.findList(bussId,courseType);
         resultBody.setResult(courseList);
         return resultBody;
     }

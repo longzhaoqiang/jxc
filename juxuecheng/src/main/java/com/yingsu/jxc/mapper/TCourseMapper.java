@@ -11,7 +11,7 @@ public interface TCourseMapper {
      * @param id
      * @return
      */
-    List<TCourse> findList(Integer id);
+    List<TCourse> findList(Integer bussId,Integer courseType);
 
     int deleteByPrimaryKey(Integer id);
 

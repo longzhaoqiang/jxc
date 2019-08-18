@@ -13,10 +13,10 @@ function get_teachers(bussId) {
         type: "POST",
         success: function (data) {
             var code = data.resultCode;
-            var msg = data.resultMsg;
             var result = data.result;
             var teacherStr = "";
             if (code == "1"){
+                $("#null_data").hide();
                 for (var i = 0;i<result.length;i++) {
                     var max_width = 30;
                     var teacher_introduce = data.result[i]['teacherIntroduce'];
@@ -27,7 +27,7 @@ function get_teachers(bussId) {
                     }
                     teacherStr += "<div><a id="+data.result[i]['id']+" onclick='javascript:teacher_info(this)'>\n" +
                         "                <div style='width: 24%;height: 80px;float: left;'>\n" +
-                        "                    <img id=\"teacherImg\" class='img-border tea-img' src='http://image.yingsuit.com/TeacherImg/"+data.result[i]['teacherLogo']+"' style='width: 70px;'/>\n" +
+                        "                    <img id=\"teacherImg\" class='img-border tea-img' src='https://yingsu-jxc.oss-cn-shanghai.aliyuncs.com/teacher_img/"+data.result[i]['teacherLogo']+"' style='width: 70px;'/>\n" +
                         "                </div>\n" +
                         "                <div style='width: 70%;float: left;line-height: 1.5;'>\n" +
                         "                    <div><span class='font-size-16-1 color-1' id="+data.result[i]['id']+">" + data.result[i]['teacherName']+"</span></div>\n" +
@@ -42,8 +42,8 @@ function get_teachers(bussId) {
                 alert("登录过期，请重新登录");
                 window.location.href = "/login";
             } else if (code == "0"){
-                $("#no_teacher").html(msg)
-                $("#no_teacher").show();
+                $("#null_data").show();
+                $("#add_mark").hide();
             }
             $("#teacher_list").html(teacherStr);
         }
@@ -62,7 +62,7 @@ function teacher_info(obj) {
         type: "POST",
         data: {"teacherId": teacher_id},
         success: function (data) {
-            $("#teacher_info_img").attr('src', 'http://image.yingsuit.com/TeacherImg/' + data.result['teacherLogo']);
+            $("#teacher_info_img").attr('src', 'https://yingsu-jxc.oss-cn-shanghai.aliyuncs.com/teacher_img/' + data.result['teacherLogo']);
             $("#teacher_info_name").html(data.result['teacherName']);
             $("#teacher_info_intro").html(data.result['teacherIntroduce'])
             $("#teacher_id").val(teacher_id);

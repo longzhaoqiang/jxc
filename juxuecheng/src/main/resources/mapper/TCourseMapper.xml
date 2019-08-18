@@ -15,17 +15,25 @@
     <result column="course_content" jdbcType="VARCHAR" property="courseContent" />
     <result column="course_special" jdbcType="VARCHAR" property="courseSpecial" />
     <result column="course_stata" jdbcType="INTEGER" property="courseStata" />
+    <result column="course_type" jdbcType="INTEGER" property="courseType" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <sql id="Base_Column_List">
     id, course_name, bussesser_id, tital_info, cycle_mumber,resource_fee,
     course_fee, course_intraduce, apply_student, course_goal, course_content, course_special,
-    course_stata, start_time, createTime
+    course_stata, course_type, start_time, createTime
   </sql>
 
   <select id="findList"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select <include refid="Base_Column_List" /> from t_course where bussesser_id = #{bussId}
+    select
+    <include refid="Base_Column_List" />
+    from t_course
+    where bussesser_id = #{bussId}
+    <if test="courseType != null">
+      AND course_type = #{courseType,jdbcType=INTEGER}
+    </if>
+
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -42,15 +50,15 @@
       course_type, subject_id, teacher_id, 
       cycle_mumber, resource_fee, course_fee, course_intraduce,
       apply_student, course_goal, course_content, 
-      course_special, course_stata, start_time, 
+      course_special, course_stata, course_type, start_time,
       createTime)
     values (#{id,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{bussesserId,jdbcType=INTEGER},
       #{courseType,jdbcType=VARCHAR}, #{subjectId,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER},
       #{cycleMumber,jdbcType=VARCHAR}, #{resourceFee,jdbcType=DOUBLE},
       #{courseFee,jdbcType=DOUBLE}, #{courseIntraduce,jdbcType=VARCHAR},
       #{applyStudent,jdbcType=VARCHAR}, #{courseGoal,jdbcType=VARCHAR}, #{courseContent,jdbcType=VARCHAR}, 
-      #{courseSpecial,jdbcType=VARCHAR}, #{courseStata,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{createtime,jdbcType=TIMESTAMP})
+      #{courseSpecial,jdbcType=VARCHAR}, #{courseStata,jdbcType=INTEGER},  #{courseType,jdbcType=INTEGER},
+      #{startTime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.yingsu.jxc.entity.TCourse">
     insert into t_course
@@ -93,6 +101,9 @@
       </if>
       <if test="courseStata != null">
         course_stata,
+      </if>
+      <if test="courseType != null">
+        course_type,
       </if>
       <if test="startTime != null">
         start_time,
@@ -141,6 +152,9 @@
       <if test="courseStata != null">
         #{courseStata,jdbcType=INTEGER},
       </if>
+      <if test="courseType != null">
+        #{courseType,jdbcType=INTEGER},
+      </if>
       <if test="startTime != null">
         #{startTime,jdbcType=TIMESTAMP},
       </if>
@@ -187,6 +201,9 @@
       </if>
       <if test="courseStata != null">
         course_stata = #{courseStata,jdbcType=INTEGER},
+      </if>
+      <if test="courseType != null">
+        course_type = #{courseType,jdbcType=INTEGER},
       </if>
       <if test="startTime != null">
         start_time = #{startTime,jdbcType=TIMESTAMP},

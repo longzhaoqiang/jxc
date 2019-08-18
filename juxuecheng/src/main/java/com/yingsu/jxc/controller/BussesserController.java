@@ -1,6 +1,5 @@
 package com.yingsu.jxc.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.yingsu.jxc.entity.*;
 import com.yingsu.jxc.service.IBussesserService;
 import com.yingsu.jxc.service.IWxService;
@@ -46,6 +45,8 @@ public class BussesserController {
         }
         return resultBody;
     }
+
+
 
     /**
      * 我的信息--查看商家详情
