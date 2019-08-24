@@ -50,7 +50,7 @@ public class IndexController {
     public ModelAndView home(HttpSession session){
         ModelAndView mv = new ModelAndView();
         // String openId = (String) session.getAttribute("openId");
-        String openId = "oO3ww1dZFRQ3u4L41I4AfcbtNLXA";
+        String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
         mv.addObject("openId",openId);
         mv.setViewName("home");
         return mv;
@@ -94,8 +94,11 @@ public class IndexController {
 
     // 跳转联系我们页面
     @RequestMapping("/contact_us")
-    public String contact_us(){
-        return "contact_us";
+    public ModelAndView contact_us(String param1){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bussId",param1);
+        mv.setViewName("contact_us");
+        return mv;
     }
 
     // 跳转到商家注册页面

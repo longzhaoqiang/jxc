@@ -23,7 +23,7 @@ public class TBussesser {
 
     private String bussIntroduce;
 
-    private String picId;
+    private String wechat;
 
     private String picUrl;
 
@@ -111,12 +111,12 @@ public class TBussesser {
         this.bussIntroduce = bussIntroduce == null ? null : bussIntroduce.trim();
     }
 
-    public String getPicId() {
-        return picId;
+    public String getWechat() {
+        return wechat;
     }
 
-    public void setPicId(String picId) {
-        this.picId = picId == null ? null : picId.trim();
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
     }
 
     public String getWechatCode() {

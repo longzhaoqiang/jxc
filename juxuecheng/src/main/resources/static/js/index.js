@@ -59,6 +59,11 @@ function recruit() {
     window.location.href = "/recruit?param1=" + bussId;
 }
 
+function contact_us() {
+    var bussId = $("#bussId").val();
+    window.location.href = "/contact_us?param1=" + bussId;
+}
+
 function init(bussId) {
     var url = "/index/main";
     $.ajax({

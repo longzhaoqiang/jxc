@@ -12,13 +12,13 @@
     <result column="tearchPower" jdbcType="VARCHAR" property="tearchpower" />
     <result column="buss_idea" jdbcType="VARCHAR" property="bussIdea" />
     <result column="buss_introduce" jdbcType="VARCHAR" property="bussIntroduce" />
-    <result column="pic_id" jdbcType="VARCHAR" property="picId" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
     <result column="wechat_code" jdbcType="VARCHAR" property="wechatCode" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
     id, user_id, buss_name, buss_type, address, contractor, phone, tearchPower, buss_idea, buss_introduce,
-    pic_id, wechat_code, create_time
+    wechat, wechat_code, create_time
   </sql>
 
   <!-- 通过id查找商家信息 -->
@@ -28,6 +28,8 @@
         tb.buss_name,
         tb.address,
         tb.phone,
+        tb.wechat,
+        tb.wechat_code,
         tb.buss_introduce,
         tb.tearchPower,
         group_concat(tp.pic_url) AS picUrl
@@ -49,6 +51,8 @@
         tw.nick_name,
         tb.phone,
         tb.buss_name,
+        tb.wechat,
+        tb.wechat_code,
         tc.class_type,
         tb.address
     FROM
@@ -110,8 +114,8 @@
       <if test="bussIntroduce != null">
         buss_introduce,
       </if>
-      <if test="picId != null">
-        pic_id,
+      <if test="wechat != null">
+        wechat,
       </if>
       <if test="wechatCode != null">
         wechat_code,
@@ -151,8 +155,8 @@
       <if test="bussIntroduce != null">
         #{bussIntroduce,jdbcType=VARCHAR},
       </if>
-      <if test="picId != null">
-        #{picId,jdbcType=VARCHAR},
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
       </if>
       <if test="wechatCode != null">
         #{wechatCode,jdbcType=VARCHAR},
@@ -192,8 +196,8 @@
       <if test="bussIntroduce != null">
         buss_introduce = #{bussIntroduce,jdbcType=VARCHAR},
       </if>
-      <if test="picId != null">
-        pic_id = #{picId,jdbcType=VARCHAR},
+      <if test="wechat != null">
+        wechat = #{picId,jdbcType=VARCHAR},
       </if>
       <if test="wechatCode != null">
         wechat_code = #{wechatCode,jdbcType=VARCHAR},

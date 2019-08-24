@@ -84,7 +84,7 @@ public class TeacherController {
             MultipartFile teacherImg = multipartRequest.getFile("file");
             if (teacherImg == null || "".equals(teacherImg)) {
                 // 默认图片
-                newFileName = "teacher-img-1566103582jpg";
+                newFileName = "timg%20%285%29.jpg";
             } else {
                 String oldFileName = teacherImg.getOriginalFilename();
                 String[] imgarr = oldFileName.split("\\.");

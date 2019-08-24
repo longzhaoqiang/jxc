@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="/css/myself/my-info.css"/>
 </head>
 <body style="background: aliceblue;">
-<section  class="contact">
+<div id="light" style="padding: 15px">
     <div class="contact-details">
+        <input type="hidden" id="bussId" th:value="${bussId}">
         <div class="section-header contact-head  text-center">
             <h2>联系我们</h2>
         </div>
@@ -24,7 +25,7 @@
                         <h4 class="co-1">地址:</h4>
                     </div>
                     <div class="wl-70">
-                        <span class="co-2">上海市浦东新区三林镇杨思路</span>
+                        <span id="address" class="co-2"></span>
                     </div>
                 </div>
                 <div class="contact-content">
@@ -32,7 +33,7 @@
                         <h4 class="co-1">电话：</h4>
                     </div>
                     <div class="wl-70">
-                        <span class="co-2">13818572040</span>
+                        <span id="phone" class="co-2"></span>
                     </div>
                 </div>
                 <div class="contact-content">
@@ -40,7 +41,7 @@
                         <h4 class="co-1">微信：</h4>
                     </div>
                     <div class="wl-70">
-                        <span class="co-2">13818572040</span>
+                        <span id="wechat" class="co-2"></span>
                     </div>
                 </div>
             </div>
@@ -48,15 +49,31 @@
         <h5 class="page-header" style="margin: 20px 0 20px;border-bottom: 1px solid #F34024;"></h5>
         <div class="contact-content" style="height: 300px;">
             <div style="text-align: center">
-                <img src="/img/weixin-2.jpg" style="width: 230px;height: 230px;">
+                <img id="wechat_img" src="" style="width: 230px;height: 230px;">
             </div>
             <div style="text-align: center;margin-top: 5px;">
                 <span class="co-1">商家微信二维码</span>
             </div>
         </div>
     </div>
-</section>
-
+</div>
 </body>
-
 </html>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+        var bussId = $("#bussId").val();
+        $.ajax({
+            url: "/buss/getBuss",
+            type: "POST",
+            data: {"bussId": bussId},
+            success: function (data) {
+                $("#address").html(data.result.address);
+                $("#phone").html(data.result.phone);
+                $("#wechat").html(data.result.wechat_code);
+                $("#wechat_img").attr("src","https://yingsu-jxc.oss-cn-shanghai.aliyuncs.com/buss_index/wechat_ewm/" + data.result.wechat);
+            }
+        });
+    })
+</script>
