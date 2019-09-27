@@ -45,7 +45,7 @@
     text-align: center;
     padding: 8px 0;
 }
-.home-head .weui-flex__item{border-right: 1px solid #eee;}
+.home-head .weui-flex__item{border-left: 2px solid #eee;}
 .home-head .weui-flex__item:last-child{border-right: none;}
 .home-head .head-cont p{
 	margin: 0;

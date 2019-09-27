@@ -172,8 +172,9 @@ public class BussesserController {
     public ResultBody checkRegister(HttpSession session) {
         ResultBody resultBody = new ResultBody();
         try {
-            // String openId = (String) session.getAttribute("openId");
-            String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
+            String openId = (String) session.getAttribute("openId");
+            log.info("获取openId,{}",openId);
+            // String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
             session.setAttribute("openId", openId);
             TWeixinLogin weixinLogin = wxService.getWeixinUser(openId);
             if (weixinLogin == null) {

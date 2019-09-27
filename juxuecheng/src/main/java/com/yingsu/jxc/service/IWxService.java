@@ -20,6 +20,13 @@ public interface IWxService {
     TWxShare getWxShare(Integer bussId);
 
     /**
+     * 设置微信分享
+     * @param wxShare
+     * @return
+     */
+    Integer setWxShare(TWxShare wxShare);
+
+    /**
      * 插入用户
      */
     Integer addWeixinUser(TWeixinLogin weixinLogin);

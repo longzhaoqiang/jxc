@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>课程管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=720,width=device-width,initial-scale=1,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="/css/myself/jxc-index.css"/>
+    <link href="/css/myself/my-info.css" rel="stylesheet">
+    <link href="/css/myself/weui.min.css" rel="stylesheet">
+    <link href="/css/myself/jquery-weui.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/theme-color.css" rel="stylesheet">
+    <!-- 必须引入的文件-->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body>
+<section class="zyw-container">
+    <div style="height: 45px;">
+        <div id="all_course" onclick="all_course()" class="co-3"><div style="margin-top: 10px;"><span>所有课程</span></div></div>
+        <div id="good_course"onclick="good_course()" class="co-3"><div style="margin-top: 10px;"><span>精品课程</span></div></div>
+        <div id="try_course"onclick="try_course()" class="co-3"><div style="margin-top: 10px;"><span>免费试听课程</span></div></div>
+    </div>
+    <div class="swiper-container">
+        <input type="hidden" id="bussId" th:value="${bussId}">
+        <input type="hidden" id="type" name="type" value="0">
+        <div class="course-list" id="courseList">
+        </div>
+    </div>
+    <div id="course-add" class='course-add' onclick="course_add()">
+        <img id="img" class='img-border ml-3' src='/img/myself/btn_add_3x.png'/>
+    </div>
+</section>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/myself/course/course.js"></script>
+</html>

@@ -7,12 +7,13 @@
     <result column="teacher_introduce" jdbcType="VARCHAR" property="teacherIntroduce" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="bussesser_id" jdbcType="INTEGER" property="bussesserId" />
-    <result column="subject_id" jdbcType="INTEGER" property="subjectId" />
+    <result column="teach_date" jdbcType="INTEGER" property="teachDate" />
+    <result column="teacher_subject" jdbcType="VARCHAR" property="teacherSubject" />
     <result column="teacher_logo" jdbcType="VARCHAR" property="teacherLogo" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, teacher_name, teacher_introduce, mobile, bussesser_id, subject_id, teacher_logo,
+    id, teacher_name, teacher_introduce, mobile, bussesser_id, teacher_subject, teach_date, teacher_logo,
     create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -53,8 +54,11 @@
       <if test="bussesserId != null">
         bussesser_id,
       </if>
-      <if test="subjectId != null">
-        subject_id,
+      <if test="teacherSubject != null">
+        teacher_subject,
+      </if>
+      <if test="teachDate != null">
+        teach_date,
       </if>
       <if test="teacherLogo != null">
         teacher_logo,
@@ -79,8 +83,11 @@
       <if test="bussesserId != null">
         #{bussesserId,jdbcType=INTEGER},
       </if>
-      <if test="subjectId != null">
-        #{subjectId,jdbcType=INTEGER},
+      <if test="teacherSubject != null">
+        #{teacherSubject,jdbcType=INTEGER},
+      </if>
+      <if test="teachDate != null">
+        #{teachDate,jdbcType=INTEGER},
       </if>
       <if test="teacherLogo != null">
         #{teacherLogo,jdbcType=VARCHAR},
@@ -105,8 +112,11 @@
       <if test="bussesserId != null">
         bussesser_id = #{bussesserId,jdbcType=INTEGER},
       </if>
-      <if test="subjectId != null">
-        subject_id = #{subjectId,jdbcType=INTEGER},
+      <if test="teacherSubject != null">
+        #{teacherSubject,jdbcType=INTEGER},
+      </if>
+      <if test="teachDate != null">
+        #{teachDate,jdbcType=INTEGER},
       </if>
       <if test="teacherLogo != null">
         teacher_logo = #{teacherLogo,jdbcType=VARCHAR},

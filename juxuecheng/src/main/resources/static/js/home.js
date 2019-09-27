@@ -120,6 +120,13 @@ function youhui_quan() {
     checkRegister(action);
 }
 
+// 分享设置
+function set_share() {
+    var bussId = $("#bussId").val();
+    var action = "/setShare?param1="+bussId;
+    checkRegister(action);
+}
+
 // 我的信息
 function my_info() {
     var bussId = $("#bussId").val();

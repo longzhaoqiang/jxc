@@ -27,6 +27,7 @@
                         <img class="img-border" id="bussImg" src="http://image.yingsuit.com/cyclePic/cyclePlay_1.png" style="width: 100%;"/>
                     </div>
                     <div class="formControls col-xs-8 col-sm-9" style="margin-top: -30%;margin-left: 32%">
+                        <input type="hidden" id="bussId" th:value="${bussId}">
                         <a class="btn btn-primary radius upload-btn" type="file">点击更改图片</a>
                         <input class="f-1" type="file" id="jobData" onchange="loadFile(this.files[0])">
                         <br/>
@@ -75,7 +76,7 @@
                 <HR class="line-1 border-1" color='#ff5500' SIZE=2>
             </div>
             <div class="row row-11 text-1">
-                <textarea id="" class="jg-1" name="" placeholder="请输入机构介绍"></textarea>
+                <textarea id="instraction" class="jg-1" name="" placeholder="请输入机构介绍"></textarea>
             </div>
         </div>
             <div class="row-100 bottom-10"></div>
@@ -90,7 +91,7 @@
                     <HR class="line-1 border-1" color='#ff5500' SIZE=2>
                 </div>
                 <div class="row row-11 text-1">
-                    <textarea id="1" class="jg-1" name="" placeholder="请输入师资介绍"></textarea>
+                    <textarea id="teacherPower" class="jg-1" name="" placeholder="请输入师资介绍"></textarea>
                 </div>
                 <div class="row row-11" id="teacherPowerList">
                 </div>
@@ -107,8 +108,8 @@
                         <HR class="line-1 border-1" color='#ff5500' SIZE=2>
                     </div>
                 </div>
-                <div class="row row-11 text-1">
-                    <form id="form" method="post" enctype="multipart/form-data" style="width: 90%;margin-left: 5%">
+                <div id="img_list" class="row row-11 text-1">
+                    <form id="buus_form" method="post" enctype="multipart/form-data" style="width: 90%;margin-left: 5%">
                         <!--<hr> --单张上传
                         <div class="form-group">
                             <input id="file-0" class="file" type="file">
@@ -119,6 +120,9 @@
                     </form>
                 </div>
             </div>
+            <div class="container kv-main">
+                <button type="button" class="btn btn-info" onclick="commit()" style="float: right">保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存</button>
+            </div>
         </div>
     </div>
 </div>
@@ -127,5 +131,5 @@
 <script src="/js/fileinput.js" type="text/javascript"></script>
 <script src="/js/fileinput_locale_zh.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/js/addgoods.js" type="application/javascript"></script>
+<script src="/js/buss_add.js" type="application/javascript"></script>
 </html>

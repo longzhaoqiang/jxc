@@ -40,8 +40,8 @@ $(function () {
 })
 
 function home_openid() {
-    // window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/home/&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
-    window.location.href = "/home";
+    window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/home/&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+    // window.location.href = "/home";
 }
 
 function enroll_online() {
@@ -232,7 +232,8 @@ function course_info(obj) {
 //  微信分享
 function wechatShare(bussId) {
     var title = "";
-    var desc = "";
+    var content = "";
+    var imgUrl = "";
     $.ajax({
         url: "/jxcIndex/share",
         type: "POST",
@@ -246,7 +247,7 @@ function wechatShare(bussId) {
                 timestamp: data['timestamp'], // 时间戳
                 nonceStr: data.noncestr,  // 随机字符串
                 signature: data['signature'], // 签名
-                jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline']
+                jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ', 'onMenuShareQZone']
             });
             $.ajax({
                 url: "/jxcIndex/getWxShareInfo",
@@ -254,16 +255,17 @@ function wechatShare(bussId) {
                 data: {"param1":bussId},
                 success: function (data) {
                     title = data.title;
-                    desc = data.desc;
+                    content = data.content;
+                    imgUrl = "https://yingsu-jxc.oss-cn-shanghai.aliyuncs.com/buss_index/wx_share/"+data.imgUrl
                 }
             })
             wx.ready(function () {
                 // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
                 wx.onMenuShareAppMessage({
                     title: title,
-                    desc: desc,
+                    desc: content,
                     link: 'http://www.juxuecheng.com',
-                    imgUrl: 'http://image.yingsuit.com/cyclePic/2.jpeg',
+                    imgUrl: imgUrl,
                     type: 'link',
                     success: function () {
                         //成功之后的回调
@@ -271,14 +273,38 @@ function wechatShare(bussId) {
                 });
                 wx.onMenuShareTimeline({
                     title: title,
+                    desc: content,
                     link: 'http://www.juxuecheng.com',
-                    imgUrl: 'http://image.yingsuit.com/cyclePic/2.jpeg',
+                    imgUrl: imgUrl,
                     type: 'link',
                     success: function () {
                         //成功之后的回调
                     }
                 });
-
+                wx.onMenuShareQQ({
+                    title: title,
+                    desc: content,
+                    link: 'http://www.juxuecheng.com',
+                    imgUrl: imgUrl,
+                    type: 'link',
+                    success: function () {
+                        //成功之后的回调
+                    },
+                    cancel: function () {
+                    }
+                });
+                wx.onMenuShareQZone({
+                    title: title,
+                    desc: content,
+                    link: 'http://www.juxuecheng.com',
+                    imgUrl: imgUrl,
+                    type: 'link',
+                    success: function () {
+                        //成功之后的回调
+                    },
+                    cancel: function () {
+                    }
+                });
             });
             wx.error(function (res) {
                 //打印错误消息。及把 debug:false,设置为debug:ture就可以直接在网页上看到弹出的错误提示

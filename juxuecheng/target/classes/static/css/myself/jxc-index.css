@@ -98,6 +98,17 @@
     line-height: 1.5;
 }
 
+.text-2 {
+    margin-left: 20px;
+    margin-right: 15px;
+    line-height: 1.5;
+}
+
+.ml-2{
+    width: 96%;
+    margin-left: 2%;
+}
+
 .row-top-5 {
     margin-top: 5px;
 }
@@ -140,6 +151,11 @@
 
 .text-align-1 {
     text-align: center;
+}
+
+.no_data{
+    text-align: center;
+    margin-top: 50%;
 }
 
 .intraduce-1 {
@@ -463,6 +479,8 @@
     margin-top: -5px;
     padding: 5px;
     padding-left: 10px;
+    color: #615B5B;
+    font-size: 14px;
 }
 
 .dd-1-2 {
@@ -491,6 +509,7 @@
     margin-left: 14px;
     padding: 5px;
     padding-left: 10px;
+    color: #676666;
 }
 .jg-1-1 {
     border: solid 1px #ddd;
@@ -502,8 +521,7 @@
 .jg-1-2 {
     width: 70%;
     height: 100px;
-    padding: 5px;
-    padding-left: 10px;
+    color: #4C4C40;
 }
 
 

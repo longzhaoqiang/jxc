@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/myself/weui.min.css">
+    <link href="/css/myself/jquery-weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="/css/myself/jxc-index.css"/>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/theme-color.css">
+    <link href="/css/myself/my-info.css" rel="stylesheet">
+</head>
+<body>
+<footer class="zyw-footer">
+    <div class="zyw-container white-bgcolor clearfix">
+        <div class="weui-tabbar">
+            <a href="/" class="weui-tabbar__item weui-bar__item--on">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/index_1.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">首页</p>
+            </a>
+            <a onclick="course()" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/course_1.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">课程</p>
+            </a>
+            <a onclick="home_openid()" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/home_1.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">我的</p>
+            </a>
+        </div>
+    </div>
+</footer>
+<section class="zyw-container">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img style="height: 200px" src="http://image.yingsuit.com/cyclePic/2.jpeg" alt=""></div>
+            <div class="swiper-slide"><img style="height: 200px" src="http://image.yingsuit.com/cyclePic/5.jpeg" alt=""></div>
+            <div class="swiper-slide"><img style="height: 200px" src="http://image.yingsuit.com/cyclePic/6.jpeg" alt=""></div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="index-class white-bgcolor">
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+                <a id="buss_index">
+                    <div class="index-class-img">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/detail.png" style="margin-top: 24%;margin-left: 2px;">
+                        </div>
+                    </div>
+                    <p class="index-class-text">机构详情</p>
+                    <input type="hidden" id="bussId" th:value="${bussId}">
+                </a>
+            </div>
+            <div class="weui-flex__item">
+                <a onclick="enroll_online()">
+                    <div class="index-class-img">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/baoming.png" style="margin-top: 20%;margin-left: 2px;">
+                        </div>
+                    </div>
+                    <p class="index-class-text">在线报名</p>
+                </a>
+            </div>
+            <div class="weui-flex__item">
+                <a onclick="recruit()">
+                    <div class="index-class-img">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/emplooye.png" style="margin-top: 16%;margin-left: 2px;">
+                        </div>
+                    </div>
+                    <p class="index-class-text">最新招聘</p>
+                </a>
+            </div>
+            <div class="weui-flex__item">
+                <a onclick="contact_us()">
+                    <div class="index-class-img">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/contact_us.png" style="margin-top: 20%;margin-left: 2px;">
+                        </div>
+                    </div>
+                    <p class="index-class-text">联系我们</p>
+                </a>
+            </div>
+            <div class="weui-flex__item">
+                <a href="javascript:;">
+                    <div class="index-class-img">
+                        <div class="index-lable" style="height: 54px;">
+                            <img src="./img/join_us.png" style="margin-top: 20%;margin-left: 2px;">
+                        </div>
+                    </div>
+                    <p class="index-class-text">成为商家</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="index-news">
+        <div class="news-cont white-bgcolor">
+            <strong>号外<em>号外</em>：</strong>
+            <div class="infoBox">
+                <ul class="swiper-wrapper">
+                    <li class="swiper-slide"><span><i>热</i>聚学诚微信公众号上线大优惠！</span></a></li>
+                    <li class="swiper-slide"><span id="word_0"></span></a></li>
+                    <li class="swiper-slide"><span id="word_1"></span></a></li>
+                    <li class="swiper-slide"><span id="word_2"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="index-seckill white-bgcolor">
+        <div class="seckill-hd">
+            <span class="seckill-hd-title red-color"><i class="fa fa-clock-o" aria-hidden="true"></i> 精品课程</span>
+            <strong></strong>
+            <div id="time"></div>
+            <div class="seckill-hd-r">查看更多 <i class="fa fa-angle-right theme-color" aria-hidden="true"></i></div>
+        </div>
+        <div class="seckill-bd">
+            <div class="seckill-wares">
+                <div id="good_course" class="swiper-wrapper"></div>
+            </div>
+        </div>
+    </div>
+    <div class="index-news index-seckill">
+        <div class="news-cont white-bgcolor">
+            <div class="seckill-hd">
+                <span class="seckill-hd-title red-color"><i class="fa fa-clock-o" aria-hidden="true"></i> 免费试题课程</span>
+                <strong></strong>
+            </div>
+        </div>
+        <div class="order-group-item clearfix white-bgcolor">
+            <div id="try_course" class="order-item-box"></div>
+        </div>
+    </div>
+
+    <div class="index-news index-seckill">
+        <div class="news-cont white-bgcolor">
+            <div class="seckill-hd">
+                <span class="seckill-hd-title red-color"><i class="fa fa-clock-o" aria-hidden="true"></i>名师汇集</span>
+                <strong></strong>
+            </div>
+        </div>
+        <div class="seckill-bd white-bgcolor">
+            <div class="seckill-wares">
+                <div class="swiper-wrapper" id="teacherList">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 教师详情弹窗 -->
+    <div>
+        <div id="teacher_msg" class="white_content">
+            <div>
+                <a onclick="document.getElementById('teacher_msg').style.display='none';document.getElementById('fade1').style.display='none'">
+                    关闭</a>
+            </div>
+            <div class="h-5">&nbsp;</div>
+            <div class="t-i-1">
+                <img id="teacher_info_img" class='img-border tea-img' src='' style='width: 70px;'/>
+            </div>
+            <div class="t-d-1">
+                <div><span class='font-size-16-1 color-1' id="teacher_info_name"></span></div>
+                <div class='intraduce-1 w-90'>
+                    <span class="font-color-1" id="teacher_info_intro"></span>
+                    <input type="hidden" id="teacher_id"/>
+                </div>
+            </div>
+            <hr style="filter: alpha(opacity=100,finishopacity=0,style=3);border-top: 3px solid #eee;" width="100%" color="#6f5499"/>
+        </div>
+    </div>
+    <div id="fade1" class="black_overlay"></div>
+
+
+    <div class="index-wares">
+        <div class="course-lable">
+            <div class="col-md-4 col-xs-4">
+                <HR class="line-1 border-1" color='#ff5500' SIZE=2>
+            </div>
+            <div class="col-md-4 col-xs-4 text-align-1 color-1 font-size-16-1">所有课程</div>
+            <div class="col-md-4 col-xs-4">
+                <HR class="line-1 border-1" color='#ff5500' SIZE=2>
+            </div>
+        </div>
+        <div class="wares-cont">
+            <ul id="all_course" class="clearfix"></ul>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- 必须引入的文件-->
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

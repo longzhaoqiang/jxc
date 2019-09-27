@@ -1,0 +1,3 @@
+2019-07-19 17:03:06 [restartedMain] WARN  com.netflix.config.sources.URLConfigurationSource -No URLs will be polled as dynamic configuration sources.
+2019-07-19 17:03:06 [restartedMain] WARN  com.netflix.config.sources.URLConfigurationSource -No URLs will be polled as dynamic configuration sources.
+2019-07-19 17:09:27 [Thread-91] WARN  org.springframework.beans.factory.support.DisposableBeanAdapter -Invocation of destroy method failed on bean with name 'classPathFileSystemWatcher': java.lang.NullPointerException

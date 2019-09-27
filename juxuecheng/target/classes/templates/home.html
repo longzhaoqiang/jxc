@@ -18,26 +18,19 @@
         <div class="weui-tabbar">
             <a href="/" class="weui-tabbar__item">
                 <div class="weui-tabbar__icon">
-                    <img src="/img/svg/foot-1.svg" alt="">
+                    <img src="/img/svg/index_2.png" alt="">
                 </div>
                 <p class="weui-tabbar__label">首页</p>
             </a>
-            <a href="/course" class="weui-tabbar__item">
+            <a onclick="course()" class="weui-tabbar__item">
                 <div class="weui-tabbar__icon">
-                    <img src="/img/svg/foot-3.svg" alt="">
+                    <img src="/img/svg/course_1.png" alt="">
                 </div>
                 <p class="weui-tabbar__label">课程</p>
             </a>
-            <a href="/recruit" class="weui-tabbar__item">
-                <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;"></span>
+            <a class="weui-tabbar__item weui-bar__item--on">
                 <div class="weui-tabbar__icon">
-                    <img src="/img/svg/foot-4.svg" alt="">
-                </div>
-                <p class="weui-tabbar__label">招贤纳士</p>
-            </a>
-            <a href="/home" class="weui-tabbar__item weui-bar__item--on">
-                <div class="weui-tabbar__icon">
-                    <img src="/img/svg/foot-5-1.svg" alt="">
+                    <img src="/img/svg/home_2.png" alt="">
                 </div>
                 <p class="weui-tabbar__label">我的</p>
             </a>
@@ -47,25 +40,26 @@
 <section class="zyw-container">
     <div class="home-head white-bgcolor clearfix">
         <div class="head-img">
-            <div class="head-logo"><img src="/img/mylogo.png" alt=""></div>
-            <div class="head-name"><span id="user_name"></span></div>
-            <div class="head-icon">
-                <a href=""><img src="/img/svg/home-cog.svg" alt=""></a>
-                <a href=""><img src="/img/svg/home-message.svg" alt=""></a>
-            </div>
+            <input type="hidden" id="openId" th:value="${openId}">
+            <input type="hidden" id="bussId" value="">
+            <div class="head-logo"><img id="head_img" src="/img/mylogo.png"></div>
+            <div class="head-name"><span id="user_name" style="color: mediumslateblue;"></span></div>
         </div>
         <div class="head-cont">
             <div class="weui-flex">
-                <div class="weui-flex__item" onclick="besaved()"><a href=""><p>12</p><span>被收藏</span></a></div>
-                <div class="weui-flex__item" onclick="readme()"><a href=""><p>6</p><span>浏览量</span></a></div>
-                <div class="weui-flex__item"o nclick="my_saved()"><a href=""><p>16</p><span>我的收藏</span></a></div>
+                <div class="weui-flex__item">
+                    <a href=""><p style="color: #FF6958">6</p><span style="color: #7B7B7B;">浏览量</span></a>
+                </div>
+                <div class="weui-flex__item">
+                    <a href=""><p style="color: #FF6958">16</p><span style="color: #7B7B7B;">课程数量</span></a>
+                </div>
             </div>
         </div>
     </div>
     <div class="home-cont weui-cells mt-625">
         <a class="weui-cell weui-cell_access" onclick="add_course()">
             <div class="weui-cell__bd">
-                <p class="choose-text"><img src="/img/svg/home-1.svg" alt=""> 添加课程</p>
+                <p class="choose-text"><img src="/img/svg/add_course.png" alt=""> 添加课程</p>
             </div>
             <div class="weui-cell__ft choose-des">
                 查看所有课程
@@ -73,33 +67,34 @@
         </a>
     </div>
     <div class="weui-flex home-order white-bgcolor mb-625">
-        <a href="" class="weui-flex__item" onclick="course_manager()">
+        <a onclick="course_manager()" class="weui-flex__item" >
             <div class="weui-flex__icon">
-                <img src="/img/svg/home-dfk.svg" alt="">
+                <img src="/img/svg/course_m.png" alt="">
             </div>
             <p class="weui-flex__label">课程管理</p>
         </a>
-        <a href="" class="weui-flex__item" onclick="teacher_manager()">
+
+        <a class="weui-flex__item" onclick="teacher_manager()">
             <div class="weui-flex__icon">
-                <img src="/img/svg/home-dfh.svg" alt="">
+                <img src="/img/svg/teacher_m.png" alt="">
             </div>
             <p class="weui-flex__label">教师管理</p>
         </a>
-        <a href="" class="weui-flex__item" onclick="no_use()">
+        <a class="weui-flex__item" onclick="advice()">
             <div class="weui-flex__icon">
-                <img src="/img/svg/home-dsh.svg" alt="">
+                <img src="/img/svg/advice_m.png" alt="">
             </div>
-            <p class="weui-flex__label">已下架</p>
+            <p class="weui-flex__label">广告管理</p>
         </a>
-        <a href="" class="weui-flex__item" onclick="recruit()">
+        <a class="weui-flex__item" onclick="recruit()">
             <div class="weui-flex__icon">
-                <img src="/img/svg/home-dpj.svg" alt="">
+                <img src="/img/svg/zhaoping_m.png" alt="">
             </div>
             <p class="weui-flex__label">招聘管理</p>
         </a>
-        <a href="" class="weui-flex__item" onclick="constomer_words()">
+        <a class="weui-flex__item" onclick="constomer_words()">
             <div class="weui-flex__icon">
-                <img src="/img/svg/home-tk.svg" alt="">
+                <img src="/img/svg/index_m.png" alt="">
             </div>
             <p class="weui-flex__label">首页管理</p>
         </a>
@@ -107,39 +102,47 @@
     <div class="home-cont weui-cells mb-625">
         <a class="weui-cell weui-cell_access" id="tobe-buss" onclick="tobe_buss()">
             <div class="weui-cell__bd">
-                <p class="choose-text"><img src="/img/svg/home-2.svg" alt=""> 注册成商家</p>
+                <p class="choose-text"><img src="/img/svg/register_b.png" alt=""> 注册成商家</p>
             </div>
             <div class="weui-cell__ft choose-des">
                 <span id="buss_register">您还未开通，请开通</span>
             </div>
         </a>
-        <a class="weui-cell weui-cell_access" href="" onclick="youhui_quan()">
+        <!--<a class="weui-cell weui-cell_access" onclick="youhui_quan()">
             <div class="weui-cell__bd">
-                <p class="choose-text"><img src="/img/svg/home-3.svg" alt=""> 优惠券</p>
+                <p class="choose-text"><img src="/img/svg/youhuiquan_m.png" alt=""> 优惠券</p>
             </div>
             <div class="weui-cell__ft choose-des">
                 2张
             </div>
+        </a>-->
+        <a class="weui-cell weui-cell_access" onclick="set_share()">
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="/img/svg/fankui.png" alt=""> 分享设置</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+                自定义分享内容
+            </div>
         </a>
     </div>
     <div class="home-cont weui-cells mb-625">
-        <a class="weui-cell weui-cell_access" href="" onclick="my_info()">
+        <a class="weui-cell weui-cell_access" onclick="my_info()">
             <div class="weui-cell__bd">
-                <p class="choose-text"><img src="/img/svg/home-4.svg" alt=""> 我的资料</p>
+                <p class="choose-text"><img src="/img/svg/my_info.png" alt=""> 我的信息</p>
             </div>
             <div class="weui-cell__ft choose-des">
             </div>
         </a>
-        <a class="weui-cell weui-cell_access" href="" onclick="idea()">
+        <!--<a class="weui-cell weui-cell_access" onclick="idea()">
             <div class="weui-cell__bd">
-                <p class="choose-text"><img src="/img/svg/home-5.svg" alt=""> 意见反馈</p>
+                <p class="choose-text"><img src="/img/svg/fankui.png" alt=""> 会员中心</p>
             </div>
             <div class="weui-cell__ft choose-des">
             </div>
-        </a>
+        </a>-->
         <a class="weui-cell weui-cell_access" href="/user/logout">
             <div class="weui-cell__bd">
-                <p class="choose-text"><img src="/img/svg/home-5.svg" alt=""> 退出登录</p>
+                <p class="choose-text"><img src="/img/svg/loginout.png" alt=""> 消息通知</p>
             </div>
             <div class="weui-cell__ft choose-des">
             </div>

@@ -1,13 +1,21 @@
 package com.yingsu.jxc.weixin;
 
+import com.yingsu.jxc.entity.ResultBody;
+import com.yingsu.jxc.entity.TBussesser;
+import com.yingsu.jxc.entity.TWeixinLogin;
 import com.yingsu.jxc.entity.TWxShare;
 import com.yingsu.jxc.service.IWxService;
+import com.yingsu.jxc.util.Constant;
+import com.yingsu.jxc.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 
 @RestController
@@ -22,8 +30,11 @@ public class WxShare {
     public HashMap<String, Object> getWxShareInfo(String param1) {
         HashMap<String, Object> hashMap = new HashMap<>();
         TWxShare wxShare = wxService.getWxShare(Integer.parseInt(param1));
-        hashMap.put("title",wxShare.getTitle());
-        hashMap.put("desc",wxShare.getDesc());
+        if (wxShare != null) {
+            hashMap.put("title", wxShare.getTitle());
+            hashMap.put("content", wxShare.getContent());
+            hashMap.put("imgUrl", wxShare.getImgUrl());
+        }
         return hashMap;
     }
 
@@ -49,5 +60,32 @@ public class WxShare {
         hashMap.put("noncestr", noncestr);
         hashMap.put("signature", signature);
         return hashMap;
+    }
+
+    @RequestMapping("/setWxShare")
+    @ResponseBody
+    public ResultBody set(HttpServletRequest request, TWxShare wxShare) {
+        ResultBody resultBody = new ResultBody();
+        try {
+            String newFileName = null;
+            MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+            MultipartFile shareImg = multipartRequest.getFile("file");
+            if (shareImg != null) {
+                String oldFileName = shareImg.getOriginalFilename();
+                String[] imgarr = oldFileName.split("\\.");
+                newFileName = "share-img-" + new Date().getTime() / 1000 + "." + imgarr[imgarr.length - 1];
+                FileUploadUtil.upload(shareImg,newFileName,"buss_index/wx_share/");
+            }
+            wxShare.setImgUrl(newFileName);
+            int result = wxService.setWxShare(wxShare);
+            if (result != 1) {
+                resultBody.setResultCode(Constant.ERROR_CODE);
+                resultBody.setResultMsg(Constant.ERROR_INSERT_MSG);
+            }
+        } catch (Exception e) {
+            resultBody.setResultCode(Constant.ERROR_CODE);
+            resultBody.setResultMsg(Constant.ERROR_SYS_MSG + e);
+        }
+        return resultBody;
     }
 }

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>发布招聘信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/swiper.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/myself/mobile.css"/>
+    <link rel="stylesheet" href="/css/myself/my-info.css"/>
+    <link rel="stylesheet" href="/css/myself/jxc-index.css"/>
+</head>
+<body>
+<section class="zyw-container">
+    <form id="recruitForm" method="post">
+        <div class="g-mn" id="weixinshare">
+            <div class="">
+                <div class="course-d h-90">
+                    <div style="padding-top: 15px;padding-bottom: 15px;margin: 0 10px;">
+                        <input type="text" id="recruit_title" class="cn-font" name="recruitTitle" placeholder="标题：初三数学教师（日结）"/>
+                    </div>
+                    <div style="width: 50%;margin: 0 10px;float: left">
+                        <div style="float: left;margin-top: 2px"><span>经验：</span></div>
+                        <div style="float: left;width: 57.5%;">
+                            <input type="text" class="dd-1" id="experence" name="experence" placeholder="1年以内"/>
+                        </div>
+                    </div>
+                    <div style="width: 44%;float: left;">
+                        <div style="float: left;margin-top: 2px"><span>学历：</span></div>
+                        <div style="float: left;width: 76%;">
+                            <input type="text" class="dd-1" id="education" name="education" placeholder="本科"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-d h-60">
+                    <div class="m-box-hd h-60">
+                        <div style="width: 18%;float: left"><span>薪资待遇:</span></div>
+                        <div style="width: 82%;float: left">
+                            <input type="text" class="dd-1" id="recruitSalary" name="recruitSalary" placeholder="200/小时，每次两小时"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-d h-60">
+                    <div class="m-box-hd h-60">
+                        <div style="width: 18%;float: left"><span>上课时间:</span></div>
+                        <div style="width: 82%;float: left">
+                            <input type="text" class="dd-1" id="recruitTime" name="recruitTime" placeholder="每天晚上19:00 - 21:00"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-d h-60">
+                    <div class="m-box-hd h-60">
+                        <div style="width: 18%;float: left"><span>上课地点:</span></div>
+                        <div style="width: 82%;float: left">
+                            <input type="text" class="dd-1" id="recruitAddress" name="recruitAddress" placeholder="长沙市芙蓉区五一广场B座xx楼xx室"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课程 -->
+            <div class="row-1" id="course">
+                <div class="m-box">
+                    <div class="m-box-hd">
+                        <div class="tt">详情</div>
+                    </div>
+                    <div class="m-box-mn">
+                        <div class="row-1">
+                            <div class="left-border-1"><span class="font-size-14-1 font-color-1">职位详情</span></div>
+                            <div class="row-top10">
+                                <div class="row row-11 text-1">
+                                    <textarea id="postInfo" class="jg-1" name="postInfo" placeholder="请输入职位详情"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-1 row-top-20">
+                            <div class="left-border-1"><span class="font-size-14-1 font-color-1">职位要求</span></div>
+                            <div class="row-top10">
+                                <div class="row row-11 text-1">
+                                    <textarea id="recriutDemand" class="jg-1" name="recriutDemand" placeholder="请输入职位要求"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-1 row-top-20">
+                            <div class="left-border-1"><span class="font-size-14-1 font-color-1">备注信息</span></div>
+                            <div class="row-top10">
+                                <div class="row row-11 text-1">
+                                    <textarea id="recriutRemark" class="jg-1" name="recriutRemark" placeholder="请输入备注信息"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-1 row-top-20" style="height: 50px">
+                            <div class="fm-10"><button type="button" class="btn btn-info" onclick="effect()">查看效果</button></div>
+                            <div style="float: left"><button type="button" class="btn btn-success" style="float: right" onclick="commit()">确认发布</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/swiper.min.js"></script>
+<script src="/js/myself/recruit/recruit_add.js"></script>
+</body>
+</html>

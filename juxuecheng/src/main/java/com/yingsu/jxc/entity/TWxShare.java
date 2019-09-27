@@ -5,7 +5,9 @@ public class TWxShare {
 
     private String title;
 
-    private String desc;
+    private String content;
+
+    private String imgUrl;
 
     private Integer bussId;
 
@@ -27,12 +29,20 @@ public class TWxShare {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getContent() {
+        return content;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public Integer getBussId() {

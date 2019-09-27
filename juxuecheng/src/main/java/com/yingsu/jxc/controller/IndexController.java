@@ -49,8 +49,8 @@ public class IndexController {
     @RequestMapping("/home")
     public ModelAndView home(HttpSession session){
         ModelAndView mv = new ModelAndView();
-        // String openId = (String) session.getAttribute("openId");
-        String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
+        String openId = (String) session.getAttribute("openId");
+        // String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
         mv.addObject("openId",openId);
         mv.setViewName("home");
         return mv;
@@ -62,6 +62,15 @@ public class IndexController {
         ModelAndView mv = new ModelAndView();
         mv.addObject("bussId",param1);
         mv.setViewName("coupon");
+        return mv;
+    }
+
+    // 跳转设置分享页面
+    @RequestMapping("/setShare")
+    public ModelAndView setShare(String param1){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bussId",param1);
+        mv.setViewName("set_share");
         return mv;
     }
 

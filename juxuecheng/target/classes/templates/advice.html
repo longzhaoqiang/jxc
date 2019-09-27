@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>添加广告语</title>
+    <meta name="viewport"
+          content="width=720,width=device-width,initial-scale=1,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="/css/myself/jxc-index.css"/>
+    <link href="/css/myself/my-info.css" rel="stylesheet">
+    <link href="/css/myself/weui.min.css" rel="stylesheet">
+    <link href="/css/myself/jquery-weui.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/theme-color.css" rel="stylesheet">
+</head>
+<body>
+<div id="advice" style="background: white;"></div>
+<div id="container" >
+    <div id="teacherPowerListd">
+        <input type="hidden" id="bussId" th:value="${bussId}">
+        <input type="hidden" id="count">
+        <div id="advice_1" style="width: 100%">
+            <span></span>
+        </div>
+        <div style="height: 10px;"></div>
+        <div id="advice_data" style="width: 100%"></div>
+        <div id="null_data" class='no_data'>
+            <img id="img" class='img-border' src='/img/myself/no_data.png'/>
+            <div><span>暂无数据，<a style="color: #00bcd4" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">立即添加</a></span></div>
+        </div>
+    </div>
+</div>
+<!-- 添加 -->
+<div>
+    <div id="light" class="white_content-1">
+        <div>
+            <a onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+                关闭</a>
+        </div>
+        <div class="h-5">&nbsp;</div>
+        <div>
+            <div class="text-align-1 color-1 font-size-16-1 wl-30">广告语：</div>
+            <div class="row-11 text-1" style="margin-top: 5px;">
+                <textarea id="word" class="jg-1-1" name="teacherIntroduce" placeholder="请输入15个字以内的广告词"></textarea>
+            </div>
+            <div class="row-11" id="teacherPowerList">
+            </div>
+        </div>
+        <div class="h-5">&nbsp;</div>
+        <div class="login-btn">
+            <a href="javascript:;" class="weui-btn weui-btn_warn theme-bgcolor" onclick="advice_add()">确认添加</a></div>
+    </div>
+</div>
+<div id="fade" class="black_overlay"></div>
+</div>
+<div class='row-11' onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+    <img id="img_add" class='img-border ml-3' src='/img/myself/btn_add_3x.png'/>
+</div>
+</div>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+        getList();
+    })
+
+    //查询列表
+    function getList() {
+        var bussId = $("#bussId").val();
+        $.ajax({
+            url: "/advice/getList",
+            type: "POST",
+            data: {"bussId": bussId},
+            success: function (data) {
+                var code = data.resultCode;
+                var result = data.result;
+                var str = "";
+                if (code == "0") {
+                    $("#null_data").show();
+                    $("#advice_data").hide();
+                    $("#img_add").hide();
+                } else {
+                    $("#advice_data").show();
+                    $("#null_data").hide();
+                    for (var i = 0;i<result.length;i++) {
+                        str += "<div>\n" +
+                            "        <div style=\"padding: 5px\">\n" +
+                            "            <div style=\"line-height: 1.5;\">\n" +
+                            "                <div style=\"width: 90%;float: left;border-right: 1px solid #9E9898;\">\n" +
+                            "                    <span style='margin-left: 10px'>" + result[i]['word'] + "</span>" +
+                            "                </div>\n" +
+                            "                <div style=\"width: 10%;float: left;\">\n" +
+                            "                    <span class='glyphicon glyphicon-trash' id=" + result[i]['id'] + " onclick='delete_1(this)' style='color: red;padding-left: 30%;' aria-hidden='true'></span>\n" +
+                            "                </div>\n" +
+                            "            </div>\n" +
+                            "        </div>\n" +
+                            "        <hr style=\"border-top: 5px solid #eee;margin-bottom: 0px\" width=\"100%\" color=\"#6f5499\"/>\n" +
+                            "    </div>";
+                    }
+                }
+                $("#advice").html(str);
+                $("#count").val(result.length);
+            }
+        });
+    }
+
+    // 添加广告词
+    function advice_add() {
+        var bussId = $("#bussId").val();
+        var word = $.trim($("#word").val());
+        var count = ($("#count").val());
+        if (count > 2){
+            alert("最多只能添加5个广告语");
+            return false;
+        }
+        if(word == null || word == ""){
+            alert("请填写广告词");
+            return false;
+        }
+        if(word.length > 20){
+            alert("不能超过20个字");
+            return false;
+        }
+        $.ajax({
+            url: "/advice/add",
+            type: "POST",
+            data: {"word":word,"bussId":bussId},
+            success: function (data) {
+                var code = data.resultCode;
+                if (code == "1"){
+                    window.location.href = "/advice?param1="+bussId;
+                } else {
+                    alert("网络异常！插入数据失败!")
+                    window.location.reload();
+                }
+            }
+        })
+    }
+
+    function delete_1(obj) {
+        if (!confirm("是否确认删除")){
+            return false;
+        }
+        var id = obj.id;
+        $.ajax({
+            url: "/advice/delete",
+            type: "POST",
+            data: {"id":id},
+            success: function (data) {
+                var code = data.resultCode;
+                if (code == "1"){
+                    window.location.reload();
+                } else {
+                    alert("网络异常！删除数据失败!")
+                    window.location.reload();
+                }
+            }
+        })
+    }
+</script>
+</html>

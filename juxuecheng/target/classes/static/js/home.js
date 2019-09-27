@@ -1,37 +1,52 @@
 $(function () {
-    var url = "/user/checkLogin";
-    $.ajax({
-        type: "POST",
-        url: url,
-        success: function (data) {
-            var code = data.resultCode;
-            if (code == "-1"){
-                $("#user_name").html("未登录");
-            } else {
-                var user_name = data['result']['userName'];
-                $("#user_name").html(user_name);
-            }
-        }
-    });
+    var openId = $("#openId").val();
 
-    check_register();
-})
-
-// 检查是否注册过
-function check_register() {
     var url = "/buss/checkRegister";
     $.ajax({
         type: "POST",
         url: url,
         success: function (data) {
             var code = data.resultCode;
-            var msg = data.resultMsg;
+            var bussId = data.resultMsg;
             if (code == "1"){ // 0已注册 1未注册
-                $("#buss_register").html(msg)
+                $("#bussId").attr("value",bussId);
+                $("#buss_register").html("您已注册成为商家")
                 $("#tobe-buss").css("pointer-events","none");
+            } else if (code == "0"){
+                $("#buss_register").html("您还不是商家，立即注册")
+            } else if(code == "-1") {
+                // 进入home页时，如果数据库没有获取到微信用户信息
+                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2fbe7ca7c970259&redirect_uri=http://www.juxuecheng.com/user/login/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
             }
         }
     })
+    get_wx_info(openId);
+})
+
+// 进入我的页面时检查是否注册过
+function get_wx_info(openId) {
+    var url = "/user/getWxInfo";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {"openId":openId},
+        success: function (data) {
+            var code = data.resultCode;
+            if (code == "0"){
+                $("#user_name").html("未登录");
+            } else {
+                var nickName = data['result']['nickName'];
+                var headImgUrl = data['result']['headImgUrl'];
+                $("#user_name").html(nickName);
+                $("#head_img").attr("src",headImgUrl)
+            }
+        }
+    });
+}
+
+function course() {
+    var bussId = $("#bussId").val();
+    window.location.href = "/courseCoustomer?param1="+bussId;
 }
 
 // 被收藏
@@ -53,54 +68,70 @@ function my_saved() {
 
 // 课程添加
 function add_course() {
-    var action = "/course_add";
-    checkLogin(action);
+    var bussId = $("#bussId").val();
+    var action = "/course_add?param1="+bussId;
+    checkRegister(action);
 }
 
 // 课程管理
 function course_manager() {
-    var action = "/course";
-    checkLogin(action);
+    var bussId = $("#bussId").val();
+    var action = "/course?param1="+bussId;
+    checkRegister(action);
 }
 
 // 教师管理
 function teacher_manager() {
-    var action = "/teacher_add";
+    var bussId = $("#bussId").val();
+    var action = "/teacher_add?param1="+bussId;
     checkRegister(action);
 }
 
-// 未上架
-function no_use() {
-    checkLogin();
+// 广告语
+function advice() {
+    var bussId = $("#bussId").val();
+    var action = "/advice?param1="+bussId;
+    checkRegister(action);
 }
 
 // 招聘信息
 function recruit() {
-    var action = "/recruit";
-    checkLogin(action);
+    var bussId = $("#bussId").val();
+    var action = "/recruit?param1="+bussId;
+    checkRegister(action);
 }
 
 // 首页管理
 function constomer_words() {
-    var action = "/buss_add";
-    checkLogin(action);
+    var bussId = $("#bussId").val();
+    var action = "/buss_add?param1="+bussId;
+    checkRegister(action);
 }
 
 // 注册成为商家
 function tobe_buss() {
-    var action = "/buss_register";
-    checkLogin(action);
+    window.location.href = "/buss_register";
 }
 
 // 优惠券
 function youhui_quan() {
-    checkLogin();
+    var bussId = $("#bussId").val();
+    var action = "/coupon?param1="+bussId;
+    checkRegister(action);
+}
+
+// 分享设置
+function set_share() {
+    var bussId = $("#bussId").val();
+    var action = "/setShare?param1="+bussId;
+    checkRegister(action);
 }
 
 // 我的信息
 function my_info() {
-    var action = "/myInfo";
-    checkLogin(action);
+    var bussId = $("#bussId").val();
+    var action = "/myInfo?param1="+bussId;
+    checkRegister(action);
 }
 
 // 意见反馈
@@ -108,37 +139,7 @@ function idea() {
     checkLogin();
 }
 
-// 退出登录
-function loginout() {
-    var url = "/yingsu/user/loginout";
-    $.ajax({
-        type: "POST",
-        url: url,
-        success: function (data) {
-            var code = data.resultCode;
-            window.location.href="/";
-        }
-    })
-}
-
-// 检查是否登录
-function checkLogin(action) {
-    var url = "/user/checkLogin";
-    $.ajax({
-        type: "POST",
-        url: url,
-        success: function (data) {
-            var code = data.resultCode;
-            if (code == -1){
-                window.location.href = "/login";
-            } else {
-                window.location.href = action;
-            }
-        }
-    })
-}
-
-// 检查是否商家注册过
+// 检查是否注册成商家
 function checkRegister(action) {
     var url = "/buss/checkRegister";
     $.ajax({
@@ -147,14 +148,15 @@ function checkRegister(action) {
         success: function (data) {
             var code = data.resultCode;
             if (code == 0){
-                alert("你尚未登录，请登录");
-                window.location.href = "/login";
-            } else if (code == -100){
-                alert("你还未注册成商家");
-                window.location.href = "/buss_register";
+                if(confirm("注册成商家即可操作")){
+                    window.location.href = "/buss_register";
+                }
             } else {
                 window.location.href = action;
             }
+        },
+        error: function(data){
+            var result = data;
         }
     })
 }

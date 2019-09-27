@@ -39,6 +39,25 @@ public class WxServiceImpl implements IWxService {
     }
 
     /**
+     * 设置微信分享
+     * @param wxShare
+     * @return
+     */
+    @Override
+    public Integer setWxShare(TWxShare wxShare) {
+        Integer bussId = wxShare.getBussId();
+        TWxShare tWxShare = wxShareMapper.selectByPrimaryKey(bussId);
+        int result = 0;
+        if (tWxShare == null) {
+            result = wxShareMapper.insertSelective(wxShare);
+        } else {
+            wxShare.setId(tWxShare.getId());
+            result = wxShareMapper.updateByPrimaryKeySelective(wxShare);
+        }
+        return result;
+    }
+
+    /**
      * 插入微信用户
      * @param weixinLogin
      * @return

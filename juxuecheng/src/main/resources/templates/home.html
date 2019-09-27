@@ -24,7 +24,7 @@
             </a>
             <a onclick="course()" class="weui-tabbar__item">
                 <div class="weui-tabbar__icon">
-                    <img src="./img/svg/course_1.png" alt="">
+                    <img src="/img/svg/course_1.png" alt="">
                 </div>
                 <p class="weui-tabbar__label">课程</p>
             </a>
@@ -47,9 +47,12 @@
         </div>
         <div class="head-cont">
             <div class="weui-flex">
-                <div class="weui-flex__item" onclick="besaved()"><a href=""><p>12</p><span>活跃度</span></a></div>
-                <div class="weui-flex__item" onclick="readme()"><a href=""><p>6</p><span>浏览量</span></a></div>
-                <div class="weui-flex__item"o nclick="my_saved()"><a href=""><p>16</p><span>课程数量</span></a></div>
+                <div class="weui-flex__item">
+                    <a href=""><p style="color: #FF6958">6</p><span style="color: #7B7B7B;">浏览量</span></a>
+                </div>
+                <div class="weui-flex__item">
+                    <a href=""><p style="color: #FF6958">16</p><span style="color: #7B7B7B;">课程数量</span></a>
+                </div>
             </div>
         </div>
     </div>
@@ -105,12 +108,20 @@
                 <span id="buss_register">您还未开通，请开通</span>
             </div>
         </a>
-        <a class="weui-cell weui-cell_access" onclick="youhui_quan()">
+        <!--<a class="weui-cell weui-cell_access" onclick="youhui_quan()">
             <div class="weui-cell__bd">
                 <p class="choose-text"><img src="/img/svg/youhuiquan_m.png" alt=""> 优惠券</p>
             </div>
             <div class="weui-cell__ft choose-des">
                 2张
+            </div>
+        </a>-->
+        <a class="weui-cell weui-cell_access" onclick="set_share()">
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="/img/svg/fankui.png" alt=""> 分享设置</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+                自定义分享内容
             </div>
         </a>
     </div>
@@ -122,13 +133,13 @@
             <div class="weui-cell__ft choose-des">
             </div>
         </a>
-        <a class="weui-cell weui-cell_access" onclick="idea()">
+        <!--<a class="weui-cell weui-cell_access" onclick="idea()">
             <div class="weui-cell__bd">
                 <p class="choose-text"><img src="/img/svg/fankui.png" alt=""> 会员中心</p>
             </div>
             <div class="weui-cell__ft choose-des">
             </div>
-        </a>
+        </a>-->
         <a class="weui-cell weui-cell_access" href="/user/logout">
             <div class="weui-cell__bd">
                 <p class="choose-text"><img src="/img/svg/loginout.png" alt=""> 消息通知</p>

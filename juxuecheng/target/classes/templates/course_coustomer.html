@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>机构课程</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=720,width=device-width,initial-scale=1,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="/css/myself/jxc-index.css"/>
+    <link href="/css/myself/my-info.css" rel="stylesheet">
+    <link href="/css/myself/weui.min.css" rel="stylesheet">
+    <link href="/css/myself/jquery-weui.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/theme-color.css" rel="stylesheet">
+    <!-- 必须引入的文件-->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body>
+<footer class="zyw-footer">
+    <div class="zyw-container white-bgcolor clearfix">
+        <div class="weui-tabbar">
+            <a href="/" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/index_2.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">首页</p>
+            </a>
+            <a onclick="course()" class="weui-tabbar__item weui-bar__item--on">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/course_2.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">课程</p>
+            </a>
+            <a onclick="home_openid()" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="./img/svg/home_1.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">我的</p>
+            </a>
+        </div>
+    </div>
+</footer>
+<section class="g-mn">
+    <div style="height: 45px;">
+        <div id="all_course" onclick="all_course()" class="co-3"><div style="margin-top: 10px;"><span>所有课程</span></div></div>
+        <div id="good_course"onclick="good_course()" class="co-3"><div style="margin-top: 10px;"><span>精品课程</span></div></div>
+        <div id="try_course"onclick="try_course()" class="co-3"><div style="margin-top: 10px;"><span>免费试听课程</span></div></div>
+    </div>
+    <h5 class="page-header" style="margin: -9px 0 20px;border-bottom: 1px solid #FF5D0C;"></h5>
+    <div>
+        <input type="hidden" id="bussId" th:value="${bussId}">
+        <div class="course-list" id="courseList">
+        </div>
+    </div>
+</section>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/myself/course/course_coustomer.js"></script>
+</html>

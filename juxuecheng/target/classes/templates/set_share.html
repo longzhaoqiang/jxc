@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分享设置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/myself/weui.min.css" rel="stylesheet">
+    <link href="/css/myself/jquery-weui.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
+    <link href="/css/theme-color.css" rel="stylesheet">
+    <link href="/css/myself/jxc-index.css" rel="stylesheet"/>
+    <link href="/css/myself/my-info.css" rel="stylesheet">
+</head>
+<body style="background: #fff;">
+<section class="zyw-container">
+    <form id="bussForm" method="post" enctype="multipart/form-data">
+        <input type="hidden" id="bussId" th:value="${bussId}">
+        <div class="weui-cell" style="border-bottom: 2px solid #eee;">
+            <div class="weui-cell__hd"><label class="weui-label" style="width: 60px">标题<span style="color: red"> *</span></label></div>
+            <div class="weui-cell__bd">
+                <input type="text" class="dd-1" id="title" name="title" placeholder="请输入分享标题"/>
+            </div>
+        </div>
+        <div class="weui-cell" style="border-bottom: 2px solid #eee;">
+            <div class="weui-cell__hd"><label class="weui-label" style="width: 60px">内容<span style="color: red"> *</span></label></div>
+            <div class="weui-cell__bd">
+                <input type="text" class="dd-1" id="content" name="content" placeholder="请输入分享内容"/>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd wl-20"><label class="weui-label">展示图片</label></div>
+            <div class="wl-80">
+                <div class="row-11 text-1">
+                    <img id="img1" hidden src="" style="width:60px;height:60px;">
+                    <a class="btn btn-primary radius upload-btn" type="file" id="select_img">点击上传图片</a>
+                    <input class="file-1" type="file" id="file1" style="height: 40px;">
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="login-btn"><a class="weui-btn weui-btn_warn theme-bgcolor" onclick="set_wx_share()">确定</a></div>
+    </form>
+</section>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+        var bussId = $("#bussId").val();
+        $.ajax({
+            url: "/jxcIndex/getWxShareInfo",
+            type: 'POST',
+            data: {"param1":bussId},
+            success: function (data) {
+                $("#title").val(data.title);
+                $("#content").val(data.content);
+                $("#img1").attr("src", "https://yingsu-jxc.oss-cn-shanghai.aliyuncs.com/buss_index/wx_share/"+data.imgUrl);
+                $("#img1").show();
+            }
+        });
+        choose_pic();
+    })
+    function set_wx_share() {
+        var title = $("#title").val().replace(/(^\s*)|(\s*$)/g, "");
+        var content = $("#content").val().replace(/(^\s*)|(\s*$)/g, "");
+        var bussId = $("#bussId").val();
+
+        if(title == ""){
+            alert("请输入标题");
+            return false;
+        }
+        if(content == ""){
+            alert("请输入内容");
+            return false;
+        }
+
+        var files = $("#file1").get(0).files[0]; //获取file控件中的内容
+        if (files == undefined){
+            alert("请上传图片");
+            return false;
+        }
+
+        var formData = new FormData();
+        formData.append("file", files);
+        formData.append("title", title);
+        formData.append("bussId", bussId);
+        formData.append("content", content);
+
+        $.ajax({
+            url: "/jxcIndex/setWxShare",
+            type: 'POST',
+            cache: false,
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            mimeType:"multipart/form-data",
+            success: function (data) {
+                var code = data['resultCode'];
+                if (code == "1"){
+                    window.location.href = "/home";
+                } else {
+                    alert("网络异常请稍后再试");
+                }
+            }
+        })
+    }
+    // 图片上传时显示缩略图
+    function choose_pic() {
+        $("#file1").on("change", function () {
+            var file = this.files[0];
+            if (this.files && file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#img1").attr("src", e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+            $("#select_img").text("重新选择");
+            $("#img1").show();
+            $("#upload_logo").show();
+        });
+    }
+</script>
+</body>
+</html>
