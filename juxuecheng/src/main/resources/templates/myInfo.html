@@ -11,6 +11,7 @@
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/theme-color.css" rel="stylesheet">
     <link href="/css/myself/my-info.css" rel="stylesheet">
+    <link href="/css/myself/jxc-index.css" rel="stylesheet">
 </head>
 <body style="background: #fff;">
 <header class="zyw-header">
@@ -55,7 +56,21 @@
                 <span id="address">吉首市华商国际城</span>
             </div>
         </div>
-        <div class="login-btn"><a href="javascript:;" class="weui-btn weui-btn_warn theme-bgcolor" onclick="registerBuss()">修改</a></div>
+       <div class="weui-cell">
+          <div class="weui-cell__hd w-25"><label class="weui-label_1 f-r">二维码</label></div>
+          <div class="weui-cell__bd">
+             <div class="ewm-0-0">
+                <img id="ewm_1" style="width: 70%;" src=""/>
+             </div>
+             <div class="row-11 ewm-1">
+                <img id="img1 ewm-0" hidden src="">
+                <a class="btn btn-primary radius upload-btn" type="file" id="select_img">修改</a>
+                <input class="file-1" type="file" id="file1" style="height: 40px;">
+                <br/>
+             </div>
+          </div>
+       </div>
+        <div class="login-btn"><a href="javascript:;" class="weui-btn weui-btn_warn theme-bgcolor" onclick="updateInfo()">修改</a></div>
     </form>
 </section>
 <script src="/js/jquery.min.js"></script>
@@ -74,9 +89,67 @@
                 $("#user_name").html(data['result']['user_name']);
                 $("#buss_type").html(data['result']['buss_type']);
                 $("#address").html(data['result']['address']);
+                $("#ewm_1").attr("src","https://yingsu-jxc.oss-cn-shanghai.aliyuncs.com/buss_index/wechat_ewm/"+data['result']['wechat']);
             }
         })
+       choose_pic();
     })
+    // 图片上传时显示缩略图
+    function choose_pic() {
+       $("#file1").on("change", function () {
+          var file = this.files[0];
+          if (this.files && file) {
+             var reader = new FileReader();
+             reader.onload = function (e) {
+                $("#ewm_1").attr("src", e.target.result);
+             }
+             reader.readAsDataURL(file);
+          }
+          $("#select_img").text("重新选择");
+          $("#img1").show();
+          $("#upload_logo").show();
+       });
+    }
+
+    function updateInfo(){
+       var bussId = $("#bussId").val();
+       var phone = $("#phone").text();
+       var buss_name = $("#buss_name").text();
+       var buss_type = $("#buss_type").text();
+       var address = $("#address").text();
+       var files = $("#file1").get(0).files[0];
+       if (files == undefined){
+          alert("请上传图片");
+          return false;
+       }
+
+       var formData = new FormData();
+       formData.append("id", bussId);
+       formData.append("file", files);
+       formData.append("phone", phone);
+       formData.append("bussName", buss_name);
+       formData.append("bussType", buss_type);
+       formData.append("address", address);
+
+       $.ajax({
+          url: "/buss/updateInfo",
+          type: 'POST',
+          cache: false,
+          data: formData,
+          processData: false,
+          contentType: false,
+          dataType: "json",
+          mimeType:"multipart/form-data",
+          success: function (data) {
+             var code = data['resultCode'];
+             if (code == "1"){
+                window.location.href = "/home";
+             } else {
+                alert("网络异常请稍后再试");
+             }
+          }
+       })
+    }
 </script>
 </body>
 </html>

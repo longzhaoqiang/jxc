@@ -1,10 +1,11 @@
 package com.yingsu.jxc.controller;
 
-import com.yingsu.jxc.entity.*;
-import com.yingsu.jxc.service.IBussesserService;
-import com.yingsu.jxc.service.IWxService;
-import com.yingsu.jxc.util.Constant;
-import com.yingsu.jxc.util.FileUploadUtil;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import com.yingsu.jxc.entity.ResultBody;
+import com.yingsu.jxc.entity.TBussesser;
+import com.yingsu.jxc.entity.TClasstype;
+import com.yingsu.jxc.entity.TWeixinLogin;
+import com.yingsu.jxc.service.IBussesserService;
+import com.yingsu.jxc.service.IWxService;
+import com.yingsu.jxc.util.Constant;
+import com.yingsu.jxc.util.FileUploadUtil;
 
 /**
  * Created by Administrator on 2018/8/23 0023.
@@ -121,13 +125,13 @@ public class BussesserController {
                 resultBody.setResultMsg("您已经注册过，请不要重复注册");
                 return resultBody;
             }
-            String newFileName = null;
+            String newFileName = "";
             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             MultipartFile teacherImg = multipartRequest.getFile("file");
             if (teacherImg != null) {
                 String oldFileName = teacherImg.getOriginalFilename();
                 String[] imgarr = oldFileName.split("\\.");
-                newFileName = "teacher-img-" + new Date().getTime() / 1000 + "." + imgarr[imgarr.length-1];
+                newFileName = "teacher-img-" + System.currentTimeMillis() + "." + imgarr[imgarr.length-1];
                 FileUploadUtil.upload(teacherImg,newFileName,"buss_index/wechat_ewm/");
             }
             bussesser.setUserId(uid);
@@ -143,6 +147,43 @@ public class BussesserController {
         }
         return resultBody;
     }
+
+	/**
+	 * 修改商家信息
+	 * @param request
+	 * @param session
+	 * @param bussesser
+	 * @return
+	 */
+	@RequestMapping("/updateInfo")
+	@ResponseBody
+	public ResultBody updateInfo(HttpServletRequest request, HttpSession session, TBussesser bussesser) {
+		ResultBody resultBody = new ResultBody();
+		try {
+			String newFileName = "";
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			MultipartFile teacherImg = multipartRequest.getFile("file");
+			if (teacherImg != null) {
+				String oldFileName = teacherImg.getOriginalFilename();
+				String[] imgarr = oldFileName.split("\\.");
+				newFileName = "teacher-img-" + System.currentTimeMillis() + "." + imgarr[imgarr.length-1];
+				FileUploadUtil.upload(teacherImg,newFileName,"buss_index/wechat_ewm/");
+			}
+			TBussesser bussesser1 = TBussesser.builder()
+										.id(bussesser.getId())
+										.bussName(bussesser.getBussName())
+										.phone(bussesser.getPhone())
+										.bussType(bussesser.getBussType())
+										.address(bussesser.getAddress())
+										.wechat(newFileName)
+										.build();
+			bussesserService.updateBuss(bussesser1);
+		} catch (Exception e) {
+			resultBody.setResultCode(Constant.ERROR_CODE);
+			resultBody.setResultMsg(Constant.ERROR_SYS_MSG + e);
+		}
+		return null;
+	}
 
     /**
      * 添加商家首页
@@ -172,9 +213,9 @@ public class BussesserController {
     public ResultBody checkRegister(HttpSession session) {
         ResultBody resultBody = new ResultBody();
         try {
-            String openId = (String) session.getAttribute("openId");
-            log.info("获取openId,{}",openId);
-            // String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
+	        // String openId = (String) session.getAttribute("openId");
+            // log.info("获取openId,{}",openId);
+            String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
             session.setAttribute("openId", openId);
             TWeixinLogin weixinLogin = wxService.getWeixinUser(openId);
             if (weixinLogin == null) {

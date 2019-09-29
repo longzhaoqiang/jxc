@@ -1,10 +1,7 @@
 package com.yingsu.jxc.controller;
 
-import com.yingsu.jxc.entity.TBussesser;
-import com.yingsu.jxc.service.IBussesserService;
-import com.yingsu.jxc.service.IWxService;
-import com.yingsu.jxc.util.Constant;
-import com.yingsu.jxc.weixin.WxController;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
+import com.yingsu.jxc.entity.TBussesser;
+import com.yingsu.jxc.service.IBussesserService;
+import com.yingsu.jxc.service.IWxService;
+import com.yingsu.jxc.util.Constant;
+import com.yingsu.jxc.weixin.WxController;
 
 
 /**
@@ -49,8 +50,8 @@ public class IndexController {
     @RequestMapping("/home")
     public ModelAndView home(HttpSession session){
         ModelAndView mv = new ModelAndView();
-        String openId = (String) session.getAttribute("openId");
-        // String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
+	    // String openId = (String) session.getAttribute("openId");
+        String openId = "oO3ww1XNuGQW6uvtsU8SrU180340";
         mv.addObject("openId",openId);
         mv.setViewName("home");
         return mv;

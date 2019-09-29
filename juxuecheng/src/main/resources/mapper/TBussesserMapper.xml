@@ -197,7 +197,7 @@
         buss_introduce = #{bussIntroduce,jdbcType=VARCHAR},
       </if>
       <if test="wechat != null">
-        wechat = #{picId,jdbcType=VARCHAR},
+        wechat = #{wechat,jdbcType=VARCHAR},
       </if>
       <if test="wechatCode != null">
         wechat_code = #{wechatCode,jdbcType=VARCHAR},

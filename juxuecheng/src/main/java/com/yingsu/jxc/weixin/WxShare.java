@@ -1,12 +1,9 @@
 package com.yingsu.jxc.weixin;
 
-import com.yingsu.jxc.entity.ResultBody;
-import com.yingsu.jxc.entity.TBussesser;
-import com.yingsu.jxc.entity.TWeixinLogin;
-import com.yingsu.jxc.entity.TWxShare;
-import com.yingsu.jxc.service.IWxService;
-import com.yingsu.jxc.util.Constant;
-import com.yingsu.jxc.util.FileUploadUtil;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.HashMap;
+import com.yingsu.jxc.entity.ResultBody;
+import com.yingsu.jxc.entity.TWxShare;
+import com.yingsu.jxc.service.IWxService;
+import com.yingsu.jxc.util.Constant;
+import com.yingsu.jxc.util.FileUploadUtil;
 
 @RestController
 @RequestMapping("jxcIndex")
@@ -73,7 +72,7 @@ public class WxShare {
             if (shareImg != null) {
                 String oldFileName = shareImg.getOriginalFilename();
                 String[] imgarr = oldFileName.split("\\.");
-                newFileName = "share-img-" + new Date().getTime() / 1000 + "." + imgarr[imgarr.length - 1];
+                newFileName = "share-img-" + System.currentTimeMillis() + "." + imgarr[imgarr.length - 1];
                 FileUploadUtil.upload(shareImg,newFileName,"buss_index/wx_share/");
             }
             wxShare.setImgUrl(newFileName);
