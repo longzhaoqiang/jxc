@@ -189,6 +189,10 @@
     opacity:0;
 }
 
+.m-i{
+    width: 100%;
+    border: 0;
+}
 .t-d-1{
     width: 70%;
     float: left;

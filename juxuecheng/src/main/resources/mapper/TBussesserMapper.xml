@@ -53,12 +53,11 @@
         tb.buss_name,
         tb.wechat,
         tb.wechat_code,
-        tc.class_type,
+        tb.buss_type,
         tb.address
     FROM
         `t_bussesser` tb
     LEFT JOIN t_weixin_login tw ON tb.user_id = tw.id
-    LEFT JOIN t_classtype tc ON tb.buss_type = tc.id
     WHERE tb.id = #{bussId};
   </select>
 

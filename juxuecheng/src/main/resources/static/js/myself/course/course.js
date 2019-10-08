@@ -3,6 +3,7 @@ $(function () {
     getList(type);
 
     $("#img").hide();
+    $("#add_course").hide();
     $("#all_course").css("background-color","#FF5D0C");
     $("#all_course").css("color","#FDFDFF");
 })
@@ -19,6 +20,11 @@ function getList(type) {
             var result = data.result;
             var course_str = '';
             if (code == "1") {
+               if (result.length<1){
+                  $("#course-add").hide();
+               } else {
+                  $("#null_data").hide();
+               }
                 for (var i = 0; i < result.length; i++) {
                     var courseName = data['result'][i]['courseName'];
                     if (courseName.length > 7){
@@ -56,6 +62,7 @@ function all_course() {
     $("#good_course").css("background-color","#FDFDFF");
     $("#try_course").css("background-color","#FDFDFF");
     $("#img").hide();
+    $("#add_course").hide();
 }
 
 function good_course() {
@@ -68,6 +75,7 @@ function good_course() {
     $("#all_course").css("background-color","#FDFDFF");
     $("#try_course").css("background-color","#FDFDFF");
     $("#img").show();
+    $("#add_course").show();
     // 设置精品课程为0
     $("#type").val(0);
 }
@@ -82,6 +90,7 @@ function try_course() {
     $("#all_course").css("background-color","#FDFDFF");
     $("#good_course").css("background-color","#FDFDFF");
     $("#img").show();
+    $("#add_course").show();
     // 设置试听课程为1
     $("#type").val(1);
 }

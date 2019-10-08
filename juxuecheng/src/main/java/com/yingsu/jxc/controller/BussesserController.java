@@ -151,38 +151,40 @@ public class BussesserController {
 	/**
 	 * 修改商家信息
 	 * @param request
-	 * @param session
 	 * @param bussesser
 	 * @return
 	 */
 	@RequestMapping("/updateInfo")
 	@ResponseBody
-	public ResultBody updateInfo(HttpServletRequest request, HttpSession session, TBussesser bussesser) {
+	public ResultBody updateInfo(HttpServletRequest request, TBussesser bussesser) {
 		ResultBody resultBody = new ResultBody();
 		try {
 			String newFileName = "";
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 			MultipartFile teacherImg = multipartRequest.getFile("file");
+
+			TBussesser bussesser1 = TBussesser.builder()
+			.id(bussesser.getId())
+			.bussName(bussesser.getBussName())
+			.phone(bussesser.getPhone())
+			.bussType(bussesser.getBussType())
+			.address(bussesser.getAddress())
+			.build();
+
 			if (teacherImg != null) {
 				String oldFileName = teacherImg.getOriginalFilename();
 				String[] imgarr = oldFileName.split("\\.");
 				newFileName = "teacher-img-" + System.currentTimeMillis() + "." + imgarr[imgarr.length-1];
 				FileUploadUtil.upload(teacherImg,newFileName,"buss_index/wechat_ewm/");
+				bussesser1.setWechat(newFileName);
 			}
-			TBussesser bussesser1 = TBussesser.builder()
-										.id(bussesser.getId())
-										.bussName(bussesser.getBussName())
-										.phone(bussesser.getPhone())
-										.bussType(bussesser.getBussType())
-										.address(bussesser.getAddress())
-										.wechat(newFileName)
-										.build();
+
 			bussesserService.updateBuss(bussesser1);
 		} catch (Exception e) {
 			resultBody.setResultCode(Constant.ERROR_CODE);
 			resultBody.setResultMsg(Constant.ERROR_SYS_MSG + e);
 		}
-		return null;
+		return resultBody;
 	}
 
     /**

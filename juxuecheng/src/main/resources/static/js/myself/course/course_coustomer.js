@@ -32,9 +32,7 @@ function getList(type) {
                         "                <div><div style='margin-left: 10px;'>" +
                         "                   <div><div class='wl-68'>" +
                         "                   <span class='course-fee'>¥"+result[i]['courseFee']+"</span></div>"+
-                        "                    <div><span class='c-blue glyphicon glyphicon-pencil' id=" + result[i]['id'] + " onclick='update_course(this)'></span>" +
-                        "                    <span class='course-color glyphicon glyphicon-trash' style='margin-left: 10px' id=" + result[i]['id'] + " onclick='delete_course(this)'></span>" +
-                        "                </div></div></div></div>" +
+                        "                    </div></div></div>" +
                         "<hr class='hr-1' width='90%'/></div></div>";
                 }
                 $("#courseList").html(course_str);

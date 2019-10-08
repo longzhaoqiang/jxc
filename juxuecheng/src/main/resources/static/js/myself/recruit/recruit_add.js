@@ -1,9 +1,10 @@
 $(function () {
-    checkLogin();
+   var bussId = $("#bussId").val();
+   commit(bussId);
 })
 
-function commit() {
-    var tile = $("#recruitTitle").val();
+function commit(bussId) {
+    var tile = $("#recruit_title").val();
     var experence = $("#experence").val();
     var education = $("#education").val();
     var recruitSalary = $("#recruitSalary").val();
@@ -31,7 +32,7 @@ function commit() {
     }
 
     $.ajax({
-        url: "/recruit/add",
+        url: "/recruit/add?param1="+bussId,
         type: "POST",
         data: data,
         success: function (data) {

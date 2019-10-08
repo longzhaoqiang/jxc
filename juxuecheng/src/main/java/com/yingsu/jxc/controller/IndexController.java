@@ -46,6 +46,14 @@ public class IndexController {
         return mv;
     }
 
+	@RequestMapping("/index")
+	public ModelAndView indexs(Integer bussId){
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("bussId",bussId);
+		mv.setViewName("index");
+		return mv;
+	}
+
     // 跳转到我的页面
     @RequestMapping("/home")
     public ModelAndView home(HttpSession session){
@@ -128,8 +136,11 @@ public class IndexController {
 
     // 跳转到发布招聘页面
     @RequestMapping("/recruit_add")
-    public String recruit_add(){
-        return "recruit_add";
+    public ModelAndView recruit_add(String param1){
+	    ModelAndView mv = new ModelAndView();
+	    mv.addObject("bussId",param1);
+	    mv.setViewName("recruit_add");
+	    return mv;
     }
 
     // 跳转到課程管理页面

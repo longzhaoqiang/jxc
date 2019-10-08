@@ -264,7 +264,7 @@ function wechatShare(bussId) {
                 wx.onMenuShareAppMessage({
                     title: title,
                     desc: content,
-                    link: 'http://www.juxuecheng.com',
+                    link: 'http://www.juxuecheng.com/index?bussId='+bussId,
                     imgUrl: imgUrl,
                     type: 'link',
                     success: function () {
@@ -274,7 +274,7 @@ function wechatShare(bussId) {
                 wx.onMenuShareTimeline({
                     title: title,
                     desc: content,
-                    link: 'http://www.juxuecheng.com',
+                   link: 'http://www.juxuecheng.com/index?bussId='+bussId,
                     imgUrl: imgUrl,
                     type: 'link',
                     success: function () {
@@ -284,7 +284,7 @@ function wechatShare(bussId) {
                 wx.onMenuShareQQ({
                     title: title,
                     desc: content,
-                    link: 'http://www.juxuecheng.com',
+                    link: 'http://www.juxuecheng.com/index?bussId='+bussId,
                     imgUrl: imgUrl,
                     type: 'link',
                     success: function () {
@@ -296,7 +296,7 @@ function wechatShare(bussId) {
                 wx.onMenuShareQZone({
                     title: title,
                     desc: content,
-                    link: 'http://www.juxuecheng.com',
+                    llink: 'http://www.juxuecheng.com/index?bussId='+bussId,
                     imgUrl: imgUrl,
                     type: 'link',
                     success: function () {

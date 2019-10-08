@@ -1,16 +1,17 @@
 package com.yingsu.jxc.controller;
 
-import com.yingsu.jxc.entity.ResultBody;
-import com.yingsu.jxc.entity.TRecruit;
-import com.yingsu.jxc.entity.TUser;
-import com.yingsu.jxc.service.IRecruitService;
-import com.yingsu.jxc.util.Constant;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
+import com.yingsu.jxc.entity.ResultBody;
+import com.yingsu.jxc.entity.TRecruit;
+import com.yingsu.jxc.entity.TUser;
+import com.yingsu.jxc.service.IRecruitService;
+import com.yingsu.jxc.util.Constant;
 
 @Controller
 @RequestMapping("/recruit")
@@ -25,10 +26,6 @@ public class RecruitController {
         ResultBody resultBody = new ResultBody();
         try {
             Integer bussId = getBussId(session);
-            if (bussId == null){
-                resultBody.setResultCode(0);
-                return resultBody;
-            }
             recruit.setBussesserId(bussId);
             resultBody = recruitService.add(recruit);
         }catch (Exception e){

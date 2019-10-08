@@ -1,12 +1,13 @@
 package com.yingsu.jxc.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.yingsu.jxc.entity.TWeixinLogin;
 import com.yingsu.jxc.entity.TWxShare;
 import com.yingsu.jxc.mapper.TWeixinLoginMapper;
 import com.yingsu.jxc.mapper.TWxShareMapper;
 import com.yingsu.jxc.service.IWxService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class WxServiceImpl implements IWxService {
@@ -28,11 +29,14 @@ public class WxServiceImpl implements IWxService {
         return weixinLogin;
     }
 
+
+
     /**
      * 查询微信分享信息
      * @param bussId
      * @return
      */
+    @Override
     public TWxShare getWxShare(Integer bussId){
         TWxShare wxShare = wxShareMapper.selectByPrimaryKey(bussId);
         return wxShare;

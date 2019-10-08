@@ -14,38 +14,32 @@
     <link href="/css/myself/jxc-index.css" rel="stylesheet">
 </head>
 <body style="background: #fff;">
-<header class="zyw-header">
-    <div class="zyw-container white-color">
-        <input type="hidden" id="bussId" th:value="${bussId}">
-        <div class="head-l"><a href="javascript:window.history.back(-1)"</a></div>
-        <h1>我的信息</h1>
-    </div>
-</header>
 <section class="zyw-container">
+   <input type="hidden" id="bussId" th:value="${bussId}">
     <form id="bussForm" method="post">
         <div class="weui-cell">
             <div class="weui-cell__hd w-25"><label class="weui-label_1 f-r">用户名</label></div>
             <div class="weui-cell__bd">
-                <span id="user_name">王二小</span>
+                <span id="user_name"></span>
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd w-25"><label class="weui-label_1 f-r">联系方式</label></div>
             <div class="weui-cell__bd">
-                <span id="phone">13818572040</span>
+                <input class="m-i" id="phone"/>
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd w-25"><label class="weui-label_1 f-r">商家名称</label></div>
             <div class="weui-cell__bd">
-                <span id="buss_name">英速百货</span>
+                <input class="m-i" id="buss_name"/>
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd w-25"><label class="weui-label_1 f-r">教育类型</label></div>
             <div class="weui-cell__bd">
                 <div class="btn-group dropdown" id="dropdown">
-                    <span id="buss_type">美术</span>
+                    <input class="m-i" id="buss_type"/>
                 </div>
             </div>
             <div class="col-sm-4 tips"></div>
@@ -53,7 +47,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd w-25"><label class="weui-label_1 f-r">所在地址</label></div>
             <div class="weui-cell__bd">
-                <span id="address">吉首市华商国际城</span>
+                <input class="m-i" id="address"/>
             </div>
         </div>
        <div class="weui-cell">
@@ -84,11 +78,11 @@
             data: {"bussId":bussId},
             success: function (data) {
                 var result = data;
-                $("#user_name").html(data['result']['buss_name']);
-                $("#phone").html(data['result']['phone']);
-                $("#user_name").html(data['result']['user_name']);
-                $("#buss_type").html(data['result']['buss_type']);
-                $("#address").html(data['result']['address']);
+                $("#user_name").html(data['result']['nick_name']);
+                $("#phone").val(data['result']['phone']);
+                $("#buss_name").val(data['result']['buss_name']);
+                $("#buss_type").val(data['result']['buss_type']);
+                $("#address").val(data['result']['address']);
                 $("#ewm_1").attr("src","https://yingsu-jxc.oss-cn-shanghai.aliyuncs.com/buss_index/wechat_ewm/"+data['result']['wechat']);
             }
         })
@@ -113,14 +107,13 @@
 
     function updateInfo(){
        var bussId = $("#bussId").val();
-       var phone = $("#phone").text();
-       var buss_name = $("#buss_name").text();
-       var buss_type = $("#buss_type").text();
-       var address = $("#address").text();
+       var phone = $("#phone").val();
+       var buss_name = $("#buss_name").val();
+       var buss_type = $("#buss_type").val();
+       var address = $("#address").val();
        var files = $("#file1").get(0).files[0];
        if (files == undefined){
-          alert("请上传图片");
-          return false;
+          files = null;
        }
 
        var formData = new FormData();
@@ -143,7 +136,7 @@
           success: function (data) {
              var code = data['resultCode'];
              if (code == "1"){
-                window.location.href = "/home";
+                window.location.reload();
              } else {
                 alert("网络异常请稍后再试");
              }
