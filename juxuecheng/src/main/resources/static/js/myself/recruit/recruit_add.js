@@ -1,9 +1,9 @@
 $(function () {
-   var bussId = $("#bussId").val();
-   commit(bussId);
+
 })
 
-function commit(bussId) {
+function commit() {
+   var bussId = $("#bussesserId").val();
     var tile = $("#recruit_title").val();
     var experence = $("#experence").val();
     var education = $("#education").val();
@@ -32,13 +32,13 @@ function commit(bussId) {
     }
 
     $.ajax({
-        url: "/recruit/add?param1="+bussId,
+        url: "/recruit/add",
         type: "POST",
         data: data,
         success: function (data) {
             var code = data.resultCode;
             if (code == "1"){
-
+               window.location.href='/recruit?param1='+bussId;
             } else {
                 alert("网络异常！添加失败！");
             }

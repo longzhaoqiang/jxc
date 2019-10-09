@@ -10,5 +10,12 @@ public interface IRecruitService {
      * @param recruit
      * @return
      */
-    public ResultBody add(TRecruit recruit);
+    ResultBody add(TRecruit recruit);
+
+	/**
+	 * 获取招聘列表
+	 * @param bussId
+	 * @return
+	 */
+	ResultBody getList(Integer bussId);
 }

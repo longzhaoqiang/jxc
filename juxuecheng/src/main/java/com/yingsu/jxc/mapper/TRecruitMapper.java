@@ -1,5 +1,7 @@
 package com.yingsu.jxc.mapper;
 
+import java.util.List;
+
 import com.yingsu.jxc.entity.TRecruit;
 
 public interface TRecruitMapper {
@@ -8,6 +10,8 @@ public interface TRecruitMapper {
     int insert(TRecruit record);
 
     int insertSelective(TRecruit record);
+
+    List<TRecruit> selectList(Integer bussId);
 
     TRecruit selectByPrimaryKey(Integer id);
 

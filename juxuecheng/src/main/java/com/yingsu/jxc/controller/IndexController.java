@@ -127,9 +127,9 @@ public class IndexController {
 
     // 跳转到招聘页面
     @RequestMapping("/recruit")
-    public ModelAndView recruit(String bussId){
+    public ModelAndView recruit(String param1){
         ModelAndView mv = new ModelAndView();
-        mv.addObject("bussId",bussId);
+        mv.addObject("bussId",param1);
         mv.setViewName("recruit");
         return mv;
     }

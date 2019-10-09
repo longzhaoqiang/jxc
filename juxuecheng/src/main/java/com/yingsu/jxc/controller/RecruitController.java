@@ -25,8 +25,6 @@ public class RecruitController {
     public ResultBody add(HttpSession session, TRecruit recruit){
         ResultBody resultBody = new ResultBody();
         try {
-            Integer bussId = getBussId(session);
-            recruit.setBussesserId(bussId);
             resultBody = recruitService.add(recruit);
         }catch (Exception e){
             resultBody.setResultCode(Constant.ERROR_CODE);
@@ -34,6 +32,19 @@ public class RecruitController {
         }
         return resultBody;
     }
+
+	@RequestMapping("/getList")
+	@ResponseBody
+	public ResultBody get(Integer bussId){
+		ResultBody resultBody = new ResultBody();
+		try {
+			resultBody = recruitService.getList(bussId);
+		}catch (Exception e){
+			resultBody.setResultCode(Constant.ERROR_CODE);
+			resultBody.setResultMsg(Constant.ERROR_SYS_MSG);
+		}
+		return resultBody;
+	}
 
     public Integer getBussId(HttpSession session){
         TUser user = (TUser) session.getAttribute(Constant.USER_INFO);

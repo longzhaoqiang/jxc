@@ -154,6 +154,12 @@
     margin-right: 0px;
 }
 
+.data-title{
+    padding-left: 15px;
+    color: #596363;
+    border-bottom: 1px solid #e5e5e5;
+}
+
 .row-11-10 {
     margin-left: 10px;
     margin-right: 10px;
